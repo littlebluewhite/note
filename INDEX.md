@@ -40,6 +40,34 @@
 ### Disjoint Set
 - [union_find_dsu](data_structure/union_find_dsu.md): disjoint set union.
 
+## Database
+
+Notes on database migrations and schema evolution.
+
+### Overview
+- [database/README](database/README.md): database notes landing page.
+
+### Migrations
+- [database/alembic/README](database/alembic/README.md): Alembic notes index and quick start.
+- [database/alembic/01-baseline](database/alembic/01-baseline.md): baseline setup for existing databases.
+- [database/alembic/02-autogenerate](database/alembic/02-autogenerate.md): autogenerate workflow and limits.
+- [database/alembic/03-data-migrations](database/alembic/03-data-migrations.md): data migrations and seed strategies.
+- [database/alembic/04-commands](database/alembic/04-commands.md): common Alembic commands.
+- [database/alembic/05-troubleshooting](database/alembic/05-troubleshooting.md): frequent issues and fixes.
+
+### Foundations
+- [database/indexing](database/indexing.md): indexing basics and common pitfalls.
+- [database/transactions](database/transactions.md): transactions and ACID summary.
+- [database/isolation_levels](database/isolation_levels.md): isolation levels overview.
+
+### PostgreSQL
+- [database/postgres_gotchas](database/postgres_gotchas.md): operational gotchas and maintenance notes.
+- [database/postgres_explain_guide](database/postgres_explain_guide.md): EXPLAIN/ANALYZE guide and plan node glossary.
+- [database/postgres_explain_examples](database/postgres_explain_examples.md): EXPLAIN plan examples with annotations.
+- [database/postgres_index_join_guide](database/postgres_index_join_guide.md): index and join strategy decision guide.
+- [database/postgres_lock_troubleshooting](database/postgres_lock_troubleshooting.md): lock waits and deadlock troubleshooting.
+- [database/postgres_slow_query_triage](database/postgres_slow_query_triage.md): slow query triage checklist.
+
 ## Reverse Index
 
 ### Algorithm Notes -> LeetCode
@@ -63,3 +91,24 @@
 - [hash_map_set](data_structure/hash_map_set.md): [q2092](leetcode/q2092.md), [q3531](leetcode/q3531.md), [q3606](leetcode/q3606.md), [q3623](leetcode/q3623.md), [q3625](leetcode/q3625.md)
 - [priority_queue_binary_heap](data_structure/priority_queue_binary_heap.md): [q3433](leetcode/q3433.md)
 - [union_find_dsu](data_structure/union_find_dsu.md): [q2092](leetcode/q2092.md)
+
+### Database Notes -> Alembic
+- [database/alembic/README](database/alembic/README.md): Alembic notes index and quick start.
+- [database/alembic/01-baseline](database/alembic/01-baseline.md): baseline setup for existing databases.
+- [database/alembic/02-autogenerate](database/alembic/02-autogenerate.md): autogenerate workflow and limits.
+- [database/alembic/03-data-migrations](database/alembic/03-data-migrations.md): data migrations and seed strategies.
+- [database/alembic/04-commands](database/alembic/04-commands.md): common Alembic commands.
+- [database/alembic/05-troubleshooting](database/alembic/05-troubleshooting.md): frequent issues and fixes.
+
+### Database Notes -> Foundations
+- [database/indexing](database/indexing.md): indexing basics and common pitfalls.
+- [database/transactions](database/transactions.md): transactions and ACID summary.
+- [database/isolation_levels](database/isolation_levels.md): isolation levels overview.
+
+### Database Notes -> PostgreSQL
+- [database/postgres_gotchas](database/postgres_gotchas.md): operational gotchas and maintenance notes.
+- [database/postgres_explain_guide](database/postgres_explain_guide.md): EXPLAIN/ANALYZE guide and plan node glossary.
+- [database/postgres_explain_examples](database/postgres_explain_examples.md): EXPLAIN plan examples with annotations.
+- [database/postgres_index_join_guide](database/postgres_index_join_guide.md): index and join strategy decision guide.
+- [database/postgres_lock_troubleshooting](database/postgres_lock_troubleshooting.md): lock waits and deadlock troubleshooting.
+- [database/postgres_slow_query_triage](database/postgres_slow_query_triage.md): slow query triage checklist.
