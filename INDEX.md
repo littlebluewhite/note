@@ -11,6 +11,8 @@
 - [sliding_window](algorithm/sliding_window.md): two-pointer window scanning.
 - [monotonic_queue](algorithm/monotonic_queue.md): deque for window min/max.
 - [prefix_sum](algorithm/prefix_sum.md): O(1) range sums after O(n) build.
+- [prefix_suffix_count_array](algorithm/prefix_suffix_count_array.md): prefix/suffix counts for split costs.
+- [prefix_suffix_penalty_scan](algorithm/prefix_suffix_penalty_scan.md): scan all split points to minimize penalty.
 - [two_pointers](algorithm/two_pointers.md): linear scan with two indices.
 
 ### Counting and Aggregation
@@ -23,7 +25,11 @@
 
 ### Sweeps and Sorting
 - [event_sorting_sweep](algorithm/event_sorting_sweep.md): time-ordered event processing.
+- [greedy_sorting_linear_decay](algorithm/greedy_sorting_linear_decay.md): sort-first greedy with linear decay.
 - [sorting_custom_order](algorithm/sorting_custom_order.md): rank-based sorting.
+
+### Arrays and Basics
+- [dynamic_array_vec](algorithm/dynamic_array_vec.md): dynamic array operations and notes.
 
 ## Data Structure
 
@@ -75,15 +81,19 @@ Notes on database migrations and schema evolution.
 - [dp_dynamic_programming](algorithm/dp_dynamic_programming.md): [q2110](leetcode/q2110.md), [q2147](leetcode/q2147.md), [q3562](leetcode/q3562.md), [q3573](leetcode/q3573.md), [q3578](leetcode/q3578.md)
 - [event_sorting_sweep](algorithm/event_sorting_sweep.md): [q2092](leetcode/q2092.md), [q3433](leetcode/q3433.md)
 - [frequency_counting](algorithm/frequency_counting.md): [q3583](leetcode/q3583.md)
+- [greedy_sorting_linear_decay](algorithm/greedy_sorting_linear_decay.md): [q3075](leetcode/q3075.md)
 - [geometry_line_grouping](algorithm/geometry_line_grouping.md): [q3625](leetcode/q3625.md)
 - [grouping_aggregation](algorithm/grouping_aggregation.md): [q3531](leetcode/q3531.md), [q3623](leetcode/q3623.md)
 - [knapsack_dp](algorithm/knapsack_dp.md): [q3562](leetcode/q3562.md)
 - [monotonic_queue](algorithm/monotonic_queue.md): [q3578](leetcode/q3578.md)
 - [prefix_sum](algorithm/prefix_sum.md): [q3578](leetcode/q3578.md), [q3652](leetcode/q3652.md)
+- [prefix_suffix_count_array](algorithm/prefix_suffix_count_array.md): [q2483](leetcode/q2483.md)
+- [prefix_suffix_penalty_scan](algorithm/prefix_suffix_penalty_scan.md): [q2483](leetcode/q2483.md)
 - [sliding_window](algorithm/sliding_window.md): [q3578](leetcode/q3578.md), [q3652](leetcode/q3652.md)
 - [sorting_custom_order](algorithm/sorting_custom_order.md): [q3606](leetcode/q3606.md)
 - [tree_dp](algorithm/tree_dp.md): [q3562](leetcode/q3562.md)
 - [two_pointers](algorithm/two_pointers.md): [q2211](leetcode/q2211.md)
+- [dynamic_array_vec](algorithm/dynamic_array_vec.md): [q3075](leetcode/q3075.md)
 
 ### Data Structure Notes -> LeetCode
 - [adjacency_list](data_structure/adjacency_list.md): [q3562](leetcode/q3562.md)
