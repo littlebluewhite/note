@@ -11,7 +11,6 @@
 - [sliding_window](algorithm/sliding_window.md): two-pointer window scanning.
 - [monotonic_queue](algorithm/monotonic_queue.md): deque for window min/max.
 - [prefix_sum](algorithm/prefix_sum.md): O(1) range sums after O(n) build.
-- [prefix_suffix_count_array](algorithm/prefix_suffix_count_array.md): prefix/suffix counts for split costs.
 - [prefix_suffix_penalty_scan](algorithm/prefix_suffix_penalty_scan.md): scan all split points to minimize penalty.
 - [two_pointers](algorithm/two_pointers.md): linear scan with two indices.
 
@@ -26,6 +25,7 @@
 ### Sweeps and Sorting
 - [event_sorting_sweep](algorithm/event_sorting_sweep.md): time-ordered event processing.
 - [greedy_sorting_linear_decay](algorithm/greedy_sorting_linear_decay.md): sort-first greedy with linear decay.
+- [room_allocation_two_heaps](algorithm/room_allocation_two_heaps.md): room scheduling with available/busy heaps.
 - [sorting_custom_order](algorithm/sorting_custom_order.md): rank-based sorting.
 
 ### Arrays and Basics
@@ -45,6 +45,12 @@
 
 ### Disjoint Set
 - [union_find_dsu](data_structure/union_find_dsu.md): disjoint set union.
+
+### Array Precompute
+- [dp_1d_array](data_structure/dp_1d_array.md): one-dimensional DP storage.
+- [prefix_suffix_count_array](data_structure/prefix_suffix_count_array.md): prefix/suffix counts for split costs.
+- [state_tracking_array](data_structure/state_tracking_array.md): per-item status tracking.
+- [suffix_max_array](data_structure/suffix_max_array.md): suffix maximum lookups.
 
 ## Database
 
@@ -87,8 +93,8 @@ Notes on database migrations and schema evolution.
 - [knapsack_dp](algorithm/knapsack_dp.md): [q3562](leetcode/q3562.md)
 - [monotonic_queue](algorithm/monotonic_queue.md): [q3578](leetcode/q3578.md)
 - [prefix_sum](algorithm/prefix_sum.md): [q3578](leetcode/q3578.md), [q3652](leetcode/q3652.md)
-- [prefix_suffix_count_array](algorithm/prefix_suffix_count_array.md): [q2483](leetcode/q2483.md)
 - [prefix_suffix_penalty_scan](algorithm/prefix_suffix_penalty_scan.md): [q2483](leetcode/q2483.md)
+- [room_allocation_two_heaps](algorithm/room_allocation_two_heaps.md): [q2402](leetcode/q2402.md)
 - [sliding_window](algorithm/sliding_window.md): [q3578](leetcode/q3578.md), [q3652](leetcode/q3652.md)
 - [sorting_custom_order](algorithm/sorting_custom_order.md): [q3606](leetcode/q3606.md)
 - [tree_dp](algorithm/tree_dp.md): [q3562](leetcode/q3562.md)
@@ -98,8 +104,12 @@ Notes on database migrations and schema evolution.
 ### Data Structure Notes -> LeetCode
 - [adjacency_list](data_structure/adjacency_list.md): [q3562](leetcode/q3562.md)
 - [deque_vecdeque](data_structure/deque_vecdeque.md): [q3578](leetcode/q3578.md)
+- [dp_1d_array](data_structure/dp_1d_array.md): [q960](leetcode/q960.md)
 - [hash_map_set](data_structure/hash_map_set.md): [q2092](leetcode/q2092.md), [q3531](leetcode/q3531.md), [q3606](leetcode/q3606.md), [q3623](leetcode/q3623.md), [q3625](leetcode/q3625.md)
-- [priority_queue_binary_heap](data_structure/priority_queue_binary_heap.md): [q3433](leetcode/q3433.md)
+- [prefix_suffix_count_array](data_structure/prefix_suffix_count_array.md): [q2483](leetcode/q2483.md)
+- [priority_queue_binary_heap](data_structure/priority_queue_binary_heap.md): [q2402](leetcode/q2402.md), [q3433](leetcode/q3433.md)
+- [state_tracking_array](data_structure/state_tracking_array.md): [q955](leetcode/q955.md)
+- [suffix_max_array](data_structure/suffix_max_array.md): [q2054](leetcode/q2054.md)
 - [union_find_dsu](data_structure/union_find_dsu.md): [q2092](leetcode/q2092.md)
 
 ### Database Notes -> Alembic

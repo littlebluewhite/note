@@ -285,6 +285,8 @@ func main() {
 ## Variations / 變化型
 
 - Store `(priority, value)` tuples. / 存 `(priority, value)`。
+- Tie-break with tuple ordering, e.g. `(end_time, room_id)` for earliest finish then smallest id.
+  / 用 tuple 排序做 tie-break，例如 `(end_time, room_id)` 先看結束時間再看編號。
 - Use `Reverse` or custom `Ord` for min-heap. / 用 `Reverse` 或自訂排序。
 - Lazy deletion for "decrease-key" workflows. / 懶刪除取代原地更新。
 
@@ -297,6 +299,8 @@ func main() {
 
 - `BinaryHeap` is max-heap by default. / `BinaryHeap` 預設為最大堆。
 - Use `Reverse` to simulate min-heap. / 使用 `Reverse` 模擬最小堆。
+- `BinaryHeap<Reverse<(i64, usize)>>` provides a min-heap with tuple tie-breaking.
+  / `BinaryHeap<Reverse<(i64, usize)>>` 可做最小堆並依 tuple 進行 tie-break。
 
 ## Related problems / 相關題目
 
