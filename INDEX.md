@@ -30,6 +30,7 @@
 
 ### Arrays and Basics
 - [dynamic_array_vec](algorithm/dynamic_array_vec.md): dynamic array operations and notes.
+- [fixed_size_subgrid_scan](algorithm/fixed_size_subgrid_scan.md): scan fixed-size subgrids.
 
 ## Data Structure
 
@@ -49,6 +50,7 @@
 ### Array Precompute
 - [dp_1d_array](data_structure/dp_1d_array.md): one-dimensional DP storage.
 - [prefix_suffix_count_array](data_structure/prefix_suffix_count_array.md): prefix/suffix counts for split costs.
+- [presence_array](data_structure/presence_array.md): boolean presence tracking for small ranges.
 - [state_tracking_array](data_structure/state_tracking_array.md): per-item status tracking.
 - [suffix_max_array](data_structure/suffix_max_array.md): suffix maximum lookups.
 
@@ -100,6 +102,7 @@ Notes on database migrations and schema evolution.
 - [tree_dp](algorithm/tree_dp.md): [q3562](leetcode/q3562.md)
 - [two_pointers](algorithm/two_pointers.md): [q2211](leetcode/q2211.md)
 - [dynamic_array_vec](algorithm/dynamic_array_vec.md): [q3075](leetcode/q3075.md)
+- [fixed_size_subgrid_scan](algorithm/fixed_size_subgrid_scan.md): [q840](leetcode/q840.md)
 
 ### Data Structure Notes -> LeetCode
 - [adjacency_list](data_structure/adjacency_list.md): [q3562](leetcode/q3562.md)
@@ -107,6 +110,7 @@ Notes on database migrations and schema evolution.
 - [dp_1d_array](data_structure/dp_1d_array.md): [q960](leetcode/q960.md)
 - [hash_map_set](data_structure/hash_map_set.md): [q2092](leetcode/q2092.md), [q3531](leetcode/q3531.md), [q3606](leetcode/q3606.md), [q3623](leetcode/q3623.md), [q3625](leetcode/q3625.md)
 - [prefix_suffix_count_array](data_structure/prefix_suffix_count_array.md): [q2483](leetcode/q2483.md)
+- [presence_array](data_structure/presence_array.md): [q840](leetcode/q840.md)
 - [priority_queue_binary_heap](data_structure/priority_queue_binary_heap.md): [q2402](leetcode/q2402.md), [q3433](leetcode/q3433.md)
 - [state_tracking_array](data_structure/state_tracking_array.md): [q955](leetcode/q955.md)
 - [suffix_max_array](data_structure/suffix_max_array.md): [q2054](leetcode/q2054.md)
