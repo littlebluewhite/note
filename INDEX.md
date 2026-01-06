@@ -30,6 +30,7 @@
 
 ### Arrays and Basics
 - [dynamic_array_vec](algorithm/dynamic_array_vec.md): dynamic array operations and notes.
+- [carry_propagation_addition](algorithm/carry_propagation_addition.md): digit-array addition with carry.
 - [fixed_size_subgrid_scan](algorithm/fixed_size_subgrid_scan.md): scan fixed-size subgrids.
 
 ## Data Structure
@@ -86,6 +87,7 @@ Notes on database migrations and schema evolution.
 
 ### Algorithm Notes -> LeetCode
 - [combinatorics_counting](algorithm/combinatorics_counting.md): [q2147](leetcode/q2147.md), [q3577](leetcode/q3577.md), [q3623](leetcode/q3623.md), [q3625](leetcode/q3625.md)
+- [carry_propagation_addition](algorithm/carry_propagation_addition.md): [q66](leetcode/q66.md)
 - [dp_dynamic_programming](algorithm/dp_dynamic_programming.md): [q2110](leetcode/q2110.md), [q2147](leetcode/q2147.md), [q3562](leetcode/q3562.md), [q3573](leetcode/q3573.md), [q3578](leetcode/q3578.md)
 - [event_sorting_sweep](algorithm/event_sorting_sweep.md): [q2092](leetcode/q2092.md), [q3433](leetcode/q3433.md)
 - [frequency_counting](algorithm/frequency_counting.md): [q3583](leetcode/q3583.md)
@@ -101,7 +103,7 @@ Notes on database migrations and schema evolution.
 - [sorting_custom_order](algorithm/sorting_custom_order.md): [q3606](leetcode/q3606.md)
 - [tree_dp](algorithm/tree_dp.md): [q3562](leetcode/q3562.md)
 - [two_pointers](algorithm/two_pointers.md): [q2211](leetcode/q2211.md)
-- [dynamic_array_vec](algorithm/dynamic_array_vec.md): [q3075](leetcode/q3075.md)
+- [dynamic_array_vec](algorithm/dynamic_array_vec.md): [q66](leetcode/q66.md), [q3075](leetcode/q3075.md)
 - [fixed_size_subgrid_scan](algorithm/fixed_size_subgrid_scan.md): [q840](leetcode/q840.md)
 
 ### Data Structure Notes -> LeetCode

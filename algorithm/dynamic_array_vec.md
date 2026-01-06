@@ -45,4 +45,5 @@ let first = v[0];
 
 ## Related Problems / 相關題目
 
+- `leetcode/q66.md`
 - `leetcode/q3075.md`

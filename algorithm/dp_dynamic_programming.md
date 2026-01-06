@@ -354,6 +354,43 @@ i:   0  1  2  3  4  5
 Each `dp[i]` depends only on `dp[i-1]` and `dp[i-2]`.
 每個狀態只依賴前兩格，因此可以壓縮空間。
 
+## Pattern-based Row DP (Fixed-Width Grid) / 固定寬度的列狀態 DP
+
+Goal: handle `n x m` grids with small `m` by enumerating row states and transitions.
+目標：當欄數 `m` 很小時，用列狀態枚舉與列間轉移處理 `n x m` 網格。
+
+### Core idea / 核心想法
+
+- Treat each row as a state (colors/choices). / 以「一列」作為狀態。
+- Filter row states by horizontal constraints. / 先保留橫向合法狀態。
+- Transition only between vertically compatible states. / 只在縱向相容的狀態間轉移。
+- Group symmetric states by pattern to shrink transitions. / 用型態分組縮小轉移表。
+
+### Workflow / 流程
+
+1. Enumerate all row states (`k^m`) and keep those valid within the row.
+   / 枚舉所有列狀態並保留橫向合法者。
+2. Precompute transitions between states that satisfy vertical constraints.
+   / 預先計算縱向相容的轉移。
+3. DP by rows: `next[s2] += cur[s1]`.
+   / 逐列做 DP 累加。
+4. Apply modulo and optional space compression.
+   / 取模並視情況壓縮空間。
+
+### Mini example (3 colors, width 3) / 小範例（三色、寬度 3）
+
+- Valid rows fall into two patterns: `ABA` (two colors) and `ABC` (three distinct).
+  / 合法列可分成 `ABA` 與 `ABC` 兩種型態。
+- Transition counts depend only on pattern: `ABC -> ABC` 2, `ABC -> ABA` 2, `ABA -> ABC` 2, `ABA -> ABA` 3.
+  / 轉移數只與型態有關：2、2、2、3。
+- So DP can be reduced to two counters.
+  / 因此可壓縮成兩個計數器。
+
+### Complexity / 複雜度
+
+- States: `O(k^m)`, transitions: `O(S^2)`, DP: `O(n * transitions)`.
+  / 狀態數與欄數 `m` 指數相關，`m` 小時可行。
+
 ## Top-down vs Bottom-up / 自上而下 vs 自下而上
 
 - Top-down: recursion + memoization; easy but watch depth.
