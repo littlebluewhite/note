@@ -6,6 +6,7 @@
 - [dp_dynamic_programming](algorithm/dp_dynamic_programming.md): DP checklist, types, and pitfalls.
 - [knapsack_dp](algorithm/knapsack_dp.md): 0/1 knapsack patterns.
 - [tree_dp](algorithm/tree_dp.md): subtree DP patterns.
+- [tree_postorder_subtree_sum](algorithm/tree_postorder_subtree_sum.md): postorder subtree sum aggregation.
 
 ### Windows, Prefix, and Two Pointers
 - [sliding_window](algorithm/sliding_window.md): two-pointer window scanning.
@@ -37,6 +38,9 @@
 
 ### Graph
 - [adjacency_list](data_structure/adjacency_list.md): graph/tree representation.
+
+### Tree
+- [binary_tree](data_structure/binary_tree.md): binary tree basics and traversals.
 
 ### Queue and Heap
 - [deque_vecdeque](data_structure/deque_vecdeque.md): double-ended queue.
@@ -102,12 +106,14 @@ Notes on database migrations and schema evolution.
 - [sliding_window](algorithm/sliding_window.md): [q3578](leetcode/q3578.md), [q3652](leetcode/q3652.md)
 - [sorting_custom_order](algorithm/sorting_custom_order.md): [q3606](leetcode/q3606.md)
 - [tree_dp](algorithm/tree_dp.md): [q3562](leetcode/q3562.md)
+- [tree_postorder_subtree_sum](algorithm/tree_postorder_subtree_sum.md): [q1339](leetcode/q1339.md)
 - [two_pointers](algorithm/two_pointers.md): [q2211](leetcode/q2211.md)
 - [dynamic_array_vec](algorithm/dynamic_array_vec.md): [q66](leetcode/q66.md), [q3075](leetcode/q3075.md)
 - [fixed_size_subgrid_scan](algorithm/fixed_size_subgrid_scan.md): [q840](leetcode/q840.md)
 
 ### Data Structure Notes -> LeetCode
 - [adjacency_list](data_structure/adjacency_list.md): [q3562](leetcode/q3562.md)
+- [binary_tree](data_structure/binary_tree.md): [q1339](leetcode/q1339.md)
 - [deque_vecdeque](data_structure/deque_vecdeque.md): [q3578](leetcode/q3578.md)
 - [dp_1d_array](data_structure/dp_1d_array.md): [q960](leetcode/q960.md)
 - [hash_map_set](data_structure/hash_map_set.md): [q2092](leetcode/q2092.md), [q3531](leetcode/q3531.md), [q3606](leetcode/q3606.md), [q3623](leetcode/q3623.md), [q3625](leetcode/q3625.md)
