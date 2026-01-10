@@ -4,6 +4,7 @@
 
 ### DP and State
 - [dp_dynamic_programming](algorithm/dp_dynamic_programming.md): DP checklist, types, and pitfalls.
+- [edit_distance_dp](algorithm/edit_distance_dp.md): edit distance and string alignment DP.
 - [knapsack_dp](algorithm/knapsack_dp.md): 0/1 knapsack patterns.
 - [tree_dp](algorithm/tree_dp.md): subtree DP patterns.
 - [tree_postorder_subtree_sum](algorithm/tree_postorder_subtree_sum.md): postorder subtree sum aggregation.
@@ -54,6 +55,7 @@
 
 ### Array Precompute
 - [dp_1d_array](data_structure/dp_1d_array.md): one-dimensional DP storage.
+- [dp_2d_array](data_structure/dp_2d_array.md): two-dimensional DP storage.
 - [prefix_suffix_count_array](data_structure/prefix_suffix_count_array.md): prefix/suffix counts for split costs.
 - [presence_array](data_structure/presence_array.md): boolean presence tracking for small ranges.
 - [state_tracking_array](data_structure/state_tracking_array.md): per-item status tracking.
@@ -92,7 +94,8 @@ Notes on database migrations and schema evolution.
 ### Algorithm Notes -> LeetCode
 - [combinatorics_counting](algorithm/combinatorics_counting.md): [q2147](leetcode/q2147.md), [q3577](leetcode/q3577.md), [q3623](leetcode/q3623.md), [q3625](leetcode/q3625.md)
 - [carry_propagation_addition](algorithm/carry_propagation_addition.md): [q66](leetcode/q66.md)
-- [dp_dynamic_programming](algorithm/dp_dynamic_programming.md): [q2110](leetcode/q2110.md), [q2147](leetcode/q2147.md), [q3562](leetcode/q3562.md), [q3573](leetcode/q3573.md), [q3578](leetcode/q3578.md)
+- [dp_dynamic_programming](algorithm/dp_dynamic_programming.md): [q712](leetcode/q712.md), [q2110](leetcode/q2110.md), [q2147](leetcode/q2147.md), [q3562](leetcode/q3562.md), [q3573](leetcode/q3573.md), [q3578](leetcode/q3578.md)
+- [edit_distance_dp](algorithm/edit_distance_dp.md): [q712](leetcode/q712.md)
 - [event_sorting_sweep](algorithm/event_sorting_sweep.md): [q2092](leetcode/q2092.md), [q3433](leetcode/q3433.md)
 - [frequency_counting](algorithm/frequency_counting.md): [q3583](leetcode/q3583.md)
 - [greedy_sorting_linear_decay](algorithm/greedy_sorting_linear_decay.md): [q3075](leetcode/q3075.md)
@@ -116,6 +119,7 @@ Notes on database migrations and schema evolution.
 - [binary_tree](data_structure/binary_tree.md): [q1339](leetcode/q1339.md)
 - [deque_vecdeque](data_structure/deque_vecdeque.md): [q3578](leetcode/q3578.md)
 - [dp_1d_array](data_structure/dp_1d_array.md): [q960](leetcode/q960.md)
+- [dp_2d_array](data_structure/dp_2d_array.md): [q712](leetcode/q712.md)
 - [hash_map_set](data_structure/hash_map_set.md): [q2092](leetcode/q2092.md), [q3531](leetcode/q3531.md), [q3606](leetcode/q3606.md), [q3623](leetcode/q3623.md), [q3625](leetcode/q3625.md)
 - [prefix_suffix_count_array](data_structure/prefix_suffix_count_array.md): [q2483](leetcode/q2483.md)
 - [presence_array](data_structure/presence_array.md): [q840](leetcode/q840.md)

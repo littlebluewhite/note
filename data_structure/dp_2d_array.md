@@ -19,6 +19,8 @@ Goal: store DP states for two indices with `O(1)` access.
 let mut dp = vec![vec![init; n]; m];
 ```
 
+- For prefix DP, use `(m+1) x (n+1)` to represent empty prefixes.
+  / 前綴 DP 常用 `(m+1) x (n+1)` 代表空前綴，邊界更好處理。
 - Use a safe negative sentinel when results can be negative.
   / 若可能為負值，請用安全的負無窮哨兵。
 
@@ -28,6 +30,20 @@ let mut dp = vec![vec![init; n]; m];
   / 有些題目會加一列或一欄當作 padding，方便處理邊界。
 - Be consistent about 0-based or 1-based indexing.
   / 請一致使用 0-based 或 1-based 索引。
+
+## Example pattern / 常見範式
+
+Two-string DP (edit distance / delete sum):
+
+```
+let mut dp = vec![vec![0i32; n + 1]; m + 1];
+for i in 1..=m {
+    dp[i][0] = dp[i - 1][0] + cost_a[i - 1];
+}
+for j in 1..=n {
+    dp[0][j] = dp[0][j - 1] + cost_b[j - 1];
+}
+```
 
 ## Update order / 更新順序
 
@@ -42,6 +58,13 @@ let mut dp = vec![vec![init; n]; m];
   / 空間：`O(mn)`。
 - Access/update: `O(1)` per state.
   / 單次存取或更新：`O(1)`。
+
+## Memory sizing / 記憶體估算
+
+- Roughly `m * n * sizeof(T)`; for `i32`, that's `4 * m * n` bytes.
+  / 大約 `m * n * sizeof(T)`；若用 `i32`，約 `4 * m * n` bytes。
+- Consider rolling array if `m` and `n` are near constraints.
+  / 若 `m`、`n` 接近上限，請考慮滾動陣列。
 
 ## Pitfalls / 常見陷阱
 
