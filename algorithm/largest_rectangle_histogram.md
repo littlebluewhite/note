@@ -68,6 +68,40 @@ Explanation / 說明
 The best rectangle uses heights `5` and `6` with width `2` (area `10`).
 最佳矩形包含高度 `5` 與 `6`，寬度為 `2`，面積 `10`。
 
+Step-by-step trace / 逐步解析
+
+We append a sentinel `0`, so we scan `extended = [2, 1, 5, 6, 2, 3, 0]`.
+加入哨兵 `0`，掃描序列 `extended = [2, 1, 5, 6, 2, 3, 0]`。
+
+- i=0, cur=2: push 0. stack = [0(2)], max=0
+  / i=0, cur=2：推入 0。stack = [0(2)], max=0
+- i=1, cur=1: pop 0 (h=2), left=-1, width=1, area=2 → max=2. push 1. stack = [1(1)]
+  / i=1, cur=1：彈出 0 (h=2)，left=-1，width=1，area=2 → max=2。推入 1。stack = [1(1)]
+- i=2, cur=5: top height 1 ≤ 5, push 2. stack = [1(1), 2(5)]
+  / i=2, cur=5：頂端 1 ≤ 5，推入 2。stack = [1(1), 2(5)]
+- i=3, cur=6: top height 5 ≤ 6, push 3. stack = [1(1), 2(5), 3(6)]
+  / i=3, cur=6：頂端 5 ≤ 6，推入 3。stack = [1(1), 2(5), 3(6)]
+- i=4, cur=2:
+  - pop 3 (h=6), left=2, width=1, area=6 → max=6
+  - pop 2 (h=5), left=1, width=2, area=10 → max=10
+  - stop (top height 1 ≤ 2), push 4. stack = [1(1), 4(2)]
+  / i=4, cur=2：
+    - 彈出 3 (h=6)，left=2，width=1，area=6 → max=6
+    - 彈出 2 (h=5)，left=1，width=2，area=10 → max=10
+    - 停止（頂端 1 ≤ 2），推入 4。stack = [1(1), 4(2)]
+- i=5, cur=3: top height 2 ≤ 3, push 5. stack = [1(1), 4(2), 5(3)]
+  / i=5, cur=3：頂端 2 ≤ 3，推入 5。stack = [1(1), 4(2), 5(3)]
+- i=6, cur=0 (sentinel):
+  - pop 5 (h=3), left=4, width=1, area=3
+  - pop 4 (h=2), left=1, width=4, area=8
+  - pop 1 (h=1), left=-1, width=6, area=6
+  - push 6, done. max=10
+  / i=6, cur=0（哨兵）：
+    - 彈出 5 (h=3)，left=4，width=1，area=3
+    - 彈出 4 (h=2)，left=1，width=4，area=8
+    - 彈出 1 (h=1)，left=-1，width=6，area=6
+    - 推入 6，結束。max=10
+
 Rust (function) / Rust（函式）
 
 ```rust
