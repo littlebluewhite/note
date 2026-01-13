@@ -14,6 +14,27 @@ When the current height is smaller than the stack top, the top bar's right bound
 Each bar is pushed and popped once.
 每個柱子只進出堆疊各一次。
 
+## Intuition / 直覺理解
+
+Any rectangle in a histogram has a "minimum height bar" that limits its height.
+任何矩形都有「最矮的柱子」當作高度限制。
+
+So for each bar, the widest rectangle where this bar is the minimum height is determined by:
+左右第一個「比它更矮」的柱子位置。
+
+The monotonic stack finds those boundaries in one pass.
+單調堆疊一次掃描就能找出邊界。
+
+## Invariant / 不變量
+
+- Stack stores indices with non-decreasing heights: `heights[stack[0]] <= ... <= heights[stack.top]`.
+  / 堆疊中的高度是單調遞增（允許相等）。
+- While scanning index `i`, all bars in stack have not found their right boundary yet.
+  / 掃描到 i 時，堆疊內的柱子「右邊界尚未確定」。
+
+When we see a shorter bar, we finalize rectangles for bars taller than it.
+遇到更矮柱子時，表示被擋住，右界確定。
+
 ## Steps / 步驟
 
 1. Append a sentinel `0` to the end of `heights` to flush the stack.
@@ -31,6 +52,27 @@ Each bar is pushed and popped once.
      - 左界為彈出後的新堆疊頂端（若空則視為 `-1`）。
      - 寬度為 `i - left - 1`，面積為 `h * width`。
    - 將 `i` 推入堆疊。
+
+## Why the width formula works / 為何寬度公式正確
+
+When `top` is popped:
+- Right boundary is `i - 1` because `heights[i]` is smaller.
+- Left boundary is `left + 1` where `left` is the index of the nearest smaller bar to the left.
+- So width is `(i - 1) - (left + 1) + 1 = i - left - 1`.
+
+當 `top` 被彈出時：
+- 右界是 `i - 1`（因為 `i` 比它矮）。
+- 左界是 `left + 1`（`left` 是左側最近更矮的柱子）。
+- 所以寬度是 `i - left - 1`。
+
+## Sentinel 0 / 為何需要哨兵 0
+
+Without a trailing `0`, increasing bars at the end would never be popped,
+so their areas would never be computed.
+若沒有結尾的 `0`，最後一段遞增柱子不會被彈出，面積不會被結算。
+
+Appending `0` forces a final "drop" to flush the stack.
+加上 `0` 等於最後補上一個更矮柱子，強制清空堆疊。
 
 ## Why it works / 為何正確
 
@@ -68,6 +110,25 @@ Explanation / 說明
 The best rectangle uses heights `5` and `6` with width `2` (area `10`).
 最佳矩形包含高度 `5` 與 `6`，寬度為 `2`，面積 `10`。
 
+## Diagram view / 圖示版
+
+Heights as bars (index under each bar):
+以下用簡單 ASCII 畫出柱子高度：
+
+```
+height
+6 |       # 
+5 |     # # 
+4 |     # # 
+3 |     # #   #
+2 | #   # # # #
+1 | # # # # # #
+    0 1 2 3 4 5   (index)
+```
+
+Largest rectangle here is height 5, width 2 (bars at index 2 and 3).
+最大矩形是高度 5，寬度 2（索引 2 與 3）。
+
 Step-by-step trace / 逐步解析
 
 We append a sentinel `0`, so we scan `extended = [2, 1, 5, 6, 2, 3, 0]`.
@@ -101,6 +162,30 @@ We append a sentinel `0`, so we scan `extended = [2, 1, 5, 6, 2, 3, 0]`.
     - 彈出 4 (h=2)，left=1，width=4，area=8
     - 彈出 1 (h=1)，left=-1，width=6，area=6
     - 推入 6，結束。max=10
+
+## Stack trace table / 逐步堆疊表
+
+Using `extended = [2,1,5,6,2,3,0]`, stack stores indices.
+堆疊存索引，格式為 `index:height`。
+
+| i | cur | action | stack after | max |
+|---|-----|--------|-------------|-----|
+| 0 | 2 | push 0 | [0:2] | 0 |
+| 1 | 1 | pop 0 -> area 2; push 1 | [1:1] | 2 |
+| 2 | 5 | push 2 | [1:1, 2:5] | 2 |
+| 3 | 6 | push 3 | [1:1, 2:5, 3:6] | 2 |
+| 4 | 2 | pop 3 -> area 6; pop 2 -> area 10; push 4 | [1:1, 4:2] | 10 |
+| 5 | 3 | push 5 | [1:1, 4:2, 5:3] | 10 |
+| 6 | 0 | pop 5 -> area 3; pop 4 -> area 8; pop 1 -> area 6; push 6 | [6:0] | 10 |
+
+## Common pitfalls / 常見誤區
+
+- Forgetting the sentinel `0` causes missing areas for increasing suffix.
+  / 忘記加哨兵會漏算最後一段遞增區間。
+- Using `>=` instead of `>` changes how equal heights are grouped.
+  / `>=` 會改變等高柱子的分組方式。
+- Mixing indices and heights in the stack.
+  / 堆疊應存索引，不是高度本身。
 
 Rust (function) / Rust（函式）
 
