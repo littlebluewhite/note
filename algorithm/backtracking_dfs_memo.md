@@ -67,3 +67,7 @@ bool dfs(state):
   / 選擇是每一對相鄰底塊可對應的上層字母。
 - Memoize whether a row can reach the top.
   / 記憶化某層是否能堆到頂端。
+
+## Related problems / 相關題目
+
+- `leetcode/q756.md`

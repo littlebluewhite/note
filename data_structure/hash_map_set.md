@@ -377,6 +377,7 @@ func main() {
 
 ## Related problems / 相關題目
 
+- `leetcode/q756.md`
 - `leetcode/q2092.md`
 - `leetcode/q3531.md`
 - `leetcode/q3606.md`

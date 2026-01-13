@@ -218,3 +218,7 @@ fn largest_rectangle_histogram(heights: &Vec<i32>) -> i32 {
     max_area
 }
 ```
+
+## Related problems / 相關題目
+
+- `leetcode/q85.md`

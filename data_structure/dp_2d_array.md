@@ -75,7 +75,5 @@ for j in 1..=n {
 
 ## Related problems / 相關題目
 
+- `leetcode/q712.md`
 - `leetcode/q1458.md`
-- [62. Unique Paths](https://leetcode.com/problems/unique-paths/)
-- [64. Minimum Path Sum](https://leetcode.com/problems/minimum-path-sum/)
-- [1143. Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/)

@@ -82,3 +82,7 @@ fn subtree_sum(node: &Option<Rc<RefCell<TreeNode>>>) -> i64 {
   / 乘積可能超過 64-bit，改用 `i128` 中間值。
 - With `Rc<RefCell<TreeNode>>`, clone child `Rc` before recursion to avoid borrow conflicts.
   / 使用 `Rc<RefCell<TreeNode>>` 時，先 clone 子節點避免借用衝突。
+
+## Related problems / 相關題目
+
+- `leetcode/q1339.md`

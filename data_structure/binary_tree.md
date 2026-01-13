@@ -111,4 +111,6 @@ pub struct Node {
 
 ## Related problems / 相關題目
 
+- `leetcode/q865.md`
 - `leetcode/q1161.md`
+- `leetcode/q1339.md`
