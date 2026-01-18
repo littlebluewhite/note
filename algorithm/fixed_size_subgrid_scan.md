@@ -25,6 +25,13 @@ for r in 0..=rows-k:
 - Need to validate a local pattern in every window.
   / 要檢查每個區塊的局部性條件。
 
+## Variations / 變化型
+
+- Scan multiple sizes by looping `k` from large to small and early-exit when found.
+  / 需要最大尺寸時可從大到小掃描，找到就提前結束。
+- Combine with prefix sums to validate row/column/diagonal sums in `O(1)`.
+  / 搭配前綴和可 `O(1)` 計算列/欄/對角線總和。
+
 ## Worked Example / 範例
 
 Problem: count `3 x 3` magic squares.
@@ -57,4 +64,5 @@ Problem: count `3 x 3` magic squares.
 
 ## Related problems / 相關題目
 
+- `leetcode/q1895.md`
 - `leetcode/q840.md`

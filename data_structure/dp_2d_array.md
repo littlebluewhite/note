@@ -45,6 +45,11 @@ for j in 1..=n {
 }
 ```
 
+## Prefix arrays / 前綴陣列
+
+- 2D arrays are also used for row/column/diagonal prefix sums in grids.
+  / 二維陣列也常用來存放列/欄/對角線前綴和。
+
 ## Update order / 更新順序
 
 - If transitions use `dp[i-1][j]`, `dp[i][j-1]`, `dp[i-1][j-1]`, iterate row-major or column-major.
@@ -75,5 +80,6 @@ for j in 1..=n {
 
 ## Related problems / 相關題目
 
+- `leetcode/q1895.md`
 - `leetcode/q712.md`
 - `leetcode/q1458.md`

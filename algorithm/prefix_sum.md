@@ -228,6 +228,35 @@ func main() {
 - 2D prefix sums for submatrix queries. / 二維前綴和。
 - Difference array for range updates. / 差分陣列。
 
+## Grid line prefix sums / 矩陣列、欄、對角線前綴
+
+Use multiple 1D prefix arrays to query row/column/diagonal sums in `O(1)`.
+使用多組一維前綴和，可在 `O(1)` 內查詢列、欄與對角線總和。
+
+- Row prefix: `row[r][c + 1] = row[r][c] + grid[r][c]`.
+  / 列前綴和：`row[r][c + 1] = row[r][c] + grid[r][c]`。
+- Column prefix: `col[r + 1][c] = col[r][c] + grid[r][c]`.
+  / 欄前綴和：`col[r + 1][c] = col[r][c] + grid[r][c]`。
+- Main diagonal prefix (down-right): `diag1[r + 1][c + 1] = diag1[r][c] + grid[r][c]`.
+  / 主對角線前綴（右下）：`diag1[r + 1][c + 1] = diag1[r][c] + grid[r][c]`。
+- Anti-diagonal prefix (down-left): `diag2[r + 1][c] = diag2[r][c + 1] + grid[r][c]`.
+  / 副對角線前綴（左下）：`diag2[r + 1][c] = diag2[r][c + 1] + grid[r][c]`。
+
+Query sums for a `k x k` subgrid with top-left `(r, c)`:
+查詢左上角 `(r, c)`、邊長 `k` 的子矩陣：
+
+- Row sum: `row[r][c + k] - row[r][c]`.
+  / 列總和：`row[r][c + k] - row[r][c]`。
+- Column sum: `col[r + k][c] - col[r][c]`.
+  / 欄總和：`col[r + k][c] - col[r][c]`。
+- Main diagonal sum: `diag1[r + k][c + k] - diag1[r][c]`.
+  / 主對角線總和：`diag1[r + k][c + k] - diag1[r][c]`。
+- Anti-diagonal sum: `diag2[r + k][c] - diag2[r][c + k]`.
+  / 副對角線總和：`diag2[r + k][c] - diag2[r][c + k]`。
+
+Note: build `diag2` with columns iterating right-to-left to satisfy the dependency.
+注意：`diag2` 需由右往左建立，才能使用 `diag2[r][c + 1]`。
+
 ## Pitfalls / 常見陷阱
 
 - Off-by-one errors. / 邊界容易出錯。
@@ -241,5 +270,6 @@ func main() {
 
 ## Related problems / 相關題目
 
+- `leetcode/q1895.md`
 - `leetcode/q3578.md`
 - `leetcode/q3652.md`
