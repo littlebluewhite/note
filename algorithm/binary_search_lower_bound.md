@@ -76,5 +76,6 @@ fn lower_bound(arr: &Vec<i32>, target: i32) -> usize {
 
 ## Related problems / 相關題目
 
+- `leetcode/q1292.md`
 - `leetcode/q1970.md`
 - `leetcode/q2054.md`
