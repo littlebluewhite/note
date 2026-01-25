@@ -246,6 +246,27 @@ func main() {
 }
 ```
 
+### Example 3: minimum range after sorting / 範例 3：排序後固定長度最小範圍
+
+Problem: pick `k` elements so that max-min is minimized.
+題目：選 `k` 個元素，使最大值減最小值最小。
+
+Core steps / 核心步驟
+
+- Sort the array, then scan every length-`k` window.
+  / 先排序，再掃描每個長度為 `k` 的視窗。
+- Range of a window is `a[i+k-1] - a[i]`.
+  / 視窗範圍為 `a[i+k-1] - a[i]`。
+
+Template / 範本
+
+```
+sort(a)
+best = +inf
+for i in 0..=n-k:
+    best = min(best, a[i+k-1] - a[i])
+```
+
 ## Variations / 變化型
 
 - Combine with monotonic queue for min/max constraints.
@@ -267,3 +288,4 @@ func main() {
 
 - `leetcode/q3578.md`
 - `leetcode/q3652.md`
+- `leetcode/q1984.md`

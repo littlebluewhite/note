@@ -38,6 +38,16 @@ for i in 1..n-1:
     best = max(best, cur)
 ```
 
+Problem: minimum range of `k` elements.
+題目：選 `k` 個元素的最小範圍。
+
+```
+sort(a)
+best = +inf
+for i in 0..=n-k:
+    best = min(best, a[i+k-1] - a[i])
+```
+
 ## Complexity / 複雜度
 
 - Space: `O(n)` for the array itself.
@@ -56,4 +66,6 @@ for i in 1..n-1:
 
 ## Related problems / 相關題目
 
+- `leetcode/q1877.md`
 - `leetcode/q2943.md`
+- `leetcode/q1984.md`
