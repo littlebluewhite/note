@@ -100,4 +100,4 @@ fn sum_if_four_divisors(n: i32) -> i32 {
 
 ## Related problems / 相關題目
 
-- `leetcode/q1390.md`
+- [q1390](../leetcode/q1390.md)

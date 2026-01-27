@@ -270,6 +270,6 @@ Note: build `diag2` with columns iterating right-to-left to satisfy the dependen
 
 ## Related problems / 相關題目
 
-- `leetcode/q1895.md`
-- `leetcode/q3578.md`
-- `leetcode/q3652.md`
+- [q1895](../leetcode/q1895.md)
+- [q3578](../leetcode/q3578.md)
+- [q3652](../leetcode/q3652.md)

@@ -56,4 +56,4 @@ Events: `[ [1,3,2], [2,4,3], [4,5,2] ]`
 
 ## Related problems / 相關題目
 
-- `leetcode/q2054.md`
+- [q2054](../leetcode/q2054.md)

@@ -155,5 +155,5 @@ Template Explanation / 模板逐行說明
 
 ## Related problems / 相關題目
 
-- `leetcode/q3454.md`
-- `leetcode/q850.md`
+- [q3454](../leetcode/q3454.md)
+- [q850](../leetcode/q850.md)

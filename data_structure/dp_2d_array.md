@@ -80,7 +80,7 @@ for j in 1..=n {
 
 ## Related problems / 相關題目
 
-- `leetcode/q1292.md`
-- `leetcode/q1895.md`
-- `leetcode/q712.md`
-- `leetcode/q1458.md`
+- [q1292](../leetcode/q1292.md)
+- [q1895](../leetcode/q1895.md)
+- [q712](../leetcode/q712.md)
+- [q1458](../leetcode/q1458.md)

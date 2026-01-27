@@ -64,5 +64,5 @@ Problem: count `3 x 3` magic squares.
 
 ## Related problems / 相關題目
 
-- `leetcode/q1895.md`
-- `leetcode/q840.md`
+- [q1895](../leetcode/q1895.md)
+- [q840](../leetcode/q840.md)

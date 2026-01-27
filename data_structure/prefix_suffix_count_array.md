@@ -55,4 +55,4 @@ Closing at `j = 2` -> penalty `prefixN[2] + suffixY[2] = 1 + 1 = 2`.
 
 ## Related problems / 相關題目
 
-- `leetcode/q2483.md`
+- [q2483](../leetcode/q2483.md)

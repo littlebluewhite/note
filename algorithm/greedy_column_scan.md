@@ -53,4 +53,4 @@ Goal: minimize the number of deleted columns so row strings become nondecreasing
 
 ## Related problems / 相關題目
 
-- `leetcode/q955.md`
+- [q955](../leetcode/q955.md)

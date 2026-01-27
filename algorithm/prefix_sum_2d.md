@@ -56,4 +56,4 @@ Sum of rectangle rows `[0,2)`, cols `[1,3)` (values `1,3,0,2`) =
 
 ## Related problems / 相關題目
 
-- `leetcode/q1292.md`
+- [q1292](../leetcode/q1292.md)

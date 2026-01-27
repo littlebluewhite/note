@@ -70,4 +70,4 @@ bool dfs(state):
 
 ## Related problems / 相關題目
 
-- `leetcode/q756.md`
+- [q756](../leetcode/q756.md)

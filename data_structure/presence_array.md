@@ -48,4 +48,4 @@ for each value v in window:
 
 ## Related problems / 相關題目
 
-- `leetcode/q840.md`
+- [q840](../leetcode/q840.md)

@@ -336,7 +336,7 @@ func main() {
 
 ## Related problems / 相關題目
 
-- `leetcode/q2147.md`
-- `leetcode/q3577.md`
-- `leetcode/q3623.md`
-- `leetcode/q3625.md`
+- [q2147](../leetcode/q2147.md)
+- [q3577](../leetcode/q3577.md)
+- [q3623](../leetcode/q3623.md)
+- [q3625](../leetcode/q3625.md)

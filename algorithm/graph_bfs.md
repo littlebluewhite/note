@@ -105,4 +105,4 @@ fn bfs_grid(row: usize, col: usize, blocked: &Vec<bool>) -> bool {
 
 ## Related problems / 相關題目
 
-- `leetcode/q1970.md`
+- [q1970](../leetcode/q1970.md)

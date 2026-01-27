@@ -446,4 +446,4 @@ With both, operations are effectively `O(alpha(n))`.
 
 ## Related problems / 相關題目
 
-- `leetcode/q2092.md`
+- [q2092](../leetcode/q2092.md)

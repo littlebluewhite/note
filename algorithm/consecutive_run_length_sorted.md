@@ -72,4 +72,4 @@ Maximum run length = 3.
 
 ## Related problems / 相關題目
 
-- `leetcode/q2943.md`
+- [q2943](../leetcode/q2943.md)

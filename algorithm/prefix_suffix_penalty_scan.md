@@ -40,4 +40,4 @@ Goal: find the earliest split index that minimizes total penalty computed from l
 
 ## Related problems / 相關題目
 
-- `leetcode/q2483.md`
+- [q2483](../leetcode/q2483.md)

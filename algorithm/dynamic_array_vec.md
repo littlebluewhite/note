@@ -45,6 +45,6 @@ let first = v[0];
 
 ## Related Problems / 相關題目
 
-- `leetcode/q66.md`
-- `leetcode/q3075.md`
-- `leetcode/q3453.md`
+- [q66](../leetcode/q66.md)
+- [q3075](../leetcode/q3075.md)
+- [q3453](../leetcode/q3453.md)

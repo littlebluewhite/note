@@ -87,4 +87,4 @@ fn min_x(y: i32) -> i32 {
 
 ## Related problems / 相關題目
 
-- `leetcode/q3314.md`
+- [q3314](../leetcode/q3314.md)

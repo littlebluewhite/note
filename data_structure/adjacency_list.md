@@ -343,4 +343,5 @@ Intuition: each node stores only its neighbors, so we can iterate edges quickly.
 
 ## Related problems / 相關題目
 
-- `leetcode/q3562.md`
+- [q3562](../leetcode/q3562.md)
+- [q3650](../leetcode/q3650.md)

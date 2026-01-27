@@ -65,4 +65,4 @@ fn all_distances(pos: &Vec<i64>) -> HashSet<i64> {
 
 ## Related problems / 相關題目
 
-- `leetcode/q2975.md`
+- [q2975](../leetcode/q2975.md)

@@ -121,4 +121,4 @@ fn dfs(node: Option<Rc<RefCell<TreeNode>>>) -> (i32, Option<Rc<RefCell<TreeNode>
 
 ## Related problems / 相關題目
 
-- `leetcode/q865.md`
+- [q865](../leetcode/q865.md)

@@ -91,6 +91,6 @@ fn max_square_area(bottom_left: &Vec<Vec<i32>>, top_right: &Vec<Vec<i32>>) -> i6
 
 ## Related problems / 相關題目
 
-- `leetcode/q3047.md`
-- `leetcode/q3453.md`
-- `leetcode/q3454.md`
+- [q3047](../leetcode/q3047.md)
+- [q3453](../leetcode/q3453.md)
+- [q3454](../leetcode/q3454.md)

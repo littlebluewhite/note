@@ -46,4 +46,4 @@ Goal: store the best value for each position with `O(1)` access.
 
 ## Related problems / 相關題目
 
-- `leetcode/q960.md`
+- [q960](../leetcode/q960.md)

@@ -66,6 +66,6 @@ for i in 0..=n-k:
 
 ## Related problems / 相關題目
 
-- `leetcode/q1877.md`
-- `leetcode/q2943.md`
-- `leetcode/q1984.md`
+- [q1877](../leetcode/q1877.md)
+- [q2943](../leetcode/q2943.md)
+- [q1984](../leetcode/q1984.md)

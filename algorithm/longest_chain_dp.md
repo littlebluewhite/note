@@ -68,4 +68,4 @@ Compatibility example for columns:
 
 ## Related problems / 相關題目
 
-- `leetcode/q960.md`
+- [q960](../leetcode/q960.md)

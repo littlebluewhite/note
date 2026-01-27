@@ -63,4 +63,4 @@ for i in 0..k {
 
 ## Related Problems / 相關題目
 
-- `leetcode/q3075.md`
+- [q3075](../leetcode/q3075.md)

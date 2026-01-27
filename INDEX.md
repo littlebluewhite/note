@@ -24,6 +24,9 @@
 ### Geometry
 - [geometry_line_grouping](algorithm/geometry_line_grouping.md): slope normalization and line keys.
 
+### Graph
+- [dijkstra_shortest_path](algorithm/dijkstra_shortest_path.md): shortest paths with non-negative weights.
+
 ### Sweeps and Sorting
 - [event_sorting_sweep](algorithm/event_sorting_sweep.md): time-ordered event processing.
 - [greedy_sorting_linear_decay](algorithm/greedy_sorting_linear_decay.md): sort-first greedy with linear decay.
@@ -113,9 +116,10 @@ Notes on database migrations and schema evolution.
 - [two_pointers](algorithm/two_pointers.md): [q2211](leetcode/q2211.md)
 - [dynamic_array_vec](algorithm/dynamic_array_vec.md): [q66](leetcode/q66.md), [q3075](leetcode/q3075.md)
 - [fixed_size_subgrid_scan](algorithm/fixed_size_subgrid_scan.md): [q840](leetcode/q840.md)
+- [dijkstra_shortest_path](algorithm/dijkstra_shortest_path.md): [q3650](leetcode/q3650.md)
 
 ### Data Structure Notes -> LeetCode
-- [adjacency_list](data_structure/adjacency_list.md): [q3562](leetcode/q3562.md)
+- [adjacency_list](data_structure/adjacency_list.md): [q3562](leetcode/q3562.md), [q3650](leetcode/q3650.md)
 - [binary_tree](data_structure/binary_tree.md): [q1339](leetcode/q1339.md)
 - [deque_vecdeque](data_structure/deque_vecdeque.md): [q3578](leetcode/q3578.md)
 - [dp_1d_array](data_structure/dp_1d_array.md): [q960](leetcode/q960.md)
@@ -123,7 +127,7 @@ Notes on database migrations and schema evolution.
 - [hash_map_set](data_structure/hash_map_set.md): [q2092](leetcode/q2092.md), [q3531](leetcode/q3531.md), [q3606](leetcode/q3606.md), [q3623](leetcode/q3623.md), [q3625](leetcode/q3625.md)
 - [prefix_suffix_count_array](data_structure/prefix_suffix_count_array.md): [q2483](leetcode/q2483.md)
 - [presence_array](data_structure/presence_array.md): [q840](leetcode/q840.md)
-- [priority_queue_binary_heap](data_structure/priority_queue_binary_heap.md): [q2402](leetcode/q2402.md), [q3433](leetcode/q3433.md)
+- [priority_queue_binary_heap](data_structure/priority_queue_binary_heap.md): [q2402](leetcode/q2402.md), [q3433](leetcode/q3433.md), [q3650](leetcode/q3650.md)
 - [state_tracking_array](data_structure/state_tracking_array.md): [q955](leetcode/q955.md)
 - [suffix_max_array](data_structure/suffix_max_array.md): [q2054](leetcode/q2054.md)
 - [union_find_dsu](data_structure/union_find_dsu.md): [q2092](leetcode/q2092.md)

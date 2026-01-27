@@ -85,6 +85,6 @@ pub fn min_pair_sum(mut nums: Vec<i32>) -> i32 {
 
 ## Related Problems / 相關題目
 
-- `leetcode/q1877.md`
-- `leetcode/q881.md`
-- `leetcode/q2491.md`
+- [q1877](../leetcode/q1877.md)
+- [q881](../leetcode/q881.md)
+- [q2491](../leetcode/q2491.md)

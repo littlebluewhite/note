@@ -404,4 +404,4 @@ func main() {
 
 ## Related problems / 相關題目
 
-- `leetcode/q3562.md`
+- [q3562](../leetcode/q3562.md)

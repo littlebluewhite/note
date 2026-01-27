@@ -52,4 +52,4 @@ Add numbers represented as digit arrays by processing from the least significant
 
 ## Related Problems / 相關題目
 
-- `leetcode/q66.md`
+- [q66](../leetcode/q66.md)

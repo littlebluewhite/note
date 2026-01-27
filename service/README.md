@@ -23,7 +23,7 @@
 
 ## Docs
 
-- `service/PLAN.md`: 需求、模組、資料模型、API 草案
+- [PLAN](PLAN.md): 需求、模組、資料模型、API 草案
 - `service/openapi.yaml`: REST API skeleton (OpenAPI)
 - `service/db/migrations/0001_init.sql`: SQLX migration skeleton
 

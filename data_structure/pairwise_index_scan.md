@@ -49,5 +49,5 @@ Problem: max square area inside the intersection of any two rectangles.
 
 ## Related problems / 相關題目
 
-- `leetcode/q3047.md`
-- `leetcode/q2975.md`
+- [q3047](../leetcode/q3047.md)
+- [q2975](../leetcode/q2975.md)

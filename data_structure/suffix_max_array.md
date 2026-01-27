@@ -71,4 +71,4 @@ fn build_suffix_max(arr: &Vec<i32>) -> Vec<i32> {
 
 ## Related problems / 相關題目
 
-- `leetcode/q2054.md`
+- [q2054](../leetcode/q2054.md)

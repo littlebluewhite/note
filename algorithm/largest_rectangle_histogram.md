@@ -221,4 +221,4 @@ fn largest_rectangle_histogram(heights: &Vec<i32>) -> i32 {
 
 ## Related problems / 相關題目
 
-- `leetcode/q85.md`
+- [q85](../leetcode/q85.md)

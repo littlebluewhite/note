@@ -63,4 +63,4 @@ Rooms: `n = 2`, meetings: `[[1,4],[2,3],[3,5]]`
 
 ## Related problems / 相關題目
 
-- `leetcode/q2402.md`
+- [q2402](../leetcode/q2402.md)

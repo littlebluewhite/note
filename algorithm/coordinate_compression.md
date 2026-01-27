@@ -53,4 +53,4 @@ fn idx_of(xs: &[i64], x: i64) -> usize {
 
 ## Related problems / 相關題目
 
-- `leetcode/q3454.md`
+- [q3454](../leetcode/q3454.md)

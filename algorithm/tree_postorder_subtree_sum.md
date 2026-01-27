@@ -85,4 +85,4 @@ fn subtree_sum(node: &Option<Rc<RefCell<TreeNode>>>) -> i64 {
 
 ## Related problems / 相關題目
 
-- `leetcode/q1339.md`
+- [q1339](../leetcode/q1339.md)

@@ -362,4 +362,4 @@ For each node `u`, we compute two numbers. / 每個節點 `u` 都計算兩個狀
 
 ## Related problems / 相關題目
 
-- `leetcode/q3562.md`
+- [q3562](../leetcode/q3562.md)
