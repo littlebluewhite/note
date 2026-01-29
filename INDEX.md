@@ -26,6 +26,7 @@
 
 ### Graph
 - [dijkstra_shortest_path](algorithm/dijkstra_shortest_path.md): shortest paths with non-negative weights.
+- [floyd_warshall_all_pairs_shortest_path](algorithm/floyd_warshall_all_pairs_shortest_path.md): all-pairs shortest paths via DP.
 
 ### Sweeps and Sorting
 - [event_sorting_sweep](algorithm/event_sorting_sweep.md): time-ordered event processing.
@@ -42,6 +43,7 @@
 
 ### Graph
 - [adjacency_list](data_structure/adjacency_list.md): graph/tree representation.
+- [weighted_graph](data_structure/weighted_graph.md): weighted edges and representations.
 
 ### Tree
 - [binary_tree](data_structure/binary_tree.md): binary tree basics and traversals.
@@ -117,13 +119,14 @@ Notes on database migrations and schema evolution.
 - [dynamic_array_vec](algorithm/dynamic_array_vec.md): [q66](leetcode/q66.md), [q3075](leetcode/q3075.md)
 - [fixed_size_subgrid_scan](algorithm/fixed_size_subgrid_scan.md): [q840](leetcode/q840.md)
 - [dijkstra_shortest_path](algorithm/dijkstra_shortest_path.md): [q3650](leetcode/q3650.md)
+- [floyd_warshall_all_pairs_shortest_path](algorithm/floyd_warshall_all_pairs_shortest_path.md): [q2976](leetcode/q2976.md)
 
 ### Data Structure Notes -> LeetCode
 - [adjacency_list](data_structure/adjacency_list.md): [q3562](leetcode/q3562.md), [q3650](leetcode/q3650.md)
 - [binary_tree](data_structure/binary_tree.md): [q1339](leetcode/q1339.md)
 - [deque_vecdeque](data_structure/deque_vecdeque.md): [q3578](leetcode/q3578.md)
 - [dp_1d_array](data_structure/dp_1d_array.md): [q960](leetcode/q960.md)
-- [dp_2d_array](data_structure/dp_2d_array.md): [q712](leetcode/q712.md)
+- [dp_2d_array](data_structure/dp_2d_array.md): [q712](leetcode/q712.md), [q2976](leetcode/q2976.md)
 - [hash_map_set](data_structure/hash_map_set.md): [q2092](leetcode/q2092.md), [q3531](leetcode/q3531.md), [q3606](leetcode/q3606.md), [q3623](leetcode/q3623.md), [q3625](leetcode/q3625.md)
 - [prefix_suffix_count_array](data_structure/prefix_suffix_count_array.md): [q2483](leetcode/q2483.md)
 - [presence_array](data_structure/presence_array.md): [q840](leetcode/q840.md)
@@ -131,6 +134,7 @@ Notes on database migrations and schema evolution.
 - [state_tracking_array](data_structure/state_tracking_array.md): [q955](leetcode/q955.md)
 - [suffix_max_array](data_structure/suffix_max_array.md): [q2054](leetcode/q2054.md)
 - [union_find_dsu](data_structure/union_find_dsu.md): [q2092](leetcode/q2092.md)
+- [weighted_graph](data_structure/weighted_graph.md): [q2976](leetcode/q2976.md)
 
 ### Database Notes -> Alembic
 - [database/alembic/README](database/alembic/README.md): Alembic notes index and quick start.

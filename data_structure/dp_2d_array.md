@@ -85,3 +85,4 @@ for j in 1..=n {
 - [q712](../leetcode/q712.md)
 - [q1458](../leetcode/q1458.md)
 - [q3651](../leetcode/q3651.md)
+- [q2976](../leetcode/q2976.md)

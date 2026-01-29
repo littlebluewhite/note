@@ -79,3 +79,7 @@ Adjacency list:
 
 - [adjacency_list](adjacency_list.md)
 - [dijkstra_shortest_path](../algorithm/dijkstra_shortest_path.md)
+
+## Related problems / 相關題目
+
+- [q2976](../leetcode/q2976.md)
