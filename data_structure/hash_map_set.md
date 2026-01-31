@@ -379,6 +379,7 @@ func main() {
 
 - [q756](../leetcode/q756.md)
 - [q2092](../leetcode/q2092.md)
+- [q2977](../leetcode/q2977.md)
 - [q3531](../leetcode/q3531.md)
 - [q3606](../leetcode/q3606.md)
 - [q3623](../leetcode/q3623.md)

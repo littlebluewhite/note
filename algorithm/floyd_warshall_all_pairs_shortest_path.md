@@ -26,6 +26,40 @@ for k in 0..n-1:
       dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
 ```
 
+## Why it covers multi-step paths / 為什麼不會漏掉多段路徑
+
+DP invariant:
+DP 不變量：
+
+- After finishing iteration `k`, `dist[i][j]` is the shortest path from `i` to `j`
+  using only intermediates in `{0..k}`.
+- 做完第 `k` 輪後，`dist[i][j]` 表示只允許中繼節點在 `{0..k}` 的最短距離。
+
+Why the recurrence is complete:
+為什麼轉移式不會漏：
+
+1. Any valid path with intermediates in `{0..k}` falls into exactly one case:
+   任一路徑（中繼節點在 `{0..k}`）只會落在兩種情況之一：
+   - it does **not** go through `k` -> already covered by `dist` from `k-1`
+     / **不經過** `k` -> 已被 `k-1` 的 `dist` 覆蓋
+   - it **does** go through `k` -> split at the **first** occurrence of `k`
+     / **經過** `k` -> 以「**第一次**經過 `k`」為切點分成兩段
+2. The two subpaths are `i -> k` and `k -> j`.
+   Both subpaths only use intermediates in `{0..k-1}`.
+   / 兩段分別為 `i -> k` 與 `k -> j`，其內部中繼節點都只在 `{0..k-1}`。
+3. Therefore the best path through `k` is exactly
+   `dist[i][k] + dist[k][j]`, and we take the min.
+   / 因此經過 `k` 的最佳路徑正是 `dist[i][k] + dist[k][j]`，取最小即可。
+
+Key intuition:
+直覺重點：
+
+- "Many steps" just means "many intermediates".
+  / 「很多步」其實只是「很多中繼節點」。
+- Floyd-Warshall grows the allowed intermediate set one node at a time,
+  so long paths are gradually composed across iterations.
+  / 允許的中繼集合逐步擴大，長路徑會在不同輪次被逐步拼接出來。
+
 ## When to use / 何時使用
 
 - Need all-pairs shortest path (APSP).
@@ -83,6 +117,102 @@ Final:
  [INF, INF, 0]
 ```
 
+## Full-matrix walkthrough / 完整矩陣走查
+
+Goal path: `1 -> 5 -> 3 -> 2 -> 4` (total cost = 8).
+目標路徑：`1 -> 5 -> 3 -> 2 -> 4`（總成本 = 8）。
+
+Graph (directed) edges:
+圖（有向）邊：
+
+- 1 -> 5 (2)
+- 5 -> 3 (2)
+- 3 -> 2 (2)
+- 2 -> 4 (2)
+- 1 -> 4 (20)
+- All other missing edges are treated as `INF`.
+  / 其餘缺邊視為 `INF`。
+
+Matrix order: nodes `1..5`.
+矩陣順序：節點 `1..5`。
+
+`k = 0` (initial, direct edges only):
+`k = 0`（初始，只允許直接邊）：
+
+```
+      1   2   3   4   5
+1:    0  INF INF  20   2
+2:   INF  0  INF  2  INF
+3:   INF  2   0  INF INF
+4:   INF INF INF  0  INF
+5:   INF INF  2  INF  0
+```
+
+`k = 1`:
+
+```
+      1   2   3   4   5
+1:    0  INF INF  20   2
+2:   INF  0  INF  2  INF
+3:   INF  2   0  INF INF
+4:   INF INF INF  0  INF
+5:   INF INF  2  INF  0
+```
+
+`k = 2` (updates `dist[3][4]` via 3->2->4):
+`k = 2`（更新 `dist[3][4]`，走 3->2->4）：
+
+```
+      1   2   3   4   5
+1:    0  INF INF  20   2
+2:   INF  0  INF  2  INF
+3:   INF  2   0   4  INF
+4:   INF INF INF  0  INF
+5:   INF INF  2  INF  0
+```
+
+`k = 3` (updates `dist[5][4]` via 5->3->2->4):
+`k = 3`（更新 `dist[5][4]`，走 5->3->2->4）：
+
+```
+      1   2   3   4   5
+1:    0  INF INF  20   2
+2:   INF  0  INF  2  INF
+3:   INF  2   0   4  INF
+4:   INF INF INF  0  INF
+5:   INF  4   2   6  0
+```
+
+`k = 4`:
+
+```
+      1   2   3   4   5
+1:    0  INF INF  20   2
+2:   INF  0  INF  2  INF
+3:   INF  2   0   4  INF
+4:   INF INF INF  0  INF
+5:   INF  4   2   6  0
+```
+
+`k = 5` (updates `dist[1][4]` via 1->5->3->2->4):
+`k = 5`（更新 `dist[1][4]`，走 1->5->3->2->4）：
+
+```
+      1   2   3   4   5
+1:    0   6   4   8   2
+2:   INF  0  INF  2  INF
+3:   INF  2   0   4  INF
+4:   INF INF INF  0  INF
+5:   INF  4   2   6  0
+```
+
+Key buildup:
+重點累積過程：
+
+- `k = 2`: `dist[3][4] = 4` from `3 -> 2 -> 4`
+- `k = 3`: `dist[5][4] = 6` from `5 -> 3 -> 2 -> 4`
+- `k = 5`: `dist[1][4] = 8` from `1 -> 5 -> 3 -> 2 -> 4`
+
 ## Pitfalls / 常見陷阱
 
 - Overflow: use a safe `INF`, and skip when `dist[i][k]` or `dist[k][j]` is `INF`.
@@ -113,3 +243,4 @@ Final:
 ## Related problems / 相關題目
 
 - [q2976](../leetcode/q2976.md)
+- [q2977](../leetcode/q2977.md)
