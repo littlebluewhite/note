@@ -2,7 +2,6 @@
 date: 2026-02-02
 tags: [briefing, programming]
 ---
-ㄉㄉ
 # 2026-02-02 Programming Briefing
 
 ## 今日重點（8–12 則）
