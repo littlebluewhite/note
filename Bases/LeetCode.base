@@ -1,0 +1,37 @@
+filters:
+  and:
+    - file.inFolder("leetcode")
+    - file.ext == "md"
+properties:
+  file.name:
+    displayName: File
+  title:
+    displayName: Title
+  category:
+    displayName: Category
+  tags:
+    displayName: Tags
+  created:
+    displayName: Created
+  updated:
+    displayName: Updated
+  difficulty:
+    displayName: Difficulty
+  source:
+    displayName: Source
+  status:
+    displayName: Status
+  complexity_time:
+    displayName: Time
+  complexity_space:
+    displayName: Space
+views:
+  - type: table
+    name: LeetCode
+    groupBy:
+      property: difficulty
+      direction: ASC
+    order:
+      - difficulty
+      - updated
+      - title

@@ -1,0 +1,35 @@
+filters:
+  and:
+    - file.inFolder("Briefings")
+    - file.ext == "md"
+properties:
+  file.name:
+    displayName: File
+  title:
+    displayName: Title
+  category:
+    displayName: Category
+  tags:
+    displayName: Tags
+  created:
+    displayName: Created
+  updated:
+    displayName: Updated
+  difficulty:
+    displayName: Difficulty
+  source:
+    displayName: Source
+  status:
+    displayName: Status
+  date:
+    displayName: Briefing Date
+views:
+  - type: table
+    name: Briefings
+    groupBy:
+      property: date
+      direction: DESC
+    order:
+      - date
+      - updated
+      - title
