@@ -15,6 +15,7 @@
 - [prefix_sum](algorithm/prefix_sum.md): O(1) range sums after O(n) build.
 - [prefix_suffix_penalty_scan](algorithm/prefix_suffix_penalty_scan.md): scan all split points to minimize penalty.
 - [two_pointers](algorithm/two_pointers.md): linear scan with two indices.
+- [monotonic_three_phase_scan](algorithm/monotonic_three_phase_scan.md): inc→dec→inc phase scan (state machine).
 
 ### Counting and Aggregation
 - [combinatorics_counting](algorithm/combinatorics_counting.md): common counting formulas and combinations.
@@ -116,6 +117,7 @@ Notes on database migrations and schema evolution.
 - [tree_dp](algorithm/tree_dp.md): [q3562](leetcode/q3562.md)
 - [tree_postorder_subtree_sum](algorithm/tree_postorder_subtree_sum.md): [q1339](leetcode/q1339.md)
 - [two_pointers](algorithm/two_pointers.md): [q2211](leetcode/q2211.md)
+- [monotonic_three_phase_scan](algorithm/monotonic_three_phase_scan.md): [q3637](leetcode/q3637.md)
 - [dynamic_array_vec](algorithm/dynamic_array_vec.md): [q66](leetcode/q66.md), [q3075](leetcode/q3075.md)
 - [fixed_size_subgrid_scan](algorithm/fixed_size_subgrid_scan.md): [q840](leetcode/q840.md)
 - [dijkstra_shortest_path](algorithm/dijkstra_shortest_path.md): [q3650](leetcode/q3650.md)
