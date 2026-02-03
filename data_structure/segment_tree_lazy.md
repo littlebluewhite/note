@@ -1,3 +1,15 @@
+---
+title: "Segment Tree (Range Add + Covered Length) / 線段樹（區間加 + 覆蓋長度）"
+category: data_structure
+tags: [data_structure]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: data_structure
+status: active
+complexity_time: O(log n) per update/query
+complexity_space: O(n)
+---
 # Segment Tree (Range Add + Covered Length) / 線段樹（區間加 + 覆蓋長度）
 
 Goal: support range add/remove on intervals and query the union length of covered ranges.
@@ -62,6 +74,13 @@ Segments correspond to half-open intervals `[xs[i], xs[i+1])`.
   / 回傳總覆蓋長度。
 
 ## Complexity / 複雜度
+
+- Time: `O(log n) per update/query`
+- Space: `O(n)`
+
+Where:
+`n`: number of elements.
+
 
 - Update: `O(log n)`.
   / 更新：`O(log n)`。

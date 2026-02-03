@@ -1,3 +1,15 @@
+---
+title: "Prefix/Suffix Penalty Scan / 前後綴懲罰掃描"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n)
+complexity_space: O(n)
+---
 # Prefix/Suffix Penalty Scan / 前後綴懲罰掃描
 
 Goal: find the earliest split index that minimizes total penalty computed from left and right sides.

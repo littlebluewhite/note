@@ -1,3 +1,15 @@
+---
+title: "Value-Sorted Prefix Min Sweep / 依值排序的前綴最小掃描"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n log n)
+complexity_space: O(n)
+---
 # Value-Sorted Prefix Min Sweep / 依值排序的前綴最小掃描
 
 Goal: quickly answer `min(dp[x])` over all items with `value[x] <= value[i]`.
@@ -60,6 +72,13 @@ So all positions with value >= 1 get prefix min 5.
 符合 `value[x] <= value[i]` 的最小值皆為 5。
 
 ## Complexity / 複雜度
+
+- Time: `O(n log n)`
+- Space: `O(n)`
+
+Where:
+`n`: number of items.
+
 
 - Sorting: `O(n log n)`.
   / 排序 `O(n log n)`。

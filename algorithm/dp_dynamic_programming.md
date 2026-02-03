@@ -1,3 +1,15 @@
+---
+title: "DP / Dynamic Programming (動態規劃)"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(S * T)
+complexity_space: O(S)
+---
 # DP / Dynamic Programming (動態規劃)
 
 Goal: solve problems with optimal substructure + overlapping subproblems by avoiding recomputation.
@@ -387,6 +399,14 @@ Goal: handle `n x m` grids with small `m` by enumerating row states and transiti
   / 因此可壓縮成兩個計數器。
 
 ### Complexity / 複雜度
+
+- Time: `O(S * T)`
+- Space: `O(S)`
+
+Where:
+`S`: number of states.
+`T`: transition cost per state.
+
 
 - States: `O(k^m)`, transitions: `O(S^2)`, DP: `O(n * transitions)`.
   / 狀態數與欄數 `m` 指數相關，`m` 小時可行。

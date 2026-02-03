@@ -1,3 +1,15 @@
+---
+title: "Stack / 堆疊"
+category: data_structure
+tags: [data_structure]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: data_structure
+status: active
+complexity_time: O(1) per op
+complexity_space: O(n)
+---
 # Stack / 堆疊
 
 Goal: support last-in-first-out (LIFO) operations in `O(1)`.
@@ -142,6 +154,15 @@ func main() {
     fmt.Println(ok)
 }
 ```
+
+## Complexity / 複雜度
+
+- Time: `O(1) per op`
+- Space: `O(n)`
+
+Where:
+`n`: number of elements.
+
 
 ## Related problems / 相關題目
 

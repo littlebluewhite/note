@@ -1,3 +1,15 @@
+---
+title: "Divisor Enumeration by Square Root / 根號枚舉因數"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(sqrt(n))
+complexity_space: O(1)
+---
 # Divisor Enumeration by Square Root / 根號枚舉因數
 
 Goal: enumerate, count, or sum divisors of `n` in `O(sqrt(n))`.

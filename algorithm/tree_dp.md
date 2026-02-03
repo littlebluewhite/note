@@ -1,3 +1,15 @@
+---
+title: "Tree DP / 樹上動態規劃"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n)
+complexity_space: O(n)
+---
 # Tree DP / 樹上動態規劃
 
 Goal: solve problems on trees by combining results from children.
@@ -356,6 +368,13 @@ For each node `u`, we compute two numbers. / 每個節點 `u` 都計算兩個狀
 - Remember to skip parent when iterating children. / 走訪時跳過父節點。
 
 ## Complexity / 複雜度
+
+- Time: `O(n)`
+- Space: `O(n)`
+
+Where:
+`n`: number of nodes.
+
 
 - Typical: `O(n)` for constant-size states. / 常見 `O(n)`。
 - Tree knapsack can be `O(n * B^2)`. / 樹上背包更高。

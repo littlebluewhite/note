@@ -1,3 +1,15 @@
+---
+title: "Knapsack DP / 背包動態規劃"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n * B)
+complexity_space: O(B)
+---
 # Knapsack DP / 背包動態規劃
 
 Goal: maximize value (or count ways) under a cost/weight limit.

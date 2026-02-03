@@ -1,3 +1,13 @@
+---
+title: "indexing"
+category: database
+tags: [database]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: database
+status: active
+---
 Indexing Basics
 
 目的

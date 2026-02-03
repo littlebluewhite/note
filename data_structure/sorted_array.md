@@ -1,3 +1,15 @@
+---
+title: "Sorted Array / 排序陣列"
+category: data_structure
+tags: [data_structure]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: data_structure
+status: active
+complexity_time: O(log n) search, O(n) insert
+complexity_space: O(n)
+---
 # Sorted Array / 排序陣列
 
 Goal: keep elements in non-decreasing order for fast scanning and binary search.
@@ -50,7 +62,13 @@ for i in 0..=n-k:
 
 ## Complexity / 複雜度
 
-- Space: `O(n)` for the array itself.
+- Time: `O(log n) search, O(n) insert`
+- Space: `O(n)`
+
+Where:
+`n`: number of elements.
+
+
   / 空間：陣列本體 `O(n)`。
 - Extra space: `O(1)` if sorting in place.
   / 額外空間：就地排序為 `O(1)`。

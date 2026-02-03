@@ -1,3 +1,15 @@
+---
+title: "Tree Postorder Depth + LCA Merge / 後序深度合併找最深節點 LCA"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n)
+complexity_space: O(h)
+---
 # Tree Postorder Depth + LCA Merge / 後序深度合併找最深節點 LCA
 
 Goal: find the smallest subtree that contains all deepest nodes by merging depths bottom-up.

@@ -1,3 +1,15 @@
+---
+title: "Hash Map / Hash Set / 雜湊表與集合"
+category: data_structure
+tags: [data_structure]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: data_structure
+status: active
+complexity_time: O(1) avg per op
+complexity_space: O(n)
+---
 # Hash Map / Hash Set / 雜湊表與集合
 
 Goal: store keys for fast lookup and aggregation.
@@ -371,6 +383,13 @@ func main() {
 - Large keys can be expensive to clone. / 大型鍵值複製成本高。
 
 ## Complexity / 複雜度
+
+- Time: `O(1) avg per op`
+- Space: `O(n)`
+
+Where:
+`n`: number of stored keys.
+
 
 - Average insert/lookup: `O(1)` / 平均：`O(1)`
 - Worst-case: `O(n)` / 最壞：`O(n)`

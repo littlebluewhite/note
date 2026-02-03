@@ -1,3 +1,15 @@
+---
+title: "Suffix Max Array / 後綴最大值陣列"
+category: data_structure
+tags: [data_structure]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: data_structure
+status: active
+complexity_time: O(n) build, O(1) query
+complexity_space: O(n)
+---
 # Suffix Max Array / 後綴最大值陣列
 
 Goal: answer "maximum value in suffix `[i, n)`" in `O(1)`.
@@ -62,11 +74,17 @@ fn build_suffix_max(arr: &Vec<i32>) -> Vec<i32> {
 
 ## Complexity / 複雜度
 
+- Time: `O(n) build, O(1) query`
+- Space: `O(n)`
+
+Where:
+`n`: number of elements.
+
+
 - Build time: `O(n)`
   / 建表時間：`O(n)`
 - Query time: `O(1)`
   / 查詢時間：`O(1)`
-- Space: `O(n)`
   / 空間：`O(n)`
 
 ## Related problems / 相關題目

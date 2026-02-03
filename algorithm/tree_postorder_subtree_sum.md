@@ -1,3 +1,15 @@
+---
+title: "Tree Postorder Subtree Sum / 後序子樹總和"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n)
+complexity_space: O(h)
+---
 # Tree Postorder Subtree Sum / 後序子樹總和
 
 Goal: compute each subtree sum with a postorder DFS.

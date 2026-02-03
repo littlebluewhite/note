@@ -1,3 +1,15 @@
+---
+title: "Greedy Column Scan for Lexicographic Order / 欄位貪心掃描"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n * m)
+complexity_space: O(n)
+---
 # Greedy Column Scan for Lexicographic Order / 欄位貪心掃描
 
 Goal: minimize the number of deleted columns so row strings become nondecreasing lexicographically.

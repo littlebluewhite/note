@@ -1,3 +1,15 @@
+---
+title: "Adjacency List / 鄰接表"
+category: data_structure
+tags: [data_structure]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: data_structure
+status: active
+complexity_time: O(n + m) build
+complexity_space: O(n + m)
+---
 # Adjacency List / 鄰接表
 
 Goal: represent graphs or trees efficiently, especially when the graph is sparse.
@@ -336,6 +348,14 @@ Intuition: each node stores only its neighbors, so we can iterate edges quickly.
 - Deep recursion may overflow; consider iterative DFS. / 遞迴過深可改用迭代 DFS。
 
 ## Complexity / 複雜度
+
+- Time: `O(n + m) build`
+- Space: `O(n + m)`
+
+Where:
+`n`: number of nodes.
+`m`: number of edges.
+
 
 - Build: `O(n + m)` / 建立：`O(n + m)`
 - Iterate neighbors: `O(deg(u))` / 走訪鄰居：`O(deg(u))`

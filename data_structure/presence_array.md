@@ -1,3 +1,15 @@
+---
+title: "Presence Array / 出現標記陣列"
+category: data_structure
+tags: [data_structure]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: data_structure
+status: active
+complexity_time: O(1) per op
+complexity_space: O(R)
+---
 # Presence Array / 出現標記陣列
 
 Goal: track whether each value in a small fixed range has appeared.
@@ -34,9 +46,14 @@ for each value v in window:
 
 ## Complexity / 複雜度
 
+- Time: `O(1) per op`
+- Space: `O(R)`
+
+Where:
+`R`: value range size.
+
 - Access/update: `O(1)`
   / 每次查詢與更新 `O(1)`。
-- Space: `O(R)` where `R` is value range size.
   / 空間 `O(R)`，`R` 為值域大小。
 
 ## Pitfalls / 常見陷阱

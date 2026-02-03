@@ -1,3 +1,15 @@
+---
+title: "Room Allocation with Two Heaps / 兩堆資源排程"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(m log m + m log n)
+complexity_space: O(n)
+---
 # Room Allocation with Two Heaps / 兩堆資源排程
 
 Goal: assign time intervals to fixed rooms, delaying when all rooms are busy, while always choosing the smallest room id.
@@ -53,6 +65,14 @@ Rooms: `n = 2`, meetings: `[[1,4],[2,3],[3,5]]`
   / 分配前一定要先釋放所有 `end <= start` 的房間。
 
 ## Complexity / 複雜度
+
+- Time: `O(m log m + m log n)`
+- Space: `O(n)`
+
+Where:
+`m`: number of meetings.
+`n`: number of rooms.
+
 
 - Sorting: `O(m log m)` where `m = meetings.length`.
   / 排序：`O(m log m)`。

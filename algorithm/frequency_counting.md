@@ -1,3 +1,15 @@
+---
+title: "Frequency Counting / 次數統計"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n + R)
+complexity_space: O(R)
+---
 # Frequency Counting / 次數統計
 
 Goal: count occurrences efficiently, often with a fixed value range.
@@ -254,6 +266,14 @@ func main() {
 - Use `i64` for counts to avoid overflow. / 計數用 `i64`。
 
 ## Complexity / 複雜度
+
+- Time: `O(n + R)`
+- Space: `O(R)`
+
+Where:
+`n`: number of elements.
+`R`: value range size.
+
 
 - Array access: `O(1)` / 陣列存取 `O(1)`
 - Full scan: `O(n)` / 掃描 `O(n)`

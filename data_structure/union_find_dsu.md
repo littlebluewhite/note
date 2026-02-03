@@ -1,3 +1,15 @@
+---
+title: "Union-Find (DSU) / 並查集"
+category: data_structure
+tags: [data_structure]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: data_structure
+status: active
+complexity_time: O(alpha(n)) per op
+complexity_space: O(n)
+---
 # Union-Find (DSU) / 並查集
 
 Goal: maintain disjoint sets with fast union and find operations.
@@ -441,6 +453,13 @@ With both, operations are effectively `O(alpha(n))`.
 - Be consistent with indexing. / 索引基準要一致。
 
 ## Complexity / 複雜度
+
+- Time: `O(alpha(n)) per op`
+- Space: `O(n)`
+
+Where:
+`n`: number of elements.
+
 
 - Amortized: `O(alpha(n))` / 攤還：`O(alpha(n))`
 

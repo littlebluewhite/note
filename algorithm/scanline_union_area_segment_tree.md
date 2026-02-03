@@ -1,3 +1,15 @@
+---
+title: "Scanline + Segment Tree Union Area / 掃描線 + 線段樹求聯集面積"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n log n)
+complexity_space: O(n)
+---
 # Scanline + Segment Tree Union Area / 掃描線 + 線段樹求聯集面積
 
 Goal: compute the union area of axis-aligned rectangles/squares where overlaps are counted once.

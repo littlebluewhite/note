@@ -1,3 +1,15 @@
+---
+title: "Doubly Linked List / 雙向鏈結串列"
+category: data_structure
+tags: [data_structure]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: data_structure
+status: active
+complexity_time: O(1) insert/delete with node
+complexity_space: O(n)
+---
 # Doubly Linked List / 雙向鏈結串列
 
 Goal: support `O(1)` removal and neighbor queries in a sequence.
@@ -44,9 +56,15 @@ Sequence `0 <-> 1 <-> 2`:
 
 ## Complexity / 複雜度
 
+- Time: `O(1) insert/delete with node`
+- Space: `O(n)`
+
+Where:
+`n`: number of nodes.
+
+
 - Remove / merge: `O(1)`.
   / 刪除或合併：`O(1)`。
-- Space: `O(n)` for `prev/next` arrays.
   / 空間：`O(n)`。
 
 ## Related problems / 相關題目

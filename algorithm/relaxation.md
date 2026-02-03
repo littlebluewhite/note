@@ -1,3 +1,15 @@
+---
+title: "Relaxation / 鬆弛"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(E)
+complexity_space: O(V)
+---
 # Relaxation / 鬆弛
 
 Goal: update a best-known value when a better path is found.
@@ -70,6 +82,16 @@ parent[v] = u
    / 迭代邊並執行鬆弛。
 3. Optionally track `parent` to reconstruct paths.
    / 記錄 `parent` 以還原路徑。
+
+## Complexity / 複雜度
+
+- Time: `O(E)`
+- Space: `O(V)`
+
+Where:
+`V`: number of vertices.
+`E`: number of edges.
+
 
 ## Pitfalls / 常見陷阱
 

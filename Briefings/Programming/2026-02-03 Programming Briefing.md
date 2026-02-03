@@ -1,15 +1,14 @@
 ---
-date: 2026-02-03
-tags: [briefing, programming]
 title: "2026-02-03 Programming Briefing"
 category: briefings
+tags: [briefing, programming]
 created: 2026-02-03
 updated: 2026-02-03
 difficulty: "n/a"
 source: briefing
 status: active
+date: 2026-02-03
 ---
-
 # 2026-02-03 Programming Briefing
 
 > 範圍：以最近 24–72 小時為主；若超出會在條目內標註。

@@ -1,3 +1,15 @@
+---
+title: "Bitwise OR With Next Integer / 與下一個整數的位元 OR"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(bit-length)
+complexity_space: O(1)
+---
 # Bitwise OR With Next Integer / 與下一個整數的位元 OR
 
 Goal: reason about `x OR (x + 1)` and invert it for the minimum `x`.

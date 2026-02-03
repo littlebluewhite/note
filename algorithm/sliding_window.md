@@ -1,3 +1,15 @@
+---
+title: "Sliding Window / 滑動視窗"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n)
+complexity_space: O(1)
+---
 # Sliding Window / 滑動視窗
 
 Goal: scan a contiguous subarray with two pointers in linear time.
@@ -280,6 +292,12 @@ for i in 0..=n-k:
 - Infinite loops if pointers do not move. / 指標不前進。
 
 ## Complexity / 複雜度
+
+- Time: `O(n)`
+- Space: `O(1)`
+
+Where:
+`n`: number of elements.
 
 - Each pointer moves at most `n` steps: `O(n)`.
   / 總時間 `O(n)`。

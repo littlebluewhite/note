@@ -1,3 +1,13 @@
+---
+title: "postgres gotchas"
+category: database
+tags: [database]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: database
+status: active
+---
 PostgreSQL Gotchas
 
 這份筆記整理容易被忽略的行為與維運風險，作為查詢與排錯用。

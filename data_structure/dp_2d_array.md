@@ -1,3 +1,15 @@
+---
+title: "DP 2D Array / 二維 DP 陣列"
+category: data_structure
+tags: [data_structure]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: data_structure
+status: active
+complexity_time: O(mn)
+complexity_space: O(mn)
+---
 # DP 2D Array / 二維 DP 陣列
 
 Goal: store DP states for two indices with `O(1)` access.
@@ -59,7 +71,14 @@ for j in 1..=n {
 
 ## Complexity / 複雜度
 
-- Space: `O(mn)` for `m x n` states.
+- Time: `O(mn)`
+- Space: `O(mn)`
+
+Where:
+`m`: number of rows.
+`n`: number of columns.
+
+
   / 空間：`O(mn)`。
 - Access/update: `O(1)` per state.
   / 單次存取或更新：`O(1)`。

@@ -1,3 +1,15 @@
+---
+title: "Digit Carry Addition / 數字進位加法"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n)
+complexity_space: O(1)
+---
 # Digit Carry Addition / 數字進位加法
 
 ## Definition / 定義

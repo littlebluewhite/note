@@ -1,3 +1,15 @@
+---
+title: "Fixed-Size Subgrid Scan / 固定尺寸子矩陣掃描"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O((rows-k+1)*(cols-k+1)*k^2)
+complexity_space: O(1)
+---
 # Fixed-Size Subgrid Scan / 固定尺寸子矩陣掃描
 
 Goal: enumerate every `k x k` subgrid in a matrix and validate or compute a property.
@@ -44,13 +56,21 @@ Problem: count `3 x 3` magic squares.
 
 ## Complexity / 複雜度
 
+- Time: `O((rows-k+1)*(cols-k+1)*k^2)`
+- Space: `O(1)`
+
+Where:
+`rows`: number of rows.
+`cols`: number of columns.
+`k`: window size.
+
+
 - Windows: `(rows-k+1) * (cols-k+1)`
   / 視窗數量。
 - Each window: `O(k*k)`
   / 每個視窗檢查成本。
 - Total: `O((rows-k+1)*(cols-k+1)*k*k)`
   / 總時間複雜度。
-- Space: `O(1)` extra (besides input).
   / 額外空間 `O(1)`。
 
 ## Pitfalls / 常見陷阱

@@ -1,3 +1,15 @@
+---
+title: "Axis-Aligned Rectangle Intersection / 軸對齊矩形交集"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n^2)
+complexity_space: O(1)
+---
 # Axis-Aligned Rectangle Intersection / 軸對齊矩形交集
 
 Goal: compute the intersection of two axis-aligned rectangles and use it to derive area or maximum inscribed square.

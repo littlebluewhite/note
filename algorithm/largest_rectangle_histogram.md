@@ -1,3 +1,15 @@
+---
+title: "Largest Rectangle in Histogram (Monotonic Stack) / 直方圖最大矩形（單調堆疊）"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n)
+complexity_space: O(n)
+---
 # Largest Rectangle in Histogram (Monotonic Stack) / 直方圖最大矩形（單調堆疊）
 
 Goal: find the maximum rectangle area formed by consecutive bars.

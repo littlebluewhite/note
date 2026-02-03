@@ -1,3 +1,13 @@
+---
+title: "01-baseline"
+category: database
+tags: [database]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: database
+status: active
+---
 Baseline（現有資料庫起點）
 
 適用情境

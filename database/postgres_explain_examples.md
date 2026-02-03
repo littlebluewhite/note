@@ -1,3 +1,13 @@
+---
+title: "postgres explain examples"
+category: database
+tags: [database]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: database
+status: active
+---
 PostgreSQL EXPLAIN Examples
 
 目的

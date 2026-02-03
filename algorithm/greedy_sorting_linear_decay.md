@@ -1,3 +1,15 @@
+---
+title: "Greedy Sorting with Linear Decay / 遞減回合的貪婪排序"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n log n + k)
+complexity_space: O(1)
+---
 # Greedy Sorting with Linear Decay / 遞減回合的貪婪排序
 
 ## Problem Pattern / 題型特徵
@@ -36,6 +48,14 @@ gain = max(h - t, 0)
 交換論證：若 `a >= b`，把 `a` 放在更早的回合不會使總和變小，因此排序後依序選取最優。
 
 ## Complexity / 複雜度
+
+- Time: `O(n log n + k)`
+- Space: `O(1)`
+
+Where:
+`n`: number of items.
+`k`: number of picks/turns.
+
 
 - Sorting: `O(n log n)`
 - Summation: `O(k)`

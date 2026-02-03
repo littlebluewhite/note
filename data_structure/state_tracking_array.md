@@ -1,3 +1,15 @@
+---
+title: "State Tracking Array / 狀態追蹤陣列"
+category: data_structure
+tags: [data_structure]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: data_structure
+status: active
+complexity_time: O(1) per update
+complexity_space: O(n)
+---
 # State Tracking Array / 狀態追蹤陣列
 
 Goal: maintain a lightweight per-item status while scanning data left-to-right or over time.
@@ -35,9 +47,15 @@ Goal: maintain a lightweight per-item status while scanning data left-to-right o
 
 ## Complexity / 複雜度
 
+- Time: `O(1) per update`
+- Space: `O(n)`
+
+Where:
+`n`: number of items.
+
+
 - Time per update: `O(1)`; total `O(k)` for `k` updates.
   / 每次更新 `O(1)`。
-- Space: `O(n)` for `n` items.
   / 空間：`O(n)`。
 
 ## Pitfalls / 常見陷阱

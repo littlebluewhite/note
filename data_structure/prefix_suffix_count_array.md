@@ -1,3 +1,15 @@
+---
+title: "Prefix/Suffix Count Array / 前後綴計數陣列"
+category: data_structure
+tags: [data_structure]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: data_structure
+status: active
+complexity_time: O(n)
+complexity_space: O(n)
+---
 # Prefix/Suffix Count Array / 前後綴計數陣列
 
 Goal: store counts for prefixes and suffixes so split queries are `O(1)`.
@@ -39,11 +51,17 @@ Closing at `j = 2` -> penalty `prefixN[2] + suffixY[2] = 1 + 1 = 2`.
 
 ## Complexity / 複雜度
 
+- Time: `O(n)`
+- Space: `O(n)`
+
+Where:
+`n`: number of elements.
+
+
 - Build time: `O(n)`.
   / 建表時間：`O(n)`。
 - Query time: `O(1)` per split.
   / 每個切點查詢 `O(1)`。
-- Space: `O(n)`.
   / 空間：`O(n)`。
 
 ## Pitfalls / 常見陷阱

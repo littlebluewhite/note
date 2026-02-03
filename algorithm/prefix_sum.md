@@ -1,3 +1,15 @@
+---
+title: "Prefix Sum / 前綴和"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n) build, O(1) query
+complexity_space: O(n)
+---
 # Prefix Sum / 前綴和
 
 Goal: answer range sum/count queries in `O(1)` after `O(n)` preprocessing.
@@ -264,6 +276,13 @@ Note: build `diag2` with columns iterating right-to-left to satisfy the dependen
 - Normalize modulo: `(x % MOD + MOD) % MOD`. / 取模需正規化。
 
 ## Complexity / 複雜度
+
+- Time: `O(n) build, O(1) query`
+- Space: `O(n)`
+
+Where:
+`n`: number of elements.
+
 
 - Build: `O(n)` / 建立：`O(n)`
 - Query: `O(1)` / 查詢：`O(1)`

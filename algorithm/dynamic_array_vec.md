@@ -1,3 +1,15 @@
+---
+title: "Dynamic Array (Vec) / 動態陣列"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(1) amortized push/pop, O(n) insert
+complexity_space: O(n)
+---
 # Dynamic Array (Vec) / 動態陣列
 
 ## Definition / 定義
@@ -6,6 +18,13 @@ A dynamic array stores elements in contiguous memory and grows as needed.
 動態陣列以連續記憶體存放元素，容量不足時自動擴張。
 
 ## Operations / 操作與複雜度
+
+- Time: `O(1) amortized push/pop, O(n) insert`
+- Space: `O(n)`
+
+Where:
+`n`: number of elements.
+
 
 - Indexing `v[i]`: `O(1)` / 直接索引為 `O(1)`
 - Push/Pop at end: amortized `O(1)` / 尾端新增或刪除為均攤 `O(1)`

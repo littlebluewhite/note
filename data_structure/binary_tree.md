@@ -1,3 +1,15 @@
+---
+title: "Binary Tree / 二元樹"
+category: data_structure
+tags: [data_structure]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: data_structure
+status: active
+complexity_time: O(n) traversal
+complexity_space: O(n)
+---
 # Binary Tree / 二元樹
 
 Goal: represent hierarchical data where each node has at most two children.
@@ -92,6 +104,13 @@ pub struct Node {
 ```
 
 ## Operations & Complexity / 操作與複雜度
+
+- Time: `O(n) traversal`
+- Space: `O(n)`
+
+Where:
+`n`: number of nodes.
+
 
 - Full traversal: `O(n)` time.
   / 全遍歷時間：`O(n)`。

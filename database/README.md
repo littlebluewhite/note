@@ -1,3 +1,13 @@
+---
+title: "README"
+category: database
+tags: [database]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: database
+status: active
+---
 Database 筆記索引
 
 這裡整理資料庫相關主題，作為資料庫筆記的入口。

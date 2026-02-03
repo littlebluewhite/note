@@ -1,3 +1,15 @@
+---
+title: "Sorting by Custom Order / 自訂排序"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n log n + m)
+complexity_space: O(n + m)
+---
 # Sorting by Custom Order / 自訂排序
 
 Goal: sort items by a custom priority and then by a secondary key.
@@ -267,6 +279,14 @@ func main() {
 - Non-transitive comparator causes unstable results. / 比較器需具傳遞性。
 
 ## Complexity / 複雜度
+
+- Time: `O(n log n + m)`
+- Space: `O(n + m)`
+
+Where:
+`n`: number of items to sort.
+`m`: size of the custom order list.
+
 
 - Sorting: `O(n log n)` / 排序：`O(n log n)`
 - Rank lookup: `O(1)` / 查排名：`O(1)`

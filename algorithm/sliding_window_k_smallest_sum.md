@@ -1,3 +1,15 @@
+---
+title: "Sliding Window: sum of k smallest / 滑動視窗：維護視窗內 k 個最小值的總和"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n log n)
+complexity_space: O(n)
+---
 # Sliding Window: sum of k smallest / 滑動視窗：維護視窗內 k 個最小值的總和
 
 ## Problem pattern / 題型
@@ -79,6 +91,15 @@ Time complexity: each move is `O(log n)`, so overall `O(n log n)`.
 Rust multiset details: [[data_structure/ordered_multiset_btreemap.md]]
 
 ---
+
+## Complexity / 複雜度
+
+- Time: `O(n log n)`
+- Space: `O(n)`
+
+Where:
+`n`: number of elements.
+
 
 ## Related problems / 相關題
 

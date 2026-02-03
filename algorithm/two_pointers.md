@@ -1,3 +1,15 @@
+---
+title: "Two Pointers / 雙指標"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n)
+complexity_space: O(1)
+---
 # Two Pointers / 雙指標
 
 Goal: scan from both ends or maintain a moving range in linear time.
@@ -275,6 +287,12 @@ func main() {
 - Be explicit about inclusive/exclusive boundaries. / 邊界要明確。
 
 ## Complexity / 複雜度
+
+- Time: `O(n)`
+- Space: `O(1)`
+
+Where:
+`n`: number of elements.
 
 - Each pointer moves at most `n` steps: `O(n)`.
   / 總時間 `O(n)`。

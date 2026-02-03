@@ -1,3 +1,15 @@
+---
+title: "Lazy Deletion in Priority Queue / 優先佇列延遲刪除"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(k log n)
+complexity_space: O(n)
+---
 # Lazy Deletion in Priority Queue / 優先佇列延遲刪除
 
 Goal: keep a heap of candidates when deletions are frequent but direct removal is expensive.
@@ -43,6 +55,13 @@ Minimum adjacent pair merge:
   / 不從堆中刪除，只在彈出時略過。
 
 ## Complexity / 複雜度
+
+- Time: `O(k log n)`
+- Space: `O(n)`
+
+Where:
+`k`: number of heap pushes (candidates).
+`n`: active elements in the heap.
 
 - Each candidate is pushed once per creation and popped at most once.
   / 每個候選只會被建立一次、彈出最多一次。

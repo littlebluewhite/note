@@ -1,3 +1,15 @@
+---
+title: "Event Sorting Sweep / 事件排序掃描"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n log n)
+complexity_space: O(n)
+---
 # Event Sorting Sweep / 事件排序掃描
 
 Goal: process time-based events in the correct order with explicit tie-breaking.
@@ -281,6 +293,13 @@ func main() {
 - Mixing event types without clear order. / 事件類型順序不清。
 
 ## Complexity / 複雜度
+
+- Time: `O(n log n)`
+- Space: `O(n)`
+
+Where:
+`n`: number of events/intervals.
+
 
 - Sorting: `O(m log m)` / 排序：`O(m log m)`
 - Sweep: `O(m)` or `O(m log m)` with heap. / 掃描：`O(m)` 或 `O(m log m)`

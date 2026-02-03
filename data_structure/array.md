@@ -7,8 +7,8 @@ updated: 2026-02-03
 difficulty: "n/a"
 source: data_structure
 status: active
-complexity_time:
-complexity_space:
+complexity_time: O(1) access
+complexity_space: O(n)
 ---
 # Array / 陣列
 
@@ -32,6 +32,15 @@ Store a sequence of elements in contiguous memory for fast indexed access.
   / 尾端追加（動態陣列/Vec）：攤銷 `O(1)`。
 - Insert/delete in the middle: `O(n)` due to shifts.
   / 中間插入/刪除：需搬移元素，`O(n)`。
+
+## Complexity / 複雜度
+
+- Time: `O(1) access`
+- Space: `O(n)`
+
+Where:
+`n`: number of elements.
+
 
 ## Notes / 補充
 

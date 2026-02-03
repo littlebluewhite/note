@@ -1,3 +1,15 @@
+---
+title: "Binary Search Lower Bound / 二分搜尋下界"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(log n)
+complexity_space: O(1)
+---
 # Binary Search Lower Bound / 二分搜尋下界
 
 Goal: find the first index where `arr[i] >= target` in a sorted array.

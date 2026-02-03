@@ -1,3 +1,15 @@
+---
+title: "2D Prefix Sum / 二維前綴和"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(mn) build, O(1) query
+complexity_space: O(mn)
+---
 # 2D Prefix Sum / 二維前綴和
 
 Goal: answer any submatrix sum query in `O(1)` after `O(mn)` preprocessing.
@@ -50,9 +62,16 @@ Sum of rectangle rows `[0,2)`, cols `[1,3)` (values `1,3,0,2`) =
 
 ## Complexity / 複雜度
 
+- Time: `O(mn) build, O(1) query`
+- Space: `O(mn)`
+
+Where:
+`m`: number of rows.
+`n`: number of columns.
+
+
 - Preprocessing: `O(mn)`
 - Query: `O(1)`
-- Space: `O(mn)`
 
 ## Related problems / 相關題目
 

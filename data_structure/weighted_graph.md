@@ -1,3 +1,15 @@
+---
+title: "Weighted Graph / 加權圖"
+category: data_structure
+tags: [data_structure]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: data_structure
+status: active
+complexity_time: O(n + m) build
+complexity_space: O(n + m)
+---
 # Weighted Graph / 加權圖
 
 Goal: model graphs where each edge has a cost, distance, time, or risk.
@@ -65,6 +77,16 @@ Adjacency list:
 2: -
 3: -
 ```
+
+## Complexity / 複雜度
+
+- Time: `O(n + m) build`
+- Space: `O(n + m)`
+
+Where:
+`n`: number of nodes.
+`m`: number of edges.
+
 
 ## Pitfalls / 常見陷阱
 

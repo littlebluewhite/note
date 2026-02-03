@@ -1,3 +1,15 @@
+---
+title: "Piecewise Linear Sweep / 分段線性掃描"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n log n)
+complexity_space: O(n)
+---
 # Piecewise Linear Sweep / 分段線性掃描
 
 Goal: integrate or search a monotone piecewise-linear function using slope change events.

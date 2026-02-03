@@ -1,3 +1,15 @@
+---
+title: "Combinatorics Counting / 組合計數"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n)
+complexity_space: O(1)
+---
 # Combinatorics Counting / 組合計數
 
 Goal: count valid configurations using combinatorial formulas instead of enumeration.
@@ -327,6 +339,15 @@ func main() {
 - Precompute factorials + inverse factorials for modulo `MOD`. / 預先計算階乘與反元素。
 - "Stars and bars" for distributions. / 隔板法分配。
 - Inclusion-exclusion for overcounting. / 容斥原理。
+
+## Complexity / 複雜度
+
+- Time: `O(n)`
+- Space: `O(1)`
+
+Where:
+`n`: number of values/items.
+
 
 ## Pitfalls / 常見陷阱
 

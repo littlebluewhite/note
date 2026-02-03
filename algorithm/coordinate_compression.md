@@ -1,3 +1,15 @@
+---
+title: "Coordinate Compression / 座標壓縮"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n log n)
+complexity_space: O(n)
+---
 # Coordinate Compression / 座標壓縮
 
 Goal: map large/sparse coordinates to a compact index range while preserving order.
@@ -27,6 +39,15 @@ For interval problems, use `[x1, x2)` so adjacent edges do not overlap.
 If you store segments between coordinates, there are `xs.len() - 1` segments:
 `[xs[i], xs[i+1])`.
 若用座標端點建立區間，段數為 `xs.len() - 1`。
+
+## Complexity / 複雜度
+
+- Time: `O(n log n)`
+- Space: `O(n)`
+
+Where:
+`n`: number of coordinates/elements.
+
 
 ## Pitfalls / 常見陷阱
 

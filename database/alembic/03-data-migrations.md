@@ -1,3 +1,13 @@
+---
+title: "03-data-migrations"
+category: database
+tags: [database]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: database
+status: active
+---
 資料遷移與 Seed
 
 結論先說

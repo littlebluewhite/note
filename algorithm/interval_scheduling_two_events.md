@@ -1,3 +1,15 @@
+---
+title: "Two-Event Interval Scheduling / 兩個不重疊區間最大和"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n log n)
+complexity_space: O(n)
+---
 # Two-Event Interval Scheduling / 兩個不重疊區間最大和
 
 Goal: select at most two non-overlapping intervals to maximize total value.
@@ -46,6 +58,13 @@ Events: `[ [1,3,2], [2,4,3], [4,5,2] ]`
   / 忘了只選一個區間也可能是最優。
 
 ## Complexity / 複雜度
+
+- Time: `O(n log n)`
+- Space: `O(n)`
+
+Where:
+`n`: number of intervals.
+
 
 - Sorting: `O(n log n)`
   / 排序：`O(n log n)`

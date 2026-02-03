@@ -1,3 +1,15 @@
+---
+title: "Dijkstra Shortest Path / Dijkstra 最短路徑"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n + m)
+complexity_space: O(n + m)
+---
 # Dijkstra Shortest Path / Dijkstra 最短路徑
 
 Goal: compute the shortest distance from a source in graphs with **non-negative** edge weights.

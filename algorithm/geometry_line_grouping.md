@@ -1,3 +1,15 @@
+---
+title: "Geometry Line Grouping / 幾何直線分組"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n^2)
+complexity_space: O(n^2)
+---
 # Geometry Line Grouping / 幾何直線分組
 
 Goal: group points by line or midpoint to count geometric structures.
@@ -290,6 +302,15 @@ func main() {
 - Use tuple key `(dx, dy, c)` in hash map. / 用 tuple 當鍵值。
 - Use `(x1 + x2, y1 + y2)` to avoid fractions. / 中點避免分數。
 - Use `i128` for large coordinates. / 大座標用 `i128`。
+
+## Complexity / 複雜度
+
+- Time: `O(n^2)`
+- Space: `O(n^2)`
+
+Where:
+`n`: number of points.
+
 
 ## Pitfalls / 常見陷阱
 

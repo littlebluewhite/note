@@ -1,3 +1,15 @@
+---
+title: "Longest Consecutive Run in Sorted List / 排序後最長連續段"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n log n)
+complexity_space: O(1)
+---
 # Longest Consecutive Run in Sorted List / 排序後最長連續段
 
 Goal: find the longest length of consecutive integers by sorting and scanning once.
@@ -53,6 +65,13 @@ Maximum run length = 3.
 最大連續段長度 = 3。
 
 ## Complexity / 複雜度
+
+- Time: `O(n log n)`
+- Space: `O(1)`
+
+Where:
+`n`: number of elements.
+
 
 - Sorting: `O(n log n)`
   / 排序時間 `O(n log n)`。

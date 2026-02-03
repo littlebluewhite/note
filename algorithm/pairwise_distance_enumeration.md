@@ -1,3 +1,15 @@
+---
+title: "Pairwise Distance Enumeration / 兩兩距離枚舉"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(k^2)
+complexity_space: O(k^2)
+---
 # Pairwise Distance Enumeration / 兩兩距離枚舉
 
 Goal: enumerate all possible distances between any two positions in 1D.

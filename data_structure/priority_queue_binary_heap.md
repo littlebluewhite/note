@@ -1,3 +1,15 @@
+---
+title: "Priority Queue (Binary Heap) / 優先佇列（二元堆）"
+category: data_structure
+tags: [data_structure]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: data_structure
+status: active
+complexity_time: O(log n) push/pop, O(1) peek
+complexity_space: O(n)
+---
 # Priority Queue (Binary Heap) / 優先佇列（二元堆）
 
 Goal: get the min or max element with `O(log n)` updates.
@@ -289,6 +301,15 @@ func main() {
   / 用 tuple 排序做 tie-break，例如 `(end_time, room_id)` 先看結束時間再看編號。
 - Use `Reverse` or custom `Ord` for min-heap. / 用 `Reverse` 或自訂排序。
 - Lazy deletion for "decrease-key" workflows. / 懶刪除取代原地更新。
+
+## Complexity / 複雜度
+
+- Time: `O(log n) push/pop, O(1) peek`
+- Space: `O(n)`
+
+Where:
+`n`: number of elements in the heap.
+
 
 ## Pitfalls / 常見陷阱
 

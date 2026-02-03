@@ -1,3 +1,15 @@
+---
+title: "Adjacent Inversion Count / 相鄰逆序計數"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(1) per update
+complexity_space: O(1)
+---
 # Adjacent Inversion Count / 相鄰逆序計數
 
 Goal: quickly know if an array is non-decreasing after local edits.
@@ -44,6 +56,9 @@ Global monotonicity is fully determined by local adjacent comparisons.
 整體單調性完全由相鄰元素大小關係決定。
 
 ## Complexity / 複雜度
+
+- Time: `O(1) per update`
+- Space: `O(1)`
 
 - Update per local change: `O(1)`.
   / 每次局部更新：`O(1)`。

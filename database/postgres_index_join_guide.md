@@ -1,3 +1,13 @@
+---
+title: "postgres index join guide"
+category: database
+tags: [database]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: database
+status: active
+---
 PostgreSQL Index vs Join Strategy Guide
 
 目的

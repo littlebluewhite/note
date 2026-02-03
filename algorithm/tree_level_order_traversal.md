@@ -1,3 +1,15 @@
+---
+title: "Tree Level-Order Traversal (BFS) / 樹的層序遍歷（BFS）"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n)
+complexity_space: O(w)
+---
 # Tree Level-Order Traversal (BFS) / 樹的層序遍歷（BFS）
 
 Goal: traverse a tree level by level to compute per-level aggregates like sums, counts, or maxima.

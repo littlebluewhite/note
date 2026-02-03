@@ -1,3 +1,15 @@
+---
+title: "Graph BFS (Queue) / 圖遍歷 BFS（佇列）"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(V + E)
+complexity_space: O(V)
+---
 # Graph BFS (Queue) / 圖遍歷 BFS（佇列）
 
 Goal: explore a graph level by level and find shortest paths in unweighted graphs.

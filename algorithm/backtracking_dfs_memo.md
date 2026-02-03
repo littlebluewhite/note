@@ -1,3 +1,15 @@
+---
+title: "Backtracking + DFS Memoization (回溯 + DFS 記憶化)"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(S * B)
+complexity_space: O(S)
+---
 # Backtracking + DFS Memoization (回溯 + DFS 記憶化)
 
 Goal: explore combinational choices with pruning, while caching repeated states to avoid recomputation.
@@ -46,6 +58,14 @@ bool dfs(state):
 ```
 
 ## Complexity / 複雜度
+
+- Time: `O(S * B)`
+- Space: `O(S)`
+
+Where:
+`S`: number of distinct states cached in memo.
+`B`: average branching factor per state.
+
 
 - Without memo: exponential in depth / 無記憶化時通常指數級。
 - With memo: `O(#states * branching_per_state)` / 有記憶化後接近狀態數規模。

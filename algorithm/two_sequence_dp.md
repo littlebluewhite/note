@@ -1,3 +1,15 @@
+---
+title: "Two-Sequence DP / 雙序列 DP"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(mn)
+complexity_space: O(mn)
+---
 # Two-Sequence DP / 雙序列 DP
 
 Goal: optimize answers across two sequences by building a 2D DP over their prefixes.

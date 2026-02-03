@@ -1,3 +1,15 @@
+---
+title: "Monotonic Queue / 單調隊列"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n)
+complexity_space: O(k)
+---
 # Monotonic Queue / 單調隊列
 
 Goal: maintain window min/max in `O(1)` amortized time.
@@ -320,6 +332,14 @@ func main() {
 - Off-by-one on window size. / 視窗大小錯誤。
 
 ## Complexity / 複雜度
+
+- Time: `O(n)`
+- Space: `O(k)`
+
+Where:
+`n`: number of elements.
+`k`: window size.
+
 
 - Total `O(n)` / 總時間 `O(n)`
 

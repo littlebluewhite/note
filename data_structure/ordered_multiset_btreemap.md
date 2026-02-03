@@ -1,3 +1,15 @@
+---
+title: "Ordered Multiset via BTreeMap / 用 BTreeMap 實作有序 Multiset"
+category: data_structure
+tags: [data_structure]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: data_structure
+status: active
+complexity_time: O(log n) per op
+complexity_space: O(n)
+---
 # Ordered Multiset via BTreeMap / 用 BTreeMap 實作有序 Multiset
 
 Rust 沒有內建 multiset（像 C++ `multiset`），但我們可以用：
@@ -76,3 +88,10 @@ fn pop_max(map: &mut BTreeMap<i32, i32>) -> Option<i32> {
 - st1 過多：st1 的 max → st2
 
 LeetCode 3013 就是這個模板。
+## Complexity / 複雜度
+
+- Time: `O(log n) per op`
+- Space: `O(n)`
+
+Where:
+`n`: number of elements.

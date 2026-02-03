@@ -1,3 +1,15 @@
+---
+title: "Deque (VecDeque) / 雙端佇列"
+category: data_structure
+tags: [data_structure]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: data_structure
+status: active
+complexity_time: O(1) amortized per op
+complexity_space: O(n)
+---
 # Deque (VecDeque) / 雙端佇列
 
 Goal: push and pop at both ends in `O(1)` amortized time.
@@ -284,6 +296,13 @@ func main() {
 - Indexing into `VecDeque` can be slower than `Vec`. / 直接索引效能較差。
 
 ## Complexity / 複雜度
+
+- Time: `O(1) amortized per op`
+- Space: `O(n)`
+
+Where:
+`n`: number of elements.
+
 
 - Push/pop front/back: `O(1)` amortized / 頭尾進出：`O(1)` 攤還
 - Access front/back: `O(1)` / 讀頭尾：`O(1)`

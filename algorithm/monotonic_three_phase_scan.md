@@ -1,5 +1,4 @@
 ---
-
 title: "Monotonic Three-Phase Scan (Inc→Dec→Inc) / 三段單調掃描"
 category: algorithm
 tags: [algorithm]
@@ -11,7 +10,6 @@ status: active
 complexity_time: O(n)
 complexity_space: O(1)
 ---
-
 # Monotonic Three-Phase Scan (Inc→Dec→Inc) / 三段單調掃描
 
 ## Goal

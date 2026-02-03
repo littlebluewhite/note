@@ -1,3 +1,13 @@
+---
+title: "04-commands"
+category: database
+tags: [database]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: database
+status: active
+---
 常用命令速查
 
 版本與狀態

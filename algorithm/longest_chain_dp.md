@@ -1,3 +1,15 @@
+---
+title: "Longest Chain DP (Column Compatibility) / 最長鏈 DP（欄位相容）"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(m^2 * k)
+complexity_space: O(m)
+---
 # Longest Chain DP (Column Compatibility) / 最長鏈 DP（欄位相容）
 
 Goal: pick the longest subsequence where every pair of consecutive elements is compatible under a custom order.

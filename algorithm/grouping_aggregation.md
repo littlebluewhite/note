@@ -1,3 +1,15 @@
+---
+title: "Grouping and Aggregation / 分組與彙總"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n + k log k)
+complexity_space: O(k)
+---
 # Grouping and Aggregation / 分組與彙總
 
 Goal: aggregate values by key (count, min, max, sum) in one pass.
@@ -269,6 +281,16 @@ func main() {
 - Use arrays if key range is small. / 小範圍用陣列。
 - Keep multiple aggregates per key. / 同時維護多種統計。
 - Group by computed buckets. / 依規則分桶。
+
+## Complexity / 複雜度
+
+- Time: `O(n + k log k)`
+- Space: `O(k)`
+
+Where:
+`n`: number of items.
+`k`: number of distinct keys.
+
 
 ## Pitfalls / 常見陷阱
 

@@ -1,3 +1,15 @@
+---
+title: "DP 1D Array / 一維 DP 陣列"
+category: data_structure
+tags: [data_structure]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: data_structure
+status: active
+complexity_time: O(n)
+complexity_space: O(n)
+---
 # DP 1D Array / 一維 DP 陣列
 
 Goal: store the best value for each position with `O(1)` access.
@@ -30,7 +42,13 @@ Goal: store the best value for each position with `O(1)` access.
 
 ## Complexity / 複雜度
 
-- Space: `O(n)` for `n` positions.
+- Time: `O(n)`
+- Space: `O(n)`
+
+Where:
+`n`: length of the array / number of states.
+
+
   / 空間：`O(n)`。
 - Time depends on transitions (often `O(n^2)`).
   / 時間取決於轉移成本（常見為 `O(n^2)`）。

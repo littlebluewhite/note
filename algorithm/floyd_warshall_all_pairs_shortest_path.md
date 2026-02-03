@@ -1,3 +1,15 @@
+---
+title: "Floyd-Warshall All-Pairs Shortest Path / Floyd-Warshall 全點對最短路徑"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n^3)
+complexity_space: O(n^2)
+---
 # Floyd-Warshall All-Pairs Shortest Path / Floyd-Warshall 全點對最短路徑
 
 Goal: compute the shortest distance between **every pair** of nodes in a weighted graph.

@@ -1,3 +1,13 @@
+---
+title: "02-autogenerate"
+category: database
+tags: [database]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: database
+status: active
+---
 Autogenerate（自動生成 Migration）
 
 基本概念

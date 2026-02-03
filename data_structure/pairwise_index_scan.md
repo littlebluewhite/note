@@ -1,3 +1,15 @@
+---
+title: "Pairwise Index Scan / 陣列兩兩掃描"
+category: data_structure
+tags: [data_structure]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: "n/a"
+source: data_structure
+status: active
+complexity_time: O(n^2)
+complexity_space: O(1)
+---
 # Pairwise Index Scan / 陣列兩兩掃描
 
 Goal: enumerate all unordered pairs in a flat array using indices for pairwise computations.

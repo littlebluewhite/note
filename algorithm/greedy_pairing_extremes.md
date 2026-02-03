@@ -1,3 +1,15 @@
+---
+title: "Greedy Pairing Extremes / 極值配對貪婪"
+category: algorithm
+tags: [algorithm]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: algorithm
+status: active
+complexity_time: O(n log n)
+complexity_space: O(1)
+---
 # Greedy Pairing Extremes / 極值配對貪婪
 
 Goal: pair elements to minimize the maximum pair sum (or pair cost by sum).
