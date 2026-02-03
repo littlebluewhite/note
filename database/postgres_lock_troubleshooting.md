@@ -8,6 +8,8 @@ difficulty: "n/a"
 source: database
 status: active
 ---
+# postgres lock troubleshooting
+
 PostgreSQL Lock Troubleshooting
 
 目的

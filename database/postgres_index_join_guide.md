@@ -8,6 +8,8 @@ difficulty: "n/a"
 source: database
 status: active
 ---
+# postgres index join guide
+
 PostgreSQL Index vs Join Strategy Guide
 
 目的

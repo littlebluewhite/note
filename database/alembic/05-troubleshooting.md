@@ -8,6 +8,8 @@ difficulty: "n/a"
 source: database
 status: active
 ---
+# 05-troubleshooting
+
 常見問題排查
 
 Autogenerate 沒偵測到變更

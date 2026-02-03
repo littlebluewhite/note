@@ -3,11 +3,13 @@ title: "transactions"
 category: database
 tags: [database]
 created: 2023-01-01
-updated: 2023-01-01
+updated: 2026-02-03
 difficulty: "n/a"
 source: database
 status: active
 ---
+# transactions
+
 Transactions Basics
 
 目的

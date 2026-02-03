@@ -8,6 +8,8 @@ difficulty: "n/a"
 source: database
 status: active
 ---
+# 02-autogenerate
+
 Autogenerate（自動生成 Migration）
 
 基本概念

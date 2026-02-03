@@ -8,6 +8,8 @@ difficulty: "n/a"
 source: database
 status: active
 ---
+# indexing
+
 Indexing Basics
 
 目的

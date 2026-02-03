@@ -8,6 +8,8 @@ difficulty: "n/a"
 source: database
 status: active
 ---
+# postgres gotchas
+
 PostgreSQL Gotchas
 
 這份筆記整理容易被忽略的行為與維運風險，作為查詢與排錯用。

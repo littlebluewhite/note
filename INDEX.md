@@ -15,6 +15,7 @@ status: active
 - [Templates](Templates/General.md): template entry point (set Templates folder in Obsidian).
 - [Bases](Bases/AllNotes.base): base views for browsing notes.
 - [Update Updated Script](scripts/update_updated.py): sync `updated` to file mtime.
+- [Note Health Check Script](scripts/note_health_check.py): check front matter, H1, and broken links.
 - [Add Complexity Properties Script](scripts/add_optional_properties.py): add complexity fields to existing notes.
 - [Normalize Algorithm Notes Script](scripts/normalize_algorithm_notes.py): unify Algorithm note sections.
 - [Infer Data Structure Complexity Script](scripts/infer_data_structure_complexity.py): fill data_structure complexity fields and sections.
