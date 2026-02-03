@@ -1,3 +1,13 @@
+---
+title: "電商平台規劃"
+category: service
+tags: [service]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: note
+status: active
+---
 # 電商平台規劃
 
 ## 1) 目標與範圍

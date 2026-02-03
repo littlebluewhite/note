@@ -17,8 +17,8 @@ This note defines the canonical properties for this vault. Keep property names a
 | property | type | applies to | default | allowed | notes |
 | --- | --- | --- | --- | --- | --- |
 | title | Text | all md | (manual) | any | Prefer the H1 or filename if empty. |
-| category | Text | all md | folder name | e.g. algorithm, leetcode, database | Derived from top-level folder. |
-| tags | List | all md | [category] | any | Keep category in tags. |
+| category | Text | all md | folder name | e.g. algorithm, leetcode, database | Derived from top-level folder (lowercase). Template files may keep the target category. |
+| tags | List | all md | [category] | any | Keep category in tags (templates may use target tags). |
 | created | Date | all md | file birth time | YYYY-MM-DD | Set on note creation. |
 | updated | Date | all md | file mtime | YYYY-MM-DD | Update when content changes. |
 | difficulty | Text | leetcode | unknown | easy, medium, hard, unknown, n/a | Use n/a outside leetcode. |

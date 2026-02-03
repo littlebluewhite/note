@@ -1,3 +1,13 @@
+---
+title: "service - ecommerce plan"
+category: service
+tags: [service]
+created: 2026-02-03
+updated: 2026-02-03
+difficulty: n/a
+source: note
+status: active
+---
 # service - ecommerce plan
 
 ## Stack chosen

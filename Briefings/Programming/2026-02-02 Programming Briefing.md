@@ -1,7 +1,7 @@
 ---
 title: "2026-02-02 Programming Briefing"
 category: briefings
-tags: [briefing, programming]
+tags: [briefings, briefing, programming]
 created: 2026-02-02
 updated: 2026-02-02
 difficulty: n/a
