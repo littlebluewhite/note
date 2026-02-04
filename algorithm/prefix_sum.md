@@ -292,5 +292,3 @@ Where:
 - [q1895](../leetcode/q1895.md)
 - [q3578](../leetcode/q3578.md)
 - [q3652](../leetcode/q3652.md)
-## Related Problems / 相關題
-- [q3640](../leetcode/q3640.md)
