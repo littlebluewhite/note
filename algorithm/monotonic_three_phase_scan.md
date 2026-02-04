@@ -63,3 +63,4 @@ Validation:
 
 ## Related Problems / 相關題
 - [q3637](../leetcode/q3637.md)
+- [q3640](../leetcode/q3640.md)
