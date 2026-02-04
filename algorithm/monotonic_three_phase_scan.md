@@ -3,7 +3,7 @@ title: "Monotonic Three-Phase Scan (Inc→Dec→Inc) / 三段單調掃描"
 category: algorithm
 tags: [algorithm]
 created: 2026-02-03
-updated: 2026-02-03
+updated: 2026-02-04
 difficulty: "n/a"
 source: algorithm
 status: active
@@ -63,3 +63,4 @@ Validation:
 
 ## Related Problems / 相關題
 - [q3637](../leetcode/q3637.md)
+- [q3640](../leetcode/q3640.md)

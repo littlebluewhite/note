@@ -3,7 +3,7 @@ title: "Array"
 category: data_structure
 tags: [data_structure]
 created: 2026-02-03
-updated: 2026-02-03
+updated: 2026-02-04
 difficulty: "n/a"
 source: data_structure
 status: active
@@ -50,3 +50,4 @@ Where:
 ## Related problems / 相關題目
 
 - [q3637](../leetcode/q3637.md)
+- [q3640](../leetcode/q3640.md)
