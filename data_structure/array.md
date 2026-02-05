@@ -49,5 +49,6 @@ Where:
 
 ## Related problems / 相關題目
 
+- [q3379](../leetcode/q3379.md)
 - [q3637](../leetcode/q3637.md)
 - [q3640](../leetcode/q3640.md)
