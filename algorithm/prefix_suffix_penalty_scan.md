@@ -88,4 +88,4 @@ Example problem: split `s = "aababbab"` to minimize deletions for form `a* b*`.
 ## Related
 
 - [q2483](../leetcode/q2483.md)
-- [q1756](../leetcode/q1756.md)
+- [q1653](../leetcode/q1653.md)

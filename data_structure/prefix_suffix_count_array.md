@@ -117,4 +117,4 @@ The minimum value over all `j` is `2`.
 ## Related Problems / 相關題目
 
 - [q2483](../leetcode/q2483.md)
-- [q1756](../leetcode/q1756.md)
+- [q1653](../leetcode/q1653.md)
