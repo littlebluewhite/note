@@ -16,7 +16,7 @@ import re
 import sys
 from pathlib import Path
 
-DEFAULT_SKIP_DIRS = {".git", ".obsidian", ".idea", ".serena", "__pycache__"}
+DEFAULT_SKIP_DIRS = {".git", ".obsidian", ".idea", ".serena", "__pycache__", ".pytest_cache"}
 FRONTMATTER_DELIM = "---"
 
 MD_LINK_RE = re.compile(r"\[[^\]]*\]\(([^)]+)\)")

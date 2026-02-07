@@ -1,55 +1,64 @@
 ---
-title: "Property Dictionary"
-category: root
-tags: [root]
+title: Property Dictionary
+note_type: system
+domain: system
+tags: [system, schema]
 created: 2026-02-03
-updated: 2026-02-03
-difficulty: n/a
-source: note
+updated: 2026-02-08
 status: active
+source: system
 ---
 # Property Dictionary
 
-This note defines the canonical properties for this vault. Keep property names and types consistent across notes.
+## Frontmatter v2
 
-## Core properties
+### Required for all notes
 
-| property | type | applies to | default | allowed | notes |
-| --- | --- | --- | --- | --- | --- |
-| title | Text | all md | (manual) | any | Prefer the H1 or filename if empty. |
-| category | Text | all md | folder name | e.g. algorithm, leetcode, database | Derived from top-level folder (lowercase). Template files may keep the target category. |
-| tags | List | all md | [category] | any | Keep category in tags (templates may use target tags). |
-| created | Date | all md | file birth time | YYYY-MM-DD | Set on note creation. |
-| updated | Date | all md | file mtime | YYYY-MM-DD | Update when content changes. |
-| difficulty | Text | leetcode | unknown | easy, medium, hard, unknown, n/a | Use n/a outside leetcode. |
-| source | Text | all md | category | note, briefing, algorithm, leetcode, database | Use where the content originates. |
-| status | Text | all md | active | draft, active, archived | Lifecycle control. |
+| property | type | allowed | notes |
+| --- | --- | --- | --- |
+| title | Text | any | Prefer H1-aligned title. |
+| note_type | Text | `knowledge`, `briefing`, `daily`, `project`, `system`, `inbox`, `archive` | Primary classification. |
+| domain | Text | any slug | Logical area, e.g. `algorithm`, `database`, `programming`. |
+| tags | List | any | Must include `note_type` and `domain`. |
+| created | Date | `YYYY-MM-DD` | Creation date. |
+| updated | Date | `YYYY-MM-DD` | Last update date. |
+| status | Text | `draft`, `active`, `archived` | Lifecycle status. |
+| source | Text | any | Source origin, e.g. `briefing`, `knowledge`, `project`. |
 
-## Optional properties (future)
+### Conditional required fields
 
-| property | type | applies to | default | allowed | notes |
-| --- | --- | --- | --- | --- | --- |
-| complexity_time | Text | algorithm/leetcode |  | e.g. O(n log n) | Time complexity. |
-| complexity_space | Text | algorithm/leetcode |  | e.g. O(n) | Space complexity. |
-| date | Date | briefings |  | YYYY-MM-DD | Briefing date. |
+| property | required when | notes |
+| --- | --- | --- |
+| date | `note_type` in (`daily`, `briefing`) | Event/content date in `YYYY-MM-DD`. |
+| complexity_time | `note_type=knowledge` and `domain` in (`algorithm`, `data_structure`, `leetcode`) | Time complexity summary. |
+| complexity_space | `note_type=knowledge` and `domain` in (`algorithm`, `data_structure`, `leetcode`) | Space complexity summary. |
+| review_interval_days | `note_type=knowledge` and `domain` in (`algorithm`, `data_structure`, `leetcode`) | Review cadence in days. |
+| next_review | `note_type=knowledge` and `domain` in (`algorithm`, `data_structure`, `leetcode`) | Next review date (`YYYY-MM-DD`). |
 
-## Briefings standard frontmatter
+### Optional fields
 
-Use this canonical set for notes under `Briefings/`:
+| property | type | notes |
+| --- | --- | --- |
+| canonical | Text | Original path before rename/migration. |
 
-- `title`: briefing title (prefer filename-based date title)
-- `category`: `briefings`
-- `tags`: include `briefings` and topic tag (`programming` or `news`)
-- `created`: `YYYY-MM-DD` (fallback to `date` if unknown)
-- `updated`: `YYYY-MM-DD` (fallback to `date` if unknown)
-- `difficulty`: `n/a`
-- `source`: `briefing`
-- `status`: `active`
-- `date`: `YYYY-MM-DD` briefing date
+## Naming rules
 
-## Automation
+- Markdown filename: snake_case, e.g. `segment_tree_lazy.md`.
+- Briefing/daily filename: `YYYY-MM-DD_topic_slug.md`.
+- Folder layout:
+  - `00_system`
+  - `10_inbox`
+  - `20_daily`
+  - `30_briefings`
+  - `40_knowledge`
+  - `50_projects`
+  - `90_archive`
 
-- `scripts/update_updated.py`: syncs `updated` to file modification date (mtime) for Markdown notes.
-- `scripts/add_optional_properties.py`: adds complexity fields without overwriting values.
-- `scripts/infer_data_structure_complexity.py`: infers and fills complexity fields for data_structure notes.
-- `scripts/normalize_briefings_frontmatter.py`: normalizes `Briefings/` frontmatter to canonical schema.
+## Automation commands
+
+- `python3 scripts/vault_lint_v2.py --root . --json reports/vault_health.json`
+- `python3 scripts/refactor_to_snake_case.py --root . --apply --map reports/rename_map.csv`
+- `python3 scripts/migrate_frontmatter_v2.py --root . --write --rename-map reports/rename_map.csv`
+- `python3 scripts/rebuild_indexes.py --root . --write`
+- `python3 scripts/briefing_extract.py --root . --date today --out 10_inbox/briefing_candidates.md`
+- `python3 scripts/daily_maintenance.py --root . --write`

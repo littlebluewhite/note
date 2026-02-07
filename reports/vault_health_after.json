@@ -1,0 +1,22 @@
+{
+  "summary": {
+    "md_files": 180,
+    "missing_frontmatter": 0,
+    "missing_required_fields": 0,
+    "broken_links": 0,
+    "orphan_notes": 0,
+    "non_snake_case": 0,
+    "index_coverage_percent": 100.0
+  },
+  "missing_frontmatter": [],
+  "missing_required_fields": [],
+  "broken_links": [],
+  "orphan_notes": [],
+  "non_snake_case": [],
+  "index_coverage": {
+    "indexed": 156,
+    "total": 156,
+    "percent": 100.0,
+    "missing": []
+  }
+}

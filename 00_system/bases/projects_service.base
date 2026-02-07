@@ -1,0 +1,27 @@
+filters:
+  and:
+    - file.inFolder("50_projects/service")
+    - file.ext == "md"
+properties:
+  file.name:
+    displayName: File
+  note_type:
+    displayName: Type
+  title:
+    displayName: Title
+  status:
+    displayName: Status
+  updated:
+    displayName: Updated
+  canonical:
+    displayName: Canonical
+views:
+  - type: table
+    name: Service Project
+    order:
+      - file.name
+      - note_type
+      - title
+      - status
+      - canonical
+      - updated

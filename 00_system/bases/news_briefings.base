@@ -1,0 +1,30 @@
+filters:
+  and:
+    - file.inFolder("30_briefings/news")
+    - file.ext == "md"
+properties:
+  file.name:
+    displayName: File
+  note_type:
+    displayName: Type
+  title:
+    displayName: Title
+  date:
+    displayName: Date
+  tags:
+    displayName: Tags
+  status:
+    displayName: Status
+  updated:
+    displayName: Updated
+views:
+  - type: table
+    name: News Briefings
+    order:
+      - file.name
+      - note_type
+      - date
+      - title
+      - tags
+      - status
+      - updated

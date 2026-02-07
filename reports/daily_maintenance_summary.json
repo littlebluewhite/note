@@ -1,0 +1,25 @@
+{
+  "mode": "dry-run",
+  "steps": [
+    {
+      "step": "lint_before",
+      "code": 0,
+      "output": "{\n  \"md_files\": 180,\n  \"missing_frontmatter\": 0,\n  \"missing_required_fields\": 0,\n  \"broken_links\": 0,\n  \"orphan_notes\": 0,\n  \"non_snake_case\": 0,\n  \"index_coverage_percent\": 100.0\n}\njson=reports/vault_health_before.json"
+    },
+    {
+      "step": "rebuild_indexes",
+      "code": 0,
+      "output": "files=15 changed=0 legacy_deleted=0 write=False"
+    },
+    {
+      "step": "briefing_extract",
+      "code": 0,
+      "output": "fallback_date=2026-02-07\ncandidates=11\nout=10_inbox/briefing_candidates.md (dry-run)"
+    },
+    {
+      "step": "lint_after",
+      "code": 0,
+      "output": "{\n  \"md_files\": 180,\n  \"missing_frontmatter\": 0,\n  \"missing_required_fields\": 0,\n  \"broken_links\": 0,\n  \"orphan_notes\": 0,\n  \"non_snake_case\": 0,\n  \"index_coverage_percent\": 100.0\n}\njson=reports/vault_health_after.json"
+    }
+  ]
+}

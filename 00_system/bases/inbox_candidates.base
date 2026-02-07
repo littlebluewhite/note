@@ -1,0 +1,27 @@
+filters:
+  and:
+    - file.inFolder("10_inbox")
+    - file.ext == "md"
+properties:
+  file.name:
+    displayName: File
+  note_type:
+    displayName: Type
+  title:
+    displayName: Title
+  date:
+    displayName: Date
+  status:
+    displayName: Status
+  updated:
+    displayName: Updated
+views:
+  - type: table
+    name: Inbox Candidates
+    order:
+      - file.name
+      - note_type
+      - title
+      - date
+      - status
+      - updated

@@ -1,0 +1,39 @@
+filters:
+  and:
+    - file.inFolder("40_knowledge/data_structure")
+    - file.ext == "md"
+properties:
+  file.name:
+    displayName: File
+  note_type:
+    displayName: Type
+  title:
+    displayName: Title
+  tags:
+    displayName: Tags
+  complexity_time:
+    displayName: Time
+  complexity_space:
+    displayName: Space
+  review_interval_days:
+    displayName: Review
+  next_review:
+    displayName: Next
+  status:
+    displayName: Status
+  updated:
+    displayName: Updated
+views:
+  - type: table
+    name: Data Structure Topics
+    order:
+      - file.name
+      - note_type
+      - title
+      - complexity_time
+      - complexity_space
+      - tags
+      - next_review
+      - review_interval_days
+      - status
+      - updated

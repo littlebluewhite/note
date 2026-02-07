@@ -1,0 +1,51 @@
+filters:
+  and:
+    - file.ext == "md"
+properties:
+  file.name:
+    displayName: File
+  title:
+    displayName: Title
+  note_type:
+    displayName: Type
+  domain:
+    displayName: Domain
+  status:
+    displayName: Status
+  tags:
+    displayName: Tags
+  date:
+    displayName: Date
+  next_review:
+    displayName: Next Review
+  review_interval_days:
+    displayName: Review Days
+  complexity_time:
+    displayName: Time
+  complexity_space:
+    displayName: Space
+  created:
+    displayName: Created
+  updated:
+    displayName: Updated
+  source:
+    displayName: Source
+  canonical:
+    displayName: Canonical
+views:
+  - type: table
+    name: All Notes
+    order:
+      - file.name
+      - title
+      - note_type
+      - domain
+      - status
+      - tags
+      - date
+      - next_review
+      - review_interval_days
+      - complexity_time
+      - complexity_space
+      - updated
+      - source

@@ -1,0 +1,33 @@
+filters:
+  and:
+    - file.inFolder("40_knowledge")
+    - file.ext == "md"
+properties:
+  file.name:
+    displayName: File
+  note_type:
+    displayName: Type
+  title:
+    displayName: Title
+  domain:
+    displayName: Domain
+  next_review:
+    displayName: Next Review
+  review_interval_days:
+    displayName: Interval
+  status:
+    displayName: Status
+  updated:
+    displayName: Updated
+views:
+  - type: table
+    name: Review Queue
+    order:
+      - file.name
+      - note_type
+      - domain
+      - title
+      - next_review
+      - review_interval_days
+      - status
+      - updated

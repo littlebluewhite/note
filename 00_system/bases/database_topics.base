@@ -1,0 +1,30 @@
+filters:
+  and:
+    - file.inFolder("40_knowledge/database")
+    - file.ext == "md"
+properties:
+  file.name:
+    displayName: File
+  note_type:
+    displayName: Type
+  title:
+    displayName: Title
+  tags:
+    displayName: Tags
+  status:
+    displayName: Status
+  updated:
+    displayName: Updated
+  source:
+    displayName: Source
+views:
+  - type: table
+    name: Database Topics
+    order:
+      - file.name
+      - note_type
+      - title
+      - tags
+      - source
+      - status
+      - updated

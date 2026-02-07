@@ -1,0 +1,1115 @@
+---
+title: 17.3 Working with Any Number of Futures
+note_type: knowledge
+domain: rust
+tags: [rust_book, knowledge, rust]
+created: 2026-02-03
+updated: 2026-02-03
+status: active
+source: note
+canonical: rust_book/17.3 Working with Any Number of Futures.md
+---
+# 17.3 Working with Any Number of Futures
+
+## [Working with Any Number of Futures](https://doc.rust-lang.org/book/ch17-03-more-futures.html#working-with-any-number-of-futures)
+## 使用任意數量的 Futures
+
+When we switched from using two futures to three in the previous section, we also had to switch from using `join` to using `join3`. It would be annoying to have to call a different function every time we changed the number of futures we wanted to join. Happily, we have a macro form of `join` to which we can pass an arbitrary number of arguments. It also handles awaiting the futures itself. Thus, we could rewrite the code from Listing 17-13 to use `join!` instead of `join3`, as in Listing 17-14.
+
+當我們在上一節中從使用兩個 futures 切換到三個時，我們也必須從使用 `join` 切換到使用 `join3`。每次改變要合併的 futures 數量時都必須呼叫不同的函式，這會很煩人。幸運的是，我們有一個 `join` 的巨集形式，可以傳遞任意數量的參數。它還會自行處理等待 futures。因此，我們可以將清單 17-13 的程式碼改寫為使用 `join!` 而不是 `join3`，如清單 17-14 所示。
+
+Filename: src/main.rs
+檔案名稱：src/main.rs
+
+```rust
+extern crate trpl; // required for mdbook test
+
+use std::time::Duration;
+
+fn main() {
+    trpl::run(async {
+        let (tx, mut rx) = trpl::channel();
+
+        let tx1 = tx.clone();
+        let tx1_fut = async move {
+            let vals = vec![
+                String::from("hi"),
+                String::from("from"),
+                String::from("the"),
+                String::from("future"),
+            ];
+
+            for val in vals {
+                tx1.send(val).unwrap();
+                trpl::sleep(Duration::from_secs(1)).await;
+            }
+        };
+
+        let rx_fut = async {
+            while let Some(value) = rx.recv().await {
+                println!("received '{value}'");
+            }
+        };
+
+        let tx_fut = async move {
+            let vals = vec![
+                String::from("more"),
+                String::from("messages"),
+                String::from("for"),
+                String::from("you"),
+            ];
+
+            for val in vals {
+                tx.send(val).unwrap();
+                trpl::sleep(Duration::from_secs(1)).await;
+            }
+        };
+
+        trpl::join!(tx1_fut, tx_fut, rx_fut);
+    });
+}
+```
+
+[Listing 17-14](https://doc.rust-lang.org/book/ch17-03-more-futures.html#listing-17-14): Using `join!` to wait for multiple futures
+
+清單 17-14：使用 `join!` 等待多個 futures
+
+This is definitely an improvement over swapping between `join` and `join3` and `join4` and so on! However, even this macro form only works when we know the number of futures ahead of time. In real-world Rust, though, pushing futures into a collection and then waiting on some or all the futures of them to complete is a common pattern.
+
+這絕對比在 `join`、`join3` 和 `join4` 等之間切換要好得多！然而，即使是這種巨集形式也只在我們事先知道 futures 數量時才有效。但在實際的 Rust 程式碼中，將 futures 推入集合中，然後等待其中部分或全部 futures 完成是一種常見的模式。
+
+To check all the futures in some collection, we'll need to iterate over and join on _all_ of them. The `trpl::join_all` function accepts any type that implements the `Iterator` trait, which you learned about back in [The Iterator Trait and the `next` Method](https://doc.rust-lang.org/book/ch13-02-iterators.html#the-iterator-trait-and-the-next-method) Chapter 13, so it seems like just the ticket. Let's try putting our futures in a vector and replacing `join!` with `join_all` as shown in Listing 17-15.
+
+要檢查集合中的所有 futures，我們需要迭代並合併它們全部。`trpl::join_all` 函式接受任何實作 `Iterator` trait 的型別，您在第 13 章的[迭代器 Trait 和 `next` 方法](https://doc.rust-lang.org/book/ch13-02-iterators.html#the-iterator-trait-and-the-next-method)中學過，所以這似乎正是我們需要的。讓我們嘗試將 futures 放入向量中，並用 `join_all` 替換 `join!`，如清單 17-15 所示。
+
+```rust
+extern crate trpl; // required for mdbook test
+
+use std::time::Duration;
+
+fn main() {
+    trpl::run(async {
+        let (tx, mut rx) = trpl::channel();
+
+        let tx1 = tx.clone();
+        let tx1_fut = async move {
+            let vals = vec![
+                String::from("hi"),
+                String::from("from"),
+                String::from("the"),
+                String::from("future"),
+            ];
+
+            for val in vals {
+                tx1.send(val).unwrap();
+                trpl::sleep(Duration::from_secs(1)).await;
+            }
+        };
+
+        let rx_fut = async {
+            while let Some(value) = rx.recv().await {
+                println!("received '{value}'");
+            }
+        };
+
+        let tx_fut = async move {
+            let vals = vec![
+                String::from("more"),
+                String::from("messages"),
+                String::from("for"),
+                String::from("you"),
+            ];
+
+            for val in vals {
+                tx.send(val).unwrap();
+                trpl::sleep(Duration::from_secs(1)).await;
+            }
+        };
+
+        let futures = vec![tx1_fut, rx_fut, tx_fut];
+
+        trpl::join_all(futures).await;
+    });
+}
+```
+
+[Listing 17-15](https://doc.rust-lang.org/book/ch17-03-more-futures.html#listing-17-15): Storing anonymous futures in a vector and calling `join_all`
+
+清單 17-15：將匿名 futures 儲存在向量中並呼叫 `join_all`
+
+Unfortunately, this code doesn't compile. Instead, we get this error:
+
+不幸的是，這段程式碼無法編譯。相反地，我們得到這個錯誤：
+
+```text
+error[E0308]: mismatched types
+  --> src/main.rs:45:37
+   |
+10 |         let tx1_fut = async move {
+   |                       ---------- the expected `async` block
+...
+24 |         let rx_fut = async {
+   |                      ----- the found `async` block
+...
+45 |         let futures = vec![tx1_fut, rx_fut, tx_fut];
+   |                                     ^^^^^^ expected `async` block, found a different `async` block
+   |
+   = note: expected `async` block `{async block@src/main.rs:10:23: 10:33}`
+              found `async` block `{async block@src/main.rs:24:22: 24:27}`
+   = note: no two async blocks, even if identical, have the same type
+   = help: consider pinning your async block and casting it to a trait object
+```
+
+This might be surprising. After all, none of the async blocks returns anything, so each one produces a `Future<Output = ()>`. Remember that `Future` is a trait, though, and that the compiler creates a unique enum for each async block. You can't put two different hand-written structs in a `Vec`, and the same rule applies to the different enums generated by the compiler.
+
+這可能令人驚訝。畢竟，沒有任何 async 區塊回傳任何東西，所以每個都產生一個 `Future<Output = ()>`。但請記住，`Future` 是一個 trait，而編譯器為每個 async 區塊建立一個獨特的列舉。您不能將兩個不同的手寫結構體放入 `Vec` 中，同樣的規則也適用於編譯器產生的不同列舉。
+
+To make this work, we need to use _trait objects_, just as we did in ["Returning Errors from the run function"](https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html) in Chapter 12. (We'll cover trait objects in detail in Chapter 18.) Using trait objects lets us treat each of the anonymous futures produced by these types as the same type, because all of them implement the `Future` trait.
+
+要使其運作，我們需要使用 _trait 物件_，就像我們在第 12 章的[「從 run 函式回傳錯誤」](https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html)中所做的那樣。（我們將在第 18 章詳細介紹 trait 物件。）使用 trait 物件讓我們可以將這些型別產生的每個匿名 future 視為相同型別，因為它們都實作了 `Future` trait。
+
+Note: In [Using an Enum to Store Multiple Values](https://doc.rust-lang.org/book/ch08-01-vectors.html#using-an-enum-to-store-multiple-types) in Chapter 8, we discussed another way to include multiple types in a `Vec`: using an enum to represent each type that can appear in the vector. We can't do that here, though. For one thing, we have no way to name the different types, because they are anonymous. For another, the reason we reached for a vector and `join_all` in the first place was to be able to work with a dynamic collection of futures where we only care that they have the same output type.
+
+注意：在第 8 章的[使用列舉儲存多個值](https://doc.rust-lang.org/book/ch08-01-vectors.html#using-an-enum-to-store-multiple-types)中，我們討論了在 `Vec` 中包含多個型別的另一種方法：使用列舉來表示可以出現在向量中的每種型別。但我們在這裡不能這樣做。首先，我們無法命名不同的型別，因為它們是匿名的。其次，我們一開始使用向量和 `join_all` 的原因是為了能夠處理動態的 futures 集合，我們只關心它們具有相同的輸出型別。
+
+We start by wrapping each future in the `vec!` in a `Box::new`, as shown in Listing 17-16.
+
+我們首先將 `vec!` 中的每個 future 包裝在 `Box::new` 中，如清單 17-16 所示。
+
+Filename: src/main.rs
+檔案名稱：src/main.rs
+
+```rust
+extern crate trpl; // required for mdbook test
+
+use std::time::Duration;
+
+fn main() {
+    trpl::run(async {
+        let (tx, mut rx) = trpl::channel();
+
+        let tx1 = tx.clone();
+        let tx1_fut = async move {
+            let vals = vec![
+                String::from("hi"),
+                String::from("from"),
+                String::from("the"),
+                String::from("future"),
+            ];
+
+            for val in vals {
+                tx1.send(val).unwrap();
+                trpl::sleep(Duration::from_secs(1)).await;
+            }
+        };
+
+        let rx_fut = async {
+            while let Some(value) = rx.recv().await {
+                println!("received '{value}'");
+            }
+        };
+
+        let tx_fut = async move {
+            let vals = vec![
+                String::from("more"),
+                String::from("messages"),
+                String::from("for"),
+                String::from("you"),
+            ];
+
+            for val in vals {
+                tx.send(val).unwrap();
+                trpl::sleep(Duration::from_secs(1)).await;
+            }
+        };
+
+        let futures =
+            vec![Box::new(tx1_fut), Box::new(rx_fut), Box::new(tx_fut)];
+
+        trpl::join_all(futures).await;
+    });
+}
+```
+
+[Listing 17-16](https://doc.rust-lang.org/book/ch17-03-more-futures.html#listing-17-16): Using `Box::new` to align the types of the futures in a `Vec`
+
+清單 17-16：使用 `Box::new` 對齊 `Vec` 中 futures 的型別
+
+Unfortunately, this code still doesn't compile. In fact, we get the same basic error we got before for both the second and third `Box::new` calls, as well as new errors referring to the `Unpin` trait. We'll come back to the `Unpin` errors in a moment. First, let's fix the type errors on the `Box::new` calls by explicitly annotating the type of the `futures` variable (see Listing 17-17).
+
+不幸的是，這段程式碼仍然無法編譯。事實上，我們在第二個和第三個 `Box::new` 呼叫中得到了與之前相同的基本錯誤，以及涉及 `Unpin` trait 的新錯誤。我們稍後會回到 `Unpin` 錯誤。首先，讓我們透過明確標註 `futures` 變數的型別來修復 `Box::new` 呼叫的型別錯誤（見清單 17-17）。
+
+Filename: src/main.rs
+檔案名稱：src/main.rs
+
+```rust
+extern crate trpl; // required for mdbook test
+
+use std::time::Duration;
+
+fn main() {
+    trpl::run(async {
+        let (tx, mut rx) = trpl::channel();
+
+        let tx1 = tx.clone();
+        let tx1_fut = async move {
+            let vals = vec![
+                String::from("hi"),
+                String::from("from"),
+                String::from("the"),
+                String::from("future"),
+            ];
+
+            for val in vals {
+                tx1.send(val).unwrap();
+                trpl::sleep(Duration::from_secs(1)).await;
+            }
+        };
+
+        let rx_fut = async {
+            while let Some(value) = rx.recv().await {
+                println!("received '{value}'");
+            }
+        };
+
+        let tx_fut = async move {
+            let vals = vec![
+                String::from("more"),
+                String::from("messages"),
+                String::from("for"),
+                String::from("you"),
+            ];
+
+            for val in vals {
+                tx.send(val).unwrap();
+                trpl::sleep(Duration::from_secs(1)).await;
+            }
+        };
+
+        let futures: Vec<Box<dyn Future<Output = ()>>> =
+            vec![Box::new(tx1_fut), Box::new(rx_fut), Box::new(tx_fut)];
+
+        trpl::join_all(futures).await;
+    });
+}
+```
+
+[Listing 17-17](https://doc.rust-lang.org/book/ch17-03-more-futures.html#listing-17-17): Fixing the rest of the type mismatch errors by using an explicit type declaration
+
+清單 17-17：透過使用明確的型別宣告來修復其餘的型別不匹配錯誤
+
+This type declaration is a little involved, so let's walk through it:
+
+這個型別宣告有點複雜，讓我們逐步解析：
+
+1. The innermost type is the future itself. We note explicitly that the output of the future is the unit type `()` by writing `Future<Output = ()>`.
+2. Then we annotate the trait with `dyn` to mark it as dynamic.
+3. The entire trait reference is wrapped in a `Box`.
+4. Finally, we state explicitly that `futures` is a `Vec` containing these items.
+
+1. 最內層的型別是 future 本身。我們透過寫 `Future<Output = ()>` 明確地標註 future 的輸出是單元型別 `()`。
+2. 然後我們用 `dyn` 標註 trait 以將其標記為動態的。
+3. 整個 trait 參考被包裹在 `Box` 中。
+4. 最後，我們明確聲明 `futures` 是一個包含這些項目的 `Vec`。
+
+That already made a big difference. Now when we run the compiler, we get only the errors mentioning `Unpin`. Although there are three of them, their contents are very similar.
+
+這已經有很大的不同了。現在當我們執行編譯器時，我們只得到提及 `Unpin` 的錯誤。雖然有三個錯誤，但它們的內容非常相似。
+
+```
+error[E0277]: `dyn Future<Output = ()>` cannot be unpinned
+   --> src/main.rs:49:24
+    |
+49  |         trpl::join_all(futures).await;
+    |         -------------- ^^^^^^^ the trait `Unpin` is not implemented for `dyn Future<Output = ()>`
+    |         |
+    |         required by a bound introduced by this call
+    |
+    = note: consider using the `pin!` macro
+            consider using `Box::pin` if you need to access the pinned value outside of the current scope
+    = note: required for `Box<dyn Future<Output = ()>>` to implement `Future`
+note: required by a bound in `join_all`
+   --> file:///home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.30/src/future/join_all.rs:105:14
+    |
+102 | pub fn join_all<I>(iter: I) -> JoinAll<I::Item>
+    |        -------- required by a bound in this function
+...
+105 |     I::Item: Future,
+    |              ^^^^^^ required by this bound in `join_all`
+
+error[E0277]: `dyn Future<Output = ()>` cannot be unpinned
+  --> src/main.rs:49:9
+   |
+49 |         trpl::join_all(futures).await;
+   |         ^^^^^^^^^^^^^^^^^^^^^^^ the trait `Unpin` is not implemented for `dyn Future<Output = ()>`
+   |
+   = note: consider using the `pin!` macro
+           consider using `Box::pin` if you need to access the pinned value outside of the current scope
+   = note: required for `Box<dyn Future<Output = ()>>` to implement `Future`
+note: required by a bound in `futures_util::future::join_all::JoinAll`
+  --> file:///home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.30/src/future/join_all.rs:29:8
+   |
+27 | pub struct JoinAll<F>
+   |            ------- required by a bound in this struct
+28 | where
+29 |     F: Future,
+   |        ^^^^^^ required by this bound in `JoinAll`
+
+error[E0277]: `dyn Future<Output = ()>` cannot be unpinned
+  --> src/main.rs:49:33
+   |
+49 |         trpl::join_all(futures).await;
+   |                                 ^^^^^ the trait `Unpin` is not implemented for `dyn Future<Output = ()>`
+   |
+   = note: consider using the `pin!` macro
+           consider using `Box::pin` if you need to access the pinned value outside of the current scope
+   = note: required for `Box<dyn Future<Output = ()>>` to implement `Future`
+note: required by a bound in `futures_util::future::join_all::JoinAll`
+  --> file:///home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-util-0.3.30/src/future/join_all.rs:29:8
+   |
+27 | pub struct JoinAll<F>
+   |            ------- required by a bound in this struct
+28 | where
+29 |     F: Future,
+   |        ^^^^^^ required by this bound in `JoinAll`
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `async_await` (bin "async_await") due to 3 previous errors
+```
+
+That is a _lot_ to digest, so let's pull it apart. The first part of the message tell us that the first async block (`src/main.rs:8:23: 20:10`) does not implement the `Unpin` trait and suggests using `pin!` or `Box::pin` to resolve it. Later in the chapter, we'll dig into a few more details about `Pin` and `Unpin`. For the moment, though, we can just follow the compiler's advice to get unstuck. In Listing 17-18, we start by importing `Pin` from `std::pin`. Next we update the type annotation for `futures`, with a `Pin` wrapping each `Box`. Finally, we use `Box::pin` to pin the futures themselves.
+
+這是需要消化的大量資訊，讓我們來分解它。訊息的第一部分告訴我們第一個 async 區塊（`src/main.rs:8:23: 20:10`）沒有實作 `Unpin` trait，並建議使用 `pin!` 或 `Box::pin` 來解決它。在本章後面，我們將深入了解關於 `Pin` 和 `Unpin` 的更多細節。不過目前，我們可以只遵循編譯器的建議來解決問題。在清單 17-18 中，我們首先從 `std::pin` 匯入 `Pin`。接下來，我們更新 `futures` 的型別標註，用 `Pin` 包裝每個 `Box`。最後，我們使用 `Box::pin` 來固定 futures 本身。
+
+Filename: src/main.rs
+檔案名稱：src/main.rs
+
+```rust
+extern crate trpl; // required for mdbook test
+
+use std::pin::Pin;
+
+// -- snip --
+
+use std::time::Duration;
+
+fn main() {
+    trpl::run(async {
+        let (tx, mut rx) = trpl::channel();
+
+        let tx1 = tx.clone();
+        let tx1_fut = async move {
+            let vals = vec![
+                String::from("hi"),
+                String::from("from"),
+                String::from("the"),
+                String::from("future"),
+            ];
+
+            for val in vals {
+                tx1.send(val).unwrap();
+                trpl::sleep(Duration::from_secs(1)).await;
+            }
+        };
+
+        let rx_fut = async {
+            while let Some(value) = rx.recv().await {
+                println!("received '{value}'");
+            }
+        };
+
+        let tx_fut = async move {
+            let vals = vec![
+                String::from("more"),
+                String::from("messages"),
+                String::from("for"),
+                String::from("you"),
+            ];
+
+            for val in vals {
+                tx.send(val).unwrap();
+                trpl::sleep(Duration::from_secs(1)).await;
+            }
+        };
+
+        let futures: Vec<Pin<Box<dyn Future<Output = ()>>>> =
+            vec![Box::pin(tx1_fut), Box::pin(rx_fut), Box::pin(tx_fut)];
+
+        trpl::join_all(futures).await;
+    });
+}
+```
+
+[Listing 17-18](https://doc.rust-lang.org/book/ch17-03-more-futures.html#listing-17-18): Using `Pin` and `Box::pin` to make the `Vec` type check
+
+清單 17-18：使用 `Pin` 和 `Box::pin` 使 `Vec` 型別檢查通過
+
+If we compile and run this, we finally get the output we hoped for:
+
+如果我們編譯並執行這段程式碼，我們終於得到了我們期望的輸出：
+
+```
+received 'hi'
+received 'more'
+received 'from'
+received 'messages'
+received 'the'
+received 'for'
+received 'future'
+received 'you'
+```
+
+Phew!
+呼！
+
+There's a bit more to explore here. For one thing, using `Pin<Box<T>>` adds a small amount of overhead from putting these futures on the heap with `Box`—and we're only doing that to get the types to line up. We don't actually _need_ the heap allocation, after all: these futures are local to this particular function. As noted before, `Pin` is itself a wrapper type, so we can get the benefit of having a single type in the `Vec`—the original reason we reached for `Box`—without doing a heap allocation. We can use `Pin` directly with each future, using the `std::pin::pin` macro.
+
+這裡還有更多值得探索的內容。首先，使用 `Pin<Box<T>>` 會因為使用 `Box` 將這些 futures 放在堆積上而增加少量的開銷——而我們這樣做只是為了讓型別對齊。畢竟，我們實際上並不需要堆積分配：這些 futures 是這個特定函式的區域變數。如前所述，`Pin` 本身是一個包裝器型別，所以我們可以在不進行堆積分配的情況下獲得在 `Vec` 中擁有單一型別的好處——這是我們最初使用 `Box` 的原因。我們可以使用 `std::pin::pin` 巨集直接對每個 future 使用 `Pin`。
+
+However, we must still be explicit about the type of the pinned reference; otherwise, Rust will still not know to interpret these as dynamic trait objects, which is what we need them to be in the `Vec`. We therefore add `pin` to our list of imports from `std::pin`. Then we can `pin!` each future when we define it and define `futures` as a `Vec` containing pinned mutable references to the dynamic future type, as in Listing 17-19.
+
+然而，我們仍然必須明確固定參考的型別；否則，Rust 仍然不知道將這些解釋為動態 trait 物件，而這正是我們在 `Vec` 中需要的。因此，我們將 `pin` 新增到從 `std::pin` 的匯入清單中。然後我們可以在定義每個 future 時使用 `pin!`，並將 `futures` 定義為包含動態 future 型別的固定可變參考的 `Vec`，如清單 17-19 所示。
+
+Filename: src/main.rs
+檔案名稱：src/main.rs
+
+```rust
+extern crate trpl; // required for mdbook test
+
+use std::pin::{Pin, pin};
+
+// -- snip --
+
+use std::time::Duration;
+
+fn main() {
+    trpl::run(async {
+        let (tx, mut rx) = trpl::channel();
+
+        let tx1 = tx.clone();
+        let tx1_fut = pin!(async move {
+            // --snip--
+            let vals = vec![
+                String::from("hi"),
+                String::from("from"),
+                String::from("the"),
+                String::from("future"),
+            ];
+
+            for val in vals {
+                tx1.send(val).unwrap();
+                trpl::sleep(Duration::from_secs(1)).await;
+            }
+        });
+
+        let rx_fut = pin!(async {
+            // --snip--
+            while let Some(value) = rx.recv().await {
+                println!("received '{value}'");
+            }
+        });
+
+        let tx_fut = pin!(async move {
+            // --snip--
+            let vals = vec![
+                String::from("more"),
+                String::from("messages"),
+                String::from("for"),
+                String::from("you"),
+            ];
+
+            for val in vals {
+                tx.send(val).unwrap();
+                trpl::sleep(Duration::from_secs(1)).await;
+            }
+        });
+
+        let futures: Vec<Pin<&mut dyn Future<Output = ()>>> =
+            vec![tx1_fut, rx_fut, tx_fut];
+
+        trpl::join_all(futures).await;
+    });
+}
+```
+
+[Listing 17-19](https://doc.rust-lang.org/book/ch17-03-more-futures.html#listing-17-19): Using `Pin` directly with the `pin!` macro to avoid unnecessary heap allocations
+
+清單 17-19：直接使用 `pin!` 巨集來避免不必要的堆積分配
+
+We got this far by ignoring the fact that we might have different `Output` types. For example, in Listing 17-20, the anonymous future for `a` implements `Future<Output = u32>`, the anonymous future for `b` implements `Future<Output = &str>`, and the anonymous future for `c` implements `Future<Output = bool>`.
+
+我們忽略了可能有不同 `Output` 型別的事實才走到這一步。例如，在清單 17-20 中，`a` 的匿名 future 實作 `Future<Output = u32>`，`b` 的匿名 future 實作 `Future<Output = &str>`，而 `c` 的匿名 future 實作 `Future<Output = bool>`。
+
+Filename: src/main.rs
+檔案名稱：src/main.rs
+
+```rust
+extern crate trpl; // required for mdbook test
+
+fn main() {
+    trpl::run(async {
+        let a = async { 1u32 };
+        let b = async { "Hello!" };
+        let c = async { true };
+
+        let (a_result, b_result, c_result) = trpl::join!(a, b, c);
+        println!("{a_result}, {b_result}, {c_result}");
+    });
+}
+```
+
+[Listing 17-20](https://doc.rust-lang.org/book/ch17-03-more-futures.html#listing-17-20): Three futures with distinct types
+
+清單 17-20：三個具有不同型別的 futures
+
+We can use `trpl::join!` to await them, because it allows us to pass in multiple future types and produces a tuple of those types. We _cannot_ use `trpl::join_all`, because it requires all of the futures passed in to have the same type. Remember, that error is what got us started on this adventure with `Pin`!
+
+我們可以使用 `trpl::join!` 來等待它們，因為它允許我們傳入多個 future 型別並產生這些型別的元組。我們不能使用 `trpl::join_all`，因為它要求傳入的所有 futures 具有相同的型別。請記住，正是這個錯誤讓我們開始了使用 `Pin` 的這段旅程！
+
+This is a fundamental tradeoff: we can either deal with a dynamic number of futures with `join_all`, as long as they all have the same type, or we can deal with a set number of futures with the `join` functions or the `join!` macro, even if they have different types. This is the same scenario we'd face when working with any other types in Rust. Futures are not special, even though we have some nice syntax for working with them, and that's a good thing.
+
+這是一個基本的權衡：我們可以使用 `join_all` 處理動態數量的 futures，只要它們都具有相同的型別，或者我們可以使用 `join` 函式或 `join!` 巨集處理固定數量的 futures，即使它們具有不同的型別。這與我們在 Rust 中處理任何其他型別時面臨的情況相同。Futures 並不特殊，儘管我們有一些很好的語法來處理它們，這是一件好事。
+
+### [Racing Futures](https://doc.rust-lang.org/book/ch17-03-more-futures.html#racing-futures)
+### 競速 Futures
+
+When we "join" futures with the `join` family of functions and macros, we require _all_ of them to finish before we move on. Sometimes, though, we only need _some_ future from a set to finish before we move on—kind of similar to racing one future against another.
+
+當我們使用 `join` 系列的函式和巨集「合併」futures 時，我們需要它們全部完成後才能繼續。但有時候，我們只需要一組中的某個 future 完成就可以繼續——有點類似於讓一個 future 與另一個競速。
+
+In Listing 17-21, we once again use `trpl::race` to run two futures, `slow` and `fast`, against each other.
+
+在清單 17-21 中，我們再次使用 `trpl::race` 來讓兩個 futures `slow` 和 `fast` 互相競速。
+
+Filename: src/main.rs
+檔案名稱：src/main.rs
+
+```rust
+extern crate trpl; // required for mdbook test
+
+use std::time::Duration;
+
+fn main() {
+    trpl::run(async {
+        let slow = async {
+            println!("'slow' started.");
+            trpl::sleep(Duration::from_millis(100)).await;
+            println!("'slow' finished.");
+        };
+
+        let fast = async {
+            println!("'fast' started.");
+            trpl::sleep(Duration::from_millis(50)).await;
+            println!("'fast' finished.");
+        };
+
+        trpl::race(slow, fast).await;
+    });
+}
+```
+
+[Listing 17-21](https://doc.rust-lang.org/book/ch17-03-more-futures.html#listing-17-21): Using `race` to get the result of whichever future finishes first
+
+清單 17-21：使用 `race` 取得首先完成的 future 的結果
+
+Each future prints a message when it starts running, pauses for some amount of time by calling and awaiting `sleep`, and then prints another message when it finishes. Then we pass both `slow` and `fast` to `trpl::race` and wait for one of them to finish. (The outcome here isn't too surprising: `fast` wins.) Unlike when we used `race` back in ["Our First Async Program"](https://doc.rust-lang.org/book/ch17-01-futures-and-syntax.html#our-first-async-program), we just ignore the `Either` instance it returns here, because all of the interesting behavior happens in the body of the async blocks.
+
+每個 future 在開始執行時列印一條訊息，透過呼叫並等待 `sleep` 暫停一段時間，然後在完成時列印另一條訊息。然後我們將 `slow` 和 `fast` 都傳遞給 `trpl::race` 並等待其中一個完成。（這裡的結果並不令人驚訝：`fast` 獲勝。）與我們在[「我們的第一個非同步程式」](https://doc.rust-lang.org/book/ch17-01-futures-and-syntax.html#our-first-async-program)中使用 `race` 時不同，我們在這裡只是忽略它回傳的 `Either` 實例，因為所有有趣的行為都發生在 async 區塊的主體中。
+
+Notice that if you flip the order of the arguments to `race`, the order of the "started" messages changes, even though the `fast` future always completes first. That's because the implementation of this particular `race` function is not fair. It always runs the futures passed in as arguments in the order in which they're passed. Other implementations _are_ fair and will randomly choose which future to poll first. Regardless of whether the implementation of race we're using is fair, though, _one_ of the futures will run up to the first `await` in its body before another task can start.
+
+請注意,如果您顛倒 `race` 的參數順序,「開始」訊息的順序會改變,即使 `fast` future 總是最先完成。這是因為這個特定的 `race` 函式的實作不公平。它總是按照傳入的順序執行作為參數傳遞的 futures。其他實作是公平的,會隨機選擇先輪詢哪個 future。無論我們使用的 race 實作是否公平,其中一個 future 都會在另一個任務開始之前執行到其主體中的第一個 `await`。
+
+Recall from [Our First Async Program](https://doc.rust-lang.org/book/ch17-01-futures-and-syntax.html#our-first-async-program) that at each await point, Rust gives a runtime a chance to pause the task and switch to another one if the future being awaited isn't ready. The inverse is also true: Rust _only_ pauses async blocks and hands control back to a runtime at an await point. Everything between await points is synchronous.
+
+回想一下[我們的第一個非同步程式](https://doc.rust-lang.org/book/ch17-01-futures-and-syntax.html#our-first-async-program),在每個等待點,Rust 給執行時一個機會來暫停任務並切換到另一個任務(如果正在等待的 future 還沒準備好)。反之亦然:Rust 只在等待點暫停 async 區塊並將控制權交還給執行時。等待點之間的所有內容都是同步的。
+
+That means if you do a bunch of work in an async block without an await point, that future will block any other futures from making progress. You may sometimes hear this referred to as one future _starving_ other futures. In some cases, that may not be a big deal. However, if you are doing some kind of expensive setup or long-running work, or if you have a future that will keep doing some particular task indefinitely, you'll need to think about when and where to hand control back to the runtime.
+
+這意味著如果您在 async 區塊中做了一堆工作而沒有等待點,該 future 會阻止其他 futures 取得進展。您有時可能會聽到這被稱為一個 future「餓死」其他 futures。在某些情況下,這可能不是什麼大問題。但是,如果您正在進行某種昂貴的設定或長時間執行的工作,或者如果您有一個將無限期地繼續執行某個特定任務的 future,您需要考慮何時何地將控制權交還給執行時。
+
+By the same token, if you have long-running blocking operations, async can be a useful tool for providing ways for different parts of the program to relate to each other.
+
+同樣地,如果您有長時間執行的阻塞操作,async 可以是提供程式不同部分相互關聯的方式的有用工具。
+
+But _how_ would you hand control back to the runtime in those cases?
+
+但在這些情況下,您如何將控制權交還給執行時呢?
+
+### [Yielding Control to the Runtime](https://doc.rust-lang.org/book/ch17-03-more-futures.html#yielding-control-to-the-runtime)
+### 將控制權讓給執行時
+
+Let's simulate a long-running operation. Listing 17-22 introduces a `slow` function.
+
+讓我們模擬一個長時間執行的操作。清單 17-22 介紹了一個 `slow` 函式。
+
+Filename: src/main.rs
+檔案名稱：src/main.rs
+
+```rust
+extern crate trpl; // required for mdbook test
+
+use std::{thread, time::Duration};
+
+fn main() {
+    trpl::run(async {
+        // We will call `slow` here later
+    });
+}
+
+fn slow(name: &str, ms: u64) {
+    thread::sleep(Duration::from_millis(ms));
+    println!("'{name}' ran for {ms}ms");
+}
+```
+
+[Listing 17-22](https://doc.rust-lang.org/book/ch17-03-more-futures.html#listing-17-22): Using `thread::sleep` to simulate slow operations
+
+清單 17-22：使用 `thread::sleep` 模擬慢速操作
+
+This code uses `std::thread::sleep` instead of `trpl::sleep` so that calling `slow` will block the current thread for some number of milliseconds. We can use `slow` to stand in for real-world operations that are both long-running and blocking.
+
+這段程式碼使用 `std::thread::sleep` 而不是 `trpl::sleep`,因此呼叫 `slow` 會阻塞當前執行緒幾毫秒。我們可以使用 `slow` 來代表既長時間執行又會阻塞的真實世界操作。
+
+In Listing 17-23, we use `slow` to emulate doing this kind of CPU-bound work in a pair of futures.
+
+在清單 17-23 中,我們使用 `slow` 來模擬在一對 futures 中執行這種 CPU 密集型工作。
+
+Filename: src/main.rs
+檔案名稱：src/main.rs
+
+```rust
+extern crate trpl; // required for mdbook test
+
+use std::{thread, time::Duration};
+
+fn main() {
+    trpl::run(async {
+        let a = async {
+            println!("'a' started.");
+            slow("a", 30);
+            slow("a", 10);
+            slow("a", 20);
+            trpl::sleep(Duration::from_millis(50)).await;
+            println!("'a' finished.");
+        };
+
+        let b = async {
+            println!("'b' started.");
+            slow("b", 75);
+            slow("b", 10);
+            slow("b", 15);
+            slow("b", 350);
+            trpl::sleep(Duration::from_millis(50)).await;
+            println!("'b' finished.");
+        };
+
+        trpl::race(a, b).await;
+    });
+}
+
+fn slow(name: &str, ms: u64) {
+    thread::sleep(Duration::from_millis(ms));
+    println!("'{name}' ran for {ms}ms");
+}
+```
+
+[Listing 17-23](https://doc.rust-lang.org/book/ch17-03-more-futures.html#listing-17-23): Using `thread::sleep` to simulate slow operations
+
+清單 17-23：使用 `thread::sleep` 模擬慢速操作
+
+To begin, each future only hands control back to the runtime _after_ carrying out a bunch of slow operations. If you run this code, you will see this output:
+
+首先,每個 future 只在執行一堆慢速操作之後才將控制權交還給執行時。如果您執行這段程式碼,您會看到這個輸出：
+
+```
+'a' started.
+'a' ran for 30ms
+'a' ran for 10ms
+'a' ran for 20ms
+'b' started.
+'b' ran for 75ms
+'b' ran for 10ms
+'b' ran for 15ms
+'b' ran for 350ms
+'a' finished.
+
+```
+
+As with our earlier example, `race` still finishes as soon as `a` is done. There's no interleaving between the two futures, though. The `a` future does all of its work until the `trpl::sleep` call is awaited, then the `b` future does all of its work until its own `trpl::sleep` call is awaited, and finally the `a` future completes. To allow both futures to make progress between their slow tasks, we need await points so we can hand control back to the runtime. That means we need something we can await!
+
+與我們之前的範例一樣,`race` 仍然在 `a` 完成後立即結束。但兩個 futures 之間沒有交錯。`a` future 執行所有工作直到等待 `trpl::sleep` 呼叫,然後 `b` future 執行所有工作直到等待其自己的 `trpl::sleep` 呼叫,最後 `a` future 完成。為了讓兩個 futures 在其慢速任務之間取得進展,我們需要等待點以便將控制權交還給執行時。這意味著我們需要可以等待的東西!
+
+We can already see this kind of handoff happening in Listing 17-23: if we removed the `trpl::sleep` at the end of the `a` future, it would complete without the `b` future running _at all_. Let's try using the `sleep` function as a starting point for letting operations switch off making progress, as shown in Listing 17-24.
+
+我們已經可以在清單 17-23 中看到這種交接:如果我們移除 `a` future 末尾的 `trpl::sleep`,它會在 `b` future 完全不執行的情況下完成。讓我們嘗試使用 `sleep` 函式作為讓操作輪流取得進展的起點,如清單 17-24 所示。
+
+Filename: src/main.rs
+檔案名稱：src/main.rs
+
+```rust
+extern crate trpl; // required for mdbook test
+
+use std::{thread, time::Duration};
+
+fn main() {
+    trpl::run(async {
+        let one_ms = Duration::from_millis(1);
+
+        let a = async {
+            println!("'a' started.");
+            slow("a", 30);
+            trpl::sleep(one_ms).await;
+            slow("a", 10);
+            trpl::sleep(one_ms).await;
+            slow("a", 20);
+            trpl::sleep(one_ms).await;
+            println!("'a' finished.");
+        };
+
+        let b = async {
+            println!("'b' started.");
+            slow("b", 75);
+            trpl::sleep(one_ms).await;
+            slow("b", 10);
+            trpl::sleep(one_ms).await;
+            slow("b", 15);
+            trpl::sleep(one_ms).await;
+            slow("b", 350);
+            trpl::sleep(one_ms).await;
+            println!("'b' finished.");
+        };
+
+        trpl::race(a, b).await;
+    });
+}
+
+fn slow(name: &str, ms: u64) {
+    thread::sleep(Duration::from_millis(ms));
+    println!("'{name}' ran for {ms}ms");
+}
+```
+
+[Listing 17-24](https://doc.rust-lang.org/book/ch17-03-more-futures.html#listing-17-24): Using `sleep` to let operations switch off making progress
+
+清單 17-24：使用 `sleep` 讓操作輪流取得進展
+
+In Listing 17-24, we add `trpl::sleep` calls with await points between each call to `slow`. Now the two futures' work is interleaved:
+
+在清單 17-24 中,我們在每次呼叫 `slow` 之間新增帶有等待點的 `trpl::sleep` 呼叫。現在兩個 futures 的工作是交錯的：
+
+```
+'a' started.
+'a' ran for 30ms
+'b' started.
+'b' ran for 75ms
+'a' ran for 10ms
+'b' ran for 10ms
+'a' ran for 20ms
+'b' ran for 15ms
+'a' finished.
+```
+
+The `a` future still runs for a bit before handing off control to `b`, because it calls `slow` before ever calling `trpl::sleep`, but after that the futures swap back and forth each time one of them hits an await point. In this case, we have done that after every call to `slow`, but we could break up the work in whatever way makes the most sense to us.
+
+`a` future 在將控制權交給 `b` 之前仍然執行一段時間,因為它在呼叫 `trpl::sleep` 之前先呼叫 `slow`,但之後每次其中一個 future 到達等待點時,futures 就會來回交換。在這種情況下,我們在每次呼叫 `slow` 之後都這樣做了,但我們可以以對我們最有意義的方式分解工作。
+
+We don't really want to _sleep_ here, though: we want to make progress as fast as we can. We just need to hand back control to the runtime. We can do that directly, using the `yield_now` function. In Listing 17-25, we replace all those `sleep` calls with `yield_now`.
+
+不過我們實際上並不想在這裡睡眠:我們想盡快取得進展。我們只需要將控制權交還給執行時。我們可以直接使用 `yield_now` 函式來做到這一點。在清單 17-25 中,我們用 `yield_now` 替換所有這些 `sleep` 呼叫。
+
+Filename: src/main.rs
+檔案名稱：src/main.rs
+
+```rust
+extern crate trpl; // required for mdbook test
+
+use std::{thread, time::Duration};
+
+fn main() {
+    trpl::run(async {
+        let a = async {
+            println!("'a' started.");
+            slow("a", 30);
+            trpl::yield_now().await;
+            slow("a", 10);
+            trpl::yield_now().await;
+            slow("a", 20);
+            trpl::yield_now().await;
+            println!("'a' finished.");
+        };
+
+        let b = async {
+            println!("'b' started.");
+            slow("b", 75);
+            trpl::yield_now().await;
+            slow("b", 10);
+            trpl::yield_now().await;
+            slow("b", 15);
+            trpl::yield_now().await;
+            slow("b", 350);
+            trpl::yield_now().await;
+            println!("'b' finished.");
+        };
+
+        trpl::race(a, b).await;
+    });
+}
+
+fn slow(name: &str, ms: u64) {
+    thread::sleep(Duration::from_millis(ms));
+    println!("'{name}' ran for {ms}ms");
+}
+```
+
+[Listing 17-25](https://doc.rust-lang.org/book/ch17-03-more-futures.html#listing-17-25): Using `yield_now` to let operations switch off making progress
+
+清單 17-25：使用 `yield_now` 讓操作輪流取得進展
+
+This code is both clearer about the actual intent and can be significantly faster than using `sleep`, because timers such as the one used by `sleep` often have limits on how granular they can be. The version of `sleep` we are using, for example, will always sleep for at least a millisecond, even if we pass it a `Duration` of one nanosecond. Again, modern computers are _fast_: they can do a lot in one millisecond!
+
+這段程式碼更清楚地表達了實際意圖,並且可以比使用 `sleep` 快得多,因為像 `sleep` 使用的計時器通常對其可以有多精細有限制。例如,我們使用的 `sleep` 版本總是至少睡眠一毫秒,即使我們傳遞給它一個一奈秒的 `Duration`。再次強調,現代電腦非常快:它們可以在一毫秒內完成很多工作!
+
+You can see this for yourself by setting up a little benchmark, such as the one in Listing 17-26. (This isn't an especially rigorous way to do performance testing, but it suffices to show the difference here.)
+
+您可以透過設置一個小型基準測試來親自看到這一點,例如清單 17-26 中的測試。（這不是一種特別嚴格的效能測試方法,但足以顯示這裡的差異。）
+
+Filename: src/main.rs
+檔案名稱：src/main.rs
+
+```rust
+extern crate trpl; // required for mdbook test
+
+use std::time::{Duration, Instant};
+
+fn main() {
+    trpl::run(async {
+        let one_ns = Duration::from_nanos(1);
+        let start = Instant::now();
+        async {
+            for _ in 1..1000 {
+                trpl::sleep(one_ns).await;
+            }
+        }
+        .await;
+        let time = Instant::now() - start;
+        println!(
+            "'sleep' version finished after {} seconds.",
+            time.as_secs_f32()
+        );
+
+        let start = Instant::now();
+        async {
+            for _ in 1..1000 {
+                trpl::yield_now().await;
+            }
+        }
+        .await;
+        let time = Instant::now() - start;
+        println!(
+            "'yield' version finished after {} seconds.",
+            time.as_secs_f32()
+        );
+    });
+}
+```
+
+[Listing 17-26](https://doc.rust-lang.org/book/ch17-03-more-futures.html#listing-17-26): Comparing the performance of `sleep` and `yield_now`
+
+清單 17-26：比較 `sleep` 和 `yield_now` 的效能
+
+Here, we skip all the status printing, pass a one-nanosecond `Duration` to `trpl::sleep`, and let each future run by itself, with no switching between the futures. Then we run for 1,000 iterations and see how long the future using `trpl::sleep` takes compared to the future using `trpl::yield_now`.
+
+在這裡,我們跳過所有狀態列印,傳遞一個一奈秒的 `Duration` 給 `trpl::sleep`,並讓每個 future 自行執行,futures 之間沒有切換。然後我們執行 1,000 次迭代,看看使用 `trpl::sleep` 的 future 與使用 `trpl::yield_now` 的 future 相比需要多長時間。
+
+The version with `yield_now` is _way_ faster!
+
+使用 `yield_now` 的版本快得多!
+
+This means that async can be useful even for compute-bound tasks, depending on what else your program is doing, because it provides a useful tool for structuring the relationships between different parts of the program. This is a form of _cooperative multitasking_, where each future has the power to determine when it hands over control via await points. Each future therefore also has the responsibility to avoid blocking for too long. In some Rust-based embedded operating systems, this is the _only_ kind of multitasking!
+
+這意味著 async 甚至可以用於計算密集型任務,具體取決於您的程式還在做什麼,因為它提供了一個有用的工具來構建程式不同部分之間的關係。這是一種協作式多工的形式,其中每個 future 都有權透過等待點決定何時交出控制權。因此,每個 future 也有責任避免阻塞太長時間。在一些基於 Rust 的嵌入式作業系統中,這是唯一的多工形式!
+
+In real-world code, you won't usually be alternating function calls with await points on every single line, of course. While yielding control in this way is relatively inexpensive, it's not free. In many cases, trying to break up a compute-bound task might make it significantly slower, so sometimes it's better for _overall_ performance to let an operation block briefly. Always measure to see what your code's actual performance bottlenecks are. The underlying dynamic is important to keep in mind, though, if you _are_ seeing a lot of work happening in serial that you expected to happen concurrently!
+
+當然,在真實世界的程式碼中,您通常不會在每一行都交替使用函式呼叫和等待點。雖然以這種方式讓出控制權相對便宜,但並非免費。在許多情況下,試圖分解計算密集型任務可能會使其顯著變慢,因此有時讓操作短暫阻塞對整體效能更好。始終進行測量以了解程式碼的實際效能瓶頸所在。但是,如果您看到大量原本預期並行發生的工作實際上是串行發生的,那麼記住底層動態是很重要的!
+
+### [Building Our Own Async Abstractions](https://doc.rust-lang.org/book/ch17-03-more-futures.html#building-our-own-async-abstractions)
+### 建立我們自己的非同步抽象
+
+We can also compose futures together to create new patterns. For example, we can build a `timeout` function with async building blocks we already have. When we're done, the result will be another building block we could use to create still more async abstractions.
+
+我們也可以將 futures 組合在一起以建立新的模式。例如,我們可以使用已有的非同步建構塊來建立一個 `timeout` 函式。完成後,結果將是另一個可用於建立更多非同步抽象的建構塊。
+
+Listing 17-27 shows how we would expect this `timeout` to work with a slow future.
+
+清單 17-27 顯示了我們期望這個 `timeout` 如何與一個慢速 future 一起工作。
+
+Filename: src/main.rs
+檔案名稱：src/main.rs
+
+```rust
+extern crate trpl; // required for mdbook test
+
+use std::time::Duration;
+
+fn main() {
+    trpl::run(async {
+        let slow = async {
+            trpl::sleep(Duration::from_millis(100)).await;
+            "I finished!"
+        };
+
+        match timeout(slow, Duration::from_millis(10)).await {
+            Ok(message) => println!("Succeeded with '{message}'"),
+            Err(duration) => {
+                println!("Failed after {} seconds", duration.as_secs())
+            }
+        }
+    });
+}
+```
+
+[Listing 17-27](https://doc.rust-lang.org/book/ch17-03-more-futures.html#listing-17-27): Using our imagined `timeout` to run a slow operation with a time limit
+
+清單 17-27：使用我們想像的 `timeout` 以時間限制執行慢速操作
+
+Let's implement this! To begin, let's think about the API for `timeout`:
+
+讓我們實作這個！首先,讓我們思考 `timeout` 的 API：
+
+- It needs to be an async function itself so we can await it.
+- Its first parameter should be a future to run. We can make it generic to allow it to work with any future.
+- Its second parameter will be the maximum time to wait. If we use a `Duration`, that will make it easy to pass along to `trpl::sleep`.
+- It should return a `Result`. If the future completes successfully, the `Result` will be `Ok` with the value produced by the future. If the timeout elapses first, the `Result` will be `Err` with the duration that the timeout waited for.
+
+- 它本身需要是一個非同步函式,這樣我們才能等待它。
+- 它的第一個參數應該是要執行的 future。我們可以使它成為泛型,以允許它與任何 future 一起工作。
+- 它的第二個參數將是等待的最大時間。如果我們使用 `Duration`,這將使其易於傳遞給 `trpl::sleep`。
+- 它應該回傳一個 `Result`。如果 future 成功完成,`Result` 將是 `Ok`,其值為 future 產生的值。如果超時先過去,`Result` 將是 `Err`,其值為超時等待的持續時間。
+
+Listing 17-28 shows this declaration.
+
+清單 17-28 顯示了這個宣告。
+
+Filename: src/main.rs
+檔案名稱：src/main.rs
+
+```rust
+extern crate trpl; // required for mdbook test
+
+use std::time::Duration;
+
+fn main() {
+    trpl::run(async {
+        let slow = async {
+            trpl::sleep(Duration::from_secs(5)).await;
+            "Finally finished"
+        };
+
+        match timeout(slow, Duration::from_secs(2)).await {
+            Ok(message) => println!("Succeeded with '{message}'"),
+            Err(duration) => {
+                println!("Failed after {} seconds", duration.as_secs())
+            }
+        }
+    });
+}
+
+async fn timeout<F: Future>(
+    future_to_try: F,
+    max_time: Duration,
+) -> Result<F::Output, Duration> {
+    // Here is where our implementation will go!
+}
+```
+
+[Listing 17-28](https://doc.rust-lang.org/book/ch17-03-more-futures.html#listing-17-28): Defining the signature of `timeout`
+
+清單 17-28：定義 `timeout` 的簽章
+
+That satisfies our goals for the types. Now let's think about the _behavior_ we need: we want to race the future passed in against the duration. We can use `trpl::sleep` to make a timer future from the duration, and use `trpl::race` to run that timer with the future the caller passes in.
+
+這滿足了我們對型別的目標。現在讓我們思考我們需要的行為:我們想讓傳入的 future 與持續時間競速。我們可以使用 `trpl::sleep` 從持續時間建立一個計時器 future,並使用 `trpl::race` 將該計時器與呼叫者傳入的 future 一起執行。
+
+We also know that `race` is not fair, polling arguments in the order in which they are passed. Thus, we pass `future_to_try` to `race` first so it gets a chance to complete even if `max_time` is a very short duration. If `future_to_try` finishes first, `race` will return `Left` with the output from `future_to_try`. If `timer` finishes first, `race` will return `Right` with the timer's output of `()`.
+
+我們也知道 `race` 不公平,按照傳入的順序輪詢參數。因此,我們首先將 `future_to_try` 傳遞給 `race`,這樣即使 `max_time` 是一個很短的持續時間,它也有機會完成。如果 `future_to_try` 先完成,`race` 將回傳 `Left`,其值為 `future_to_try` 的輸出。如果 `timer` 先完成,`race` 將回傳 `Right`,其值為計時器的輸出 `()`。
+
+In Listing 17-29, we match on the result of awaiting `trpl::race`.
+
+在清單 17-29 中,我們對等待 `trpl::race` 的結果進行比對。
+
+Filename: src/main.rs
+檔案名稱：src/main.rs
+
+```rust
+extern crate trpl; // required for mdbook test
+
+use std::time::Duration;
+
+use trpl::Either;
+
+// --snip--
+
+fn main() {
+    trpl::run(async {
+        let slow = async {
+            trpl::sleep(Duration::from_secs(5)).await;
+            "Finally finished"
+        };
+
+        match timeout(slow, Duration::from_secs(2)).await {
+            Ok(message) => println!("Succeeded with '{message}'"),
+            Err(duration) => {
+                println!("Failed after {} seconds", duration.as_secs())
+            }
+        }
+    });
+}
+
+async fn timeout<F: Future>(
+    future_to_try: F,
+    max_time: Duration,
+) -> Result<F::Output, Duration> {
+    match trpl::race(future_to_try, trpl::sleep(max_time)).await {
+        Either::Left(output) => Ok(output),
+        Either::Right(_) => Err(max_time),
+    }
+}
+```
+
+[Listing 17-29](https://doc.rust-lang.org/book/ch17-03-more-futures.html#listing-17-29): Defining `timeout` with `race` and `sleep`
+
+清單 17-29：使用 `race` 和 `sleep` 定義 `timeout`
+
+If the `future_to_try` succeeds and we get a `Left(output)`, we return `Ok(output)`. If the sleep timer elapses instead and we get a `Right(())`, we ignore the `()` with `_` and return `Err(max_time)` instead.
+
+如果 `future_to_try` 成功且我們得到 `Left(output)`,我們回傳 `Ok(output)`。如果睡眠計時器過去且我們得到 `Right(())`,我們用 `_` 忽略 `()` 並回傳 `Err(max_time)`。
+
+With that, we have a working `timeout` built out of two other async helpers. If we run our code, it will print the failure mode after the timeout:
+
+有了這個,我們就有了一個由兩個其他非同步輔助函式建立的可用 `timeout`。如果我們執行程式碼,它會在超時後列印失敗模式：
+
+`Failed after 2 seconds`
+`在 2 秒後失敗`
+
+Because futures compose with other futures, you can build really powerful tools using smaller async building blocks. For example, you can use this same approach to combine timeouts with retries, and in turn use those with operations such as network calls (one of the examples from the beginning of the chapter).
+
+因為 futures 可以與其他 futures 組合,您可以使用較小的非同步建構塊建立非常強大的工具。例如,您可以使用相同的方法將超時與重試組合在一起,進而將它們用於諸如網路呼叫之類的操作（本章開頭的範例之一）。
+
+In practice, you'll usually work directly with `async` and `await`, and secondarily with functions and macros such as `join`, `join_all`, `race`, and so on. You'll only need to reach for `pin` now and again to use futures with those APIs.
+
+在實踐中,您通常會直接使用 `async` 和 `await`,其次使用諸如 `join`、`join_all`、`race` 等函式和巨集。您只需要偶爾使用 `pin` 來將 futures 與這些 API 一起使用。
+
+We've now seen a number of ways to work with multiple futures at the same time. Up next, we'll look at how we can work with multiple futures in a sequence over time with _streams_. Here are a couple more things you might want to consider first, though:
+
+我們現在已經看到了同時處理多個 futures 的許多方法。接下來,我們將看看如何使用串流隨著時間以序列方式處理多個 futures。不過,這裡還有幾件您可能想先考慮的事情：
+
+- We used a `Vec` with `join_all` to wait for all of the futures in some group to finish. How could you use a `Vec` to process a group of futures in sequence instead? What are the tradeoffs of doing that?
+
+- Take a look at the `futures::stream::FuturesUnordered` type from the `futures` crate. How would using it be different from using a `Vec`? (Don't worry about the fact that it's from the `stream` part of the crate; it works just fine with any collection of futures.)
+
+- 我們使用 `Vec` 和 `join_all` 來等待某個群組中的所有 futures 完成。您如何使用 `Vec` 來依序處理一組 futures？這樣做的權衡是什麼？
+
+- 看看 `futures` crate 中的 `futures::stream::FuturesUnordered` 型別。使用它與使用 `Vec` 有何不同？（不要擔心它來自 crate 的 `stream` 部分這一事實；它可以很好地與任何 futures 集合一起工作。）

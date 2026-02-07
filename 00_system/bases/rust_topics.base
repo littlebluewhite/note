@@ -1,0 +1,27 @@
+filters:
+  and:
+    - file.inFolder("40_knowledge/rust")
+    - file.ext == "md"
+properties:
+  file.name:
+    displayName: File
+  note_type:
+    displayName: Type
+  title:
+    displayName: Title
+  tags:
+    displayName: Tags
+  status:
+    displayName: Status
+  updated:
+    displayName: Updated
+views:
+  - type: table
+    name: Rust Topics
+    order:
+      - file.name
+      - note_type
+      - title
+      - tags
+      - status
+      - updated
