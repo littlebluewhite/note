@@ -1,5 +1,8 @@
 filters:
-  - 'file.ext == "md"'
+  and:
+    - file.ext == "md"
+    - '!(file.inFolder("prompt"))'
+    - '!(file.inFolder("Templates"))'
 properties:
   file.name:
     displayName: File
@@ -13,6 +16,8 @@ properties:
     displayName: Created
   updated:
     displayName: Updated
+  date:
+    displayName: Date
   difficulty:
     displayName: Difficulty
   source:
@@ -25,7 +30,7 @@ properties:
     displayName: Space
 views:
   - type: table
-    name: "All Notes"
+    name: All Notes
     groupBy:
       property: category
       direction: ASC

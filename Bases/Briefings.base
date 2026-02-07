@@ -2,6 +2,7 @@ filters:
   and:
     - file.inFolder("Briefings")
     - file.ext == "md"
+    - file.path != "Briefings/README.md"
 properties:
   file.name:
     displayName: File

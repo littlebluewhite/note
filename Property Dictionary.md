@@ -33,8 +33,23 @@ This note defines the canonical properties for this vault. Keep property names a
 | complexity_space | Text | algorithm/leetcode |  | e.g. O(n) | Space complexity. |
 | date | Date | briefings |  | YYYY-MM-DD | Briefing date. |
 
+## Briefings standard frontmatter
+
+Use this canonical set for notes under `Briefings/`:
+
+- `title`: briefing title (prefer filename-based date title)
+- `category`: `briefings`
+- `tags`: include `briefings` and topic tag (`programming` or `news`)
+- `created`: `YYYY-MM-DD` (fallback to `date` if unknown)
+- `updated`: `YYYY-MM-DD` (fallback to `date` if unknown)
+- `difficulty`: `n/a`
+- `source`: `briefing`
+- `status`: `active`
+- `date`: `YYYY-MM-DD` briefing date
+
 ## Automation
 
 - `scripts/update_updated.py`: syncs `updated` to file modification date (mtime) for Markdown notes.
 - `scripts/add_optional_properties.py`: adds complexity fields without overwriting values.
 - `scripts/infer_data_structure_complexity.py`: infers and fills complexity fields for data_structure notes.
+- `scripts/normalize_briefings_frontmatter.py`: normalizes `Briefings/` frontmatter to canonical schema.

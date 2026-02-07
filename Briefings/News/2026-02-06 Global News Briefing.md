@@ -1,8 +1,13 @@
 ---
+title: "2026-02-06 Global News Briefing"
+category: briefings
+tags: [briefing, news, briefings]
+created: 2026-02-06
+updated: 2026-02-06
+difficulty: n/a
+source: briefing
+status: active
 date: 2026-02-06
-tags:
-  - briefing
-  - news
 ---
 
 # 2026-02-06 全球新聞日報

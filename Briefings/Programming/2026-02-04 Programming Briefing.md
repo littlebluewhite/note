@@ -1,6 +1,13 @@
 ---
+title: "2026-02-04 Programming Briefing"
+category: briefings
+tags: [briefing, programming, briefings]
+created: 2026-02-04
+updated: 2026-02-04
+difficulty: n/a
+source: briefing
+status: active
 date: 2026-02-04
-tags: [briefing, programming]
 ---
 
 # 2026-02-04 Programming Briefing

@@ -19,6 +19,7 @@ status: active
 - [Add Complexity Properties Script](scripts/add_optional_properties.py): add complexity fields to existing notes.
 - [Normalize Algorithm Notes Script](scripts/normalize_algorithm_notes.py): unify Algorithm note sections.
 - [Infer Data Structure Complexity Script](scripts/infer_data_structure_complexity.py): fill data_structure complexity fields and sections.
+- [Normalize Briefings Frontmatter Script](scripts/normalize_briefings_frontmatter.py): enforce canonical Briefings frontmatter fields and defaults.
 
 ## Briefings
 - [Briefings](Briefings/README.md): briefing index and archives.
