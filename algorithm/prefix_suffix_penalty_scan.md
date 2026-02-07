@@ -3,53 +3,89 @@ title: "Prefix/Suffix Penalty Scan / 前後綴懲罰掃描"
 category: algorithm
 tags: [algorithm]
 created: 2026-02-03
-updated: 2026-02-03
+updated: 2026-02-07
 difficulty: n/a
 source: algorithm
 status: active
 complexity_time: O(n)
-complexity_space: O(n)
+complexity_space: O(n) ~ O(1)
 ---
 # Prefix/Suffix Penalty Scan / 前後綴懲罰掃描
 
-Goal: find the earliest split index that minimizes total penalty computed from left and right sides.
-目標：找出使左右兩側懲罰總和最小且最早的切點。
+## Goal
 
-## Key idea / 核心想法
+Given a sequence and a split point `j`, minimize `left_cost(j) + right_cost(j)` by scanning all splits once.
+給定序列與切點 `j`，在線性掃描中最小化 `left_cost(j) + right_cost(j)`。
 
-- When a cost decomposes into "left part + right part", precompute both sides and scan all split points.
-  / 當成本可拆成「左側 + 右側」時，先計算兩側，再掃描所有切點。
-- For split `j`, total penalty = `left_bad[0..j)` + `right_bad[j..n)`.
-  / 切點 `j` 的總懲罰 = 左側不良數 + 右側不良數。
+## When to Use
 
-## Pattern / 流程
+- The objective can be decomposed into independent left and right penalties.
+- 題目成本可拆成左右兩側互不干擾的懲罰和。
+- You need the minimum cost split (sometimes with earliest-index tie break).
+- 需要找最小成本切點（有時要同分取最早）。
+- Typical forms: delete/keep penalties, open/close penalties, bad-item counts.
+- 常見型態：刪除成本、營業/關店懲罰、左右不良元素計數。
 
-1. Build prefix counts for the left-side penalty.
-   / 建立左側前綴計數。
-2. Build suffix counts for the right-side penalty.
-   / 建立右側後綴計數。
-3. Scan `j = 0..=n`, compute `penalty = prefix[j] + suffix[j]`, keep the smallest; on ties keep the earliest.
-   / 掃描所有 `j`，計算懲罰並維持最小值，若同分保留最早切點。
+## Core Idea
 
-## Why it works / 正確性直覺
+- Define split `j` as left interval `[0, j)` and right interval `[j, n)`.
+- 定義切點 `j` 對應左區間 `[0, j)`、右區間 `[j, n)`。
+- Precompute:
+- 預先計算：
+- `prefix_bad[j]`: bad count (or penalty) in the left part.
+- `prefix_bad[j]`：左側不良數（或左側懲罰）。
+- `suffix_bad[j]`: bad count (or penalty) in the right part.
+- `suffix_bad[j]`：右側不良數（或右側懲罰）。
+- Then evaluate all splits in `O(1)` each:
+- 接著每個切點可 `O(1)` 計算：
+- `cost(j) = prefix_bad[j] + suffix_bad[j]`.
+- `cost(j) = prefix_bad[j] + suffix_bad[j]`。
 
-- Each position contributes to exactly one side of the split, so the total penalty is the sum of two independent counts.
-  / 每個位置只會落在其中一側，因此懲罰可拆成兩個獨立計數相加。
+## Steps
 
-## Complexity / 複雜度
+1. Define what is "bad" on the left and on the right.
+2. 定義左側與右側各自要計入的「不良」條件。
+3. Build `prefix_bad` from left to right.
+4. 由左到右建立 `prefix_bad`。
+5. Build `suffix_bad` from right to left.
+6. 由右到左建立 `suffix_bad`。
+7. Scan all `j in [0, n]`, compute `cost(j)`, keep minimum (and earliest on tie if required).
+8. 掃描所有切點 `j`，計算 `cost(j)`，維持最小值（若有同分規則則同步處理）。
 
-- Time: `O(n)` build + `O(n)` scan.
-  / 時間：`O(n)`。
-- Space: `O(n)` for two count arrays (can be reduced to `O(1)` with a running score).
-  / 空間：`O(n)`，也可用滾動更新降為 `O(1)`。
+## Complexity
 
-## Pitfalls / 常見陷阱
+- Time: `O(n)` (build + scan).
+- Space: `O(n)` with prefix/suffix arrays.
+- Space can be reduced to `O(1)` when the split cost can be updated incrementally.
 
-- Off-by-one: a split at `j` means `[0, j)` on the left and `[j, n)` on the right.
-  / 切點 `j` 表示左側 `[0, j)`、右側 `[j, n)`。
-- If multiple `j` share the same minimum, keep the earliest.
-  / 多個最小值時要選最早的 `j`。
+## Pitfalls
 
-## Related problems / 相關題目
+- Off-by-one mistakes around `[0, j)` and `[j, n)`.
+- Tie-breaking (earliest or latest split) is easy to miss.
+- Forgetting to include boundary splits `j = 0` and `j = n`.
+
+## Examples
+
+Example problem: split `s = "aababbab"` to minimize deletions for form `a* b*`.
+範例：將 `s = "aababbab"` 切成左右兩段，最小化刪除數使結果為 `a* b*`。
+
+- Left bad = `'b'` in `[0, j)`.
+- 左側不良 = `[0, j)` 的 `'b'`。
+- Right bad = `'a'` in `[j, n)`.
+- 右側不良 = `[j, n)` 的 `'a'`。
+- Compute `prefixB` and `suffixA`, then find minimum of `prefixB[j] + suffixA[j]`.
+- 計算 `prefixB` 與 `suffixA`，取最小 `prefixB[j] + suffixA[j]`。
+- Best cost is `2`.
+- 最小成本為 `2`。
+
+## Notes
+
+- This is a split-scan framework, not limited to strings.
+- 這是通用切點掃描框架，不限字串題。
+- Many problems have an equivalent `O(1)` running-score variant after algebraic simplification.
+- 許多題目在代數化後可改寫成 `O(1)` 空間的滾動分數版本。
+
+## Related
 
 - [q2483](../leetcode/q2483.md)
+- [q1756](../leetcode/q1756.md)
