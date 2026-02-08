@@ -11,7 +11,6 @@ complexity_time: O(log n) per op
 complexity_space: O(n)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: data_structure/ordered_multiset_btreemap.md
 ---
 # Ordered Multiset via BTreeMap / 用 BTreeMap 實作有序 Multiset
 

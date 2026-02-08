@@ -11,7 +11,6 @@ complexity_time: O(V + E)
 complexity_space: O(V)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/graph_bfs.md
 ---
 # Graph BFS (Queue) / 圖遍歷 BFS（佇列）
 

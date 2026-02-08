@@ -11,7 +11,6 @@ complexity_time: O(alpha(n)) per op
 complexity_space: O(n)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: data_structure/union_find_dsu.md
 ---
 # Union-Find (DSU) / 並查集
 

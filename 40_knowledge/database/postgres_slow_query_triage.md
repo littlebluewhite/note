@@ -7,7 +7,6 @@ created: 2026-02-03
 updated: 2026-02-03
 status: active
 source: database
-canonical: database/postgres_slow_query_triage.md
 ---
 # postgres slow query triage
 

@@ -11,7 +11,6 @@ complexity_time: O(n)
 complexity_space: O(n) ~ O(1)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/prefix_suffix_penalty_scan.md
 ---
 # Prefix/Suffix Penalty Scan / 前後綴懲罰掃描
 

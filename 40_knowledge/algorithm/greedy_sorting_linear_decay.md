@@ -11,7 +11,6 @@ complexity_time: O(n log n + k)
 complexity_space: O(1)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/greedy_sorting_linear_decay.md
 ---
 # Greedy Sorting with Linear Decay / 遞減回合的貪婪排序
 

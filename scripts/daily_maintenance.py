@@ -5,7 +5,8 @@ Pipeline:
   1) vault_lint_v2
   2) rebuild_indexes
   3) briefing_extract
-  4) vault_lint_v2 (final)
+  4) review_reminder (informational)
+  5) vault_lint_v2 (final)
 
 Usage:
   python3 scripts/daily_maintenance.py --root . --dry-run
@@ -71,6 +72,10 @@ def main() -> int:
         extract_cmd.append("--dry-run")
     code, out = run(extract_cmd, root)
     steps.append({"step": "briefing_extract", "code": code, "output": out})
+
+    review_cmd = [py, "scripts/mark_reviewed.py", "--root", ".", "--due-today", "--dry-run"]
+    code, out = run(review_cmd, root)
+    steps.append({"step": "review_reminder", "code": 0, "output": out})
 
     lint_after_json = reports / "vault_health_after.json"
     code, out = run([py, "scripts/vault_lint_v2.py", "--root", ".", "--json", str(lint_after_json)], root)

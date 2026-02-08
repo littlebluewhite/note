@@ -11,7 +11,6 @@ complexity_time: O(1) amortized push/pop, O(n) insert
 complexity_space: O(n)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/dynamic_array_vec.md
 ---
 # Dynamic Array (Vec) / 動態陣列
 

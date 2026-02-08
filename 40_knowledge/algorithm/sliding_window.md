@@ -11,7 +11,6 @@ complexity_time: O(n)
 complexity_space: O(1)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/sliding_window.md
 ---
 # Sliding Window / 滑動視窗
 

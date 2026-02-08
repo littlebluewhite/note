@@ -11,7 +11,6 @@ complexity_time: O(1) amortized per op
 complexity_space: O(n)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: data_structure/deque_vecdeque.md
 ---
 # Deque (VecDeque) / 雙端佇列
 

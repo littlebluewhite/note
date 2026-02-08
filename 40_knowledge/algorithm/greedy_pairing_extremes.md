@@ -11,7 +11,6 @@ complexity_time: O(n log n)
 complexity_space: O(1)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/greedy_pairing_extremes.md
 ---
 # Greedy Pairing Extremes / 極值配對貪婪
 

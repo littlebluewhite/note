@@ -11,7 +11,6 @@ complexity_time: O(n)
 complexity_space: O(n)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: data_structure/prefix_suffix_count_array.md
 ---
 # Prefix/Suffix Count Array / 前後綴計數陣列
 

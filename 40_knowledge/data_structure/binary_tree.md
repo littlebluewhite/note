@@ -11,7 +11,6 @@ complexity_time: O(n) traversal
 complexity_space: O(n)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: data_structure/binary_tree.md
 ---
 # Binary Tree / 二元樹
 

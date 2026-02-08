@@ -11,7 +11,6 @@ complexity_time: O(n)
 complexity_space: O(n)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/tree_dp.md
 ---
 # Tree DP / 樹上動態規劃
 

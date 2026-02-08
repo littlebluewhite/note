@@ -11,7 +11,6 @@ complexity_time: O(n log n)
 complexity_space: O(n)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/sliding_window_k_smallest_sum.md
 ---
 # Sliding Window: sum of k smallest / 滑動視窗：維護視窗內 k 個最小值的總和
 
@@ -57,8 +56,8 @@ Notes:
 - Lazy deletion is tricky when duplicates exist; always count multiplicities.
 
 參考：
-- [[40_knowledge/algorithm/lazy_deletion_priority_queue.md]]
-- [[40_knowledge/data_structure/priority_queue_binary_heap.md]]
+- [[lazy_deletion_priority_queue]]
+- [[priority_queue_binary_heap]]
 
 ---
 
@@ -91,7 +90,7 @@ After each add/remove:
 
 Time complexity: each move is `O(log n)`, so overall `O(n log n)`.
 
-Rust multiset details: [[40_knowledge/data_structure/ordered_multiset_btreemap.md]]
+Rust multiset details: [[ordered_multiset_btreemap]]
 
 ---
 

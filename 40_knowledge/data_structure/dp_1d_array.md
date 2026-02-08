@@ -11,7 +11,6 @@ complexity_time: O(n)
 complexity_space: O(n)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: data_structure/dp_1d_array.md
 ---
 # DP 1D Array / 一維 DP 陣列
 

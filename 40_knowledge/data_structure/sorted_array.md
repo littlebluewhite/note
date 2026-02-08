@@ -11,7 +11,6 @@ complexity_time: O(log n) search, O(n) insert
 complexity_space: O(n)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: data_structure/sorted_array.md
 ---
 # Sorted Array / 排序陣列
 

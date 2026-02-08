@@ -11,7 +11,6 @@ complexity_time: O(bit-length)
 complexity_space: O(1)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/bitwise_or_with_increment.md
 ---
 # Bitwise OR With Next Integer / 與下一個整數的位元 OR
 

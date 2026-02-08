@@ -11,7 +11,6 @@ complexity_time: O(n^3)
 complexity_space: O(n^2)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/floyd_warshall_all_pairs_shortest_path.md
 ---
 # Floyd-Warshall All-Pairs Shortest Path / Floyd-Warshall 全點對最短路徑
 

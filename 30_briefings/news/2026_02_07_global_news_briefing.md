@@ -1,6 +1,14 @@
 ---
-date: 2026-02-07
+title: 2026-02-07 全球新聞日報
+note_type: briefing
+domain: news
 tags: [briefing, news]
+created: 2026-02-07
+updated: 2026-02-08
+status: active
+source: briefing
+date: 2026-02-07
+canonical: 30_briefings/news/2026-02-07 Global News Briefing.md
 ---
 
 # 2026-02-07 全球新聞日報

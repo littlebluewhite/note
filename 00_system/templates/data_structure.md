@@ -3,14 +3,14 @@ title: "{{title}}"
 note_type: knowledge
 domain: data_structure
 tags: [knowledge, data_structure]
-created: {{date}}
-updated: {{date}}
+created: 2026-02-08
+updated: 2026-02-08
 status: active
 source: knowledge
 complexity_time: unknown
 complexity_space: unknown
 review_interval_days: 14
-next_review: {{date}}
+next_review: 2026-02-22
 ---
 # {{title}}
 

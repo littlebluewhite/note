@@ -11,7 +11,6 @@ complexity_time: O(1) per update
 complexity_space: O(n)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: data_structure/state_tracking_array.md
 ---
 # State Tracking Array / 狀態追蹤陣列
 

@@ -11,7 +11,6 @@ complexity_time: O(n + m) build
 complexity_space: O(n + m)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: data_structure/weighted_graph.md
 ---
 # Weighted Graph / 加權圖
 

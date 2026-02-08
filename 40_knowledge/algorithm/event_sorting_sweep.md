@@ -11,7 +11,6 @@ complexity_time: O(n log n)
 complexity_space: O(n)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/event_sorting_sweep.md
 ---
 # Event Sorting Sweep / 事件排序掃描
 

@@ -11,7 +11,6 @@ complexity_time: O(sqrt(n))
 complexity_space: O(1)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/divisor_enumeration_sqrt.md
 ---
 # Divisor Enumeration by Square Root / 根號枚舉因數
 

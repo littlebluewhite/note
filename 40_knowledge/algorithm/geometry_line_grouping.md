@@ -11,7 +11,6 @@ complexity_time: O(n^2)
 complexity_space: O(n^2)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/geometry_line_grouping.md
 ---
 # Geometry Line Grouping / 幾何直線分組
 

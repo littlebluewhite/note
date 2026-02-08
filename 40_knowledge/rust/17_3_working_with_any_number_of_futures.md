@@ -7,7 +7,6 @@ created: 2026-02-03
 updated: 2026-02-03
 status: active
 source: note
-canonical: rust_book/17.3 Working with Any Number of Futures.md
 ---
 # 17.3 Working with Any Number of Futures
 

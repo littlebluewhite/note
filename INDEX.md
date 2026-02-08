@@ -15,7 +15,7 @@ source: system
 - [Property Dictionary](Property Dictionary.md)
 - [Daily Workflow](00_system/runbooks/daily_workflow.md)
 - [Templates](00_system/templates/system.md)
-- [Knowledge README](40_knowledge/README.md)
+- [Knowledge README](40_knowledge/readme.md)
 - [Briefings README](30_briefings/README.md)
 
 ## Knowledge

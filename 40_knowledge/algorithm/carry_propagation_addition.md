@@ -11,7 +11,6 @@ complexity_time: O(n)
 complexity_space: O(1)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/carry_propagation_addition.md
 ---
 # Digit Carry Addition / 數字進位加法
 

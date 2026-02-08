@@ -11,7 +11,6 @@ complexity_time: O(n log n)
 complexity_space: O(1)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/consecutive_run_length_sorted.md
 ---
 # Longest Consecutive Run in Sorted List / 排序後最長連續段
 

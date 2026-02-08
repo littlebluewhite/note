@@ -7,7 +7,6 @@ created: 2026-02-03
 updated: 2026-02-08
 status: active
 source: system
-canonical: prompt/leetcode.md
 ---
 # LeetCode Prompt
 

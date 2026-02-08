@@ -1,0 +1,58 @@
+{
+  "summary": {
+    "md_files": 184,
+    "missing_frontmatter": 0,
+    "missing_required_fields": 2,
+    "broken_links": 0,
+    "orphan_notes": 2,
+    "non_snake_case": 2,
+    "index_coverage_percent": 97.5
+  },
+  "missing_frontmatter": [],
+  "missing_required_fields": [
+    {
+      "file": "30_briefings/news/2026-02-07 Global News Briefing.md",
+      "missing": [
+        "title",
+        "note_type",
+        "domain",
+        "created",
+        "updated",
+        "status",
+        "source"
+      ]
+    },
+    {
+      "file": "30_briefings/programming/2026-02-08 Programming Briefing.md",
+      "missing": [
+        "title",
+        "note_type",
+        "domain",
+        "created",
+        "updated",
+        "status",
+        "source"
+      ]
+    }
+  ],
+  "broken_links": [],
+  "orphan_notes": [
+    "30_briefings/news/2026-02-07 Global News Briefing.md",
+    "30_briefings/programming/2026-02-08 Programming Briefing.md"
+  ],
+  "non_snake_case": [
+    "30_briefings/news/2026-02-07 Global News Briefing.md",
+    "30_briefings/programming/2026-02-08 Programming Briefing.md"
+  ],
+  "index_coverage": {
+    "indexed": 156,
+    "total": 160,
+    "percent": 97.5,
+    "missing": [
+      "30_briefings/news/2026-02-07 Global News Briefing.md",
+      "30_briefings/programming/2026-02-08 Programming Briefing.md",
+      "40_knowledge/algorithm/tree_postorder_height_balance_check.md",
+      "40_knowledge/leetcode/q110.md"
+    ]
+  }
+}

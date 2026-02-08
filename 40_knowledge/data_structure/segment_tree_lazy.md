@@ -11,7 +11,6 @@ complexity_time: O(log n) per update/query
 complexity_space: O(n)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: data_structure/segment_tree_lazy.md
 ---
 # Segment Tree (Range Add + Covered Length) / 線段樹（區間加 + 覆蓋長度）
 

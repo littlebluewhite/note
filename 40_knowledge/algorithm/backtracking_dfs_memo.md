@@ -11,7 +11,6 @@ complexity_time: O(S * B)
 complexity_space: O(S)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/backtracking_dfs_memo.md
 ---
 # Backtracking + DFS Memoization / 回溯 + DFS 記憶化
 

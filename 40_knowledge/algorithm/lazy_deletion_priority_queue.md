@@ -11,7 +11,6 @@ complexity_time: O(k log n)
 complexity_space: O(n)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/lazy_deletion_priority_queue.md
 ---
 # Lazy Deletion in Priority Queue / 優先佇列延遲刪除
 

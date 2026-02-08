@@ -11,7 +11,6 @@ complexity_time: O(n)
 complexity_space: O(h)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/tree_postorder_depth_lca.md
 ---
 # Tree Postorder Depth + LCA Merge / 後序深度合併找最深節點 LCA
 

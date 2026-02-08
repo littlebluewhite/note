@@ -11,7 +11,6 @@ complexity_time: O(log n) push/pop, O(1) peek
 complexity_space: O(n)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: data_structure/priority_queue_binary_heap.md
 ---
 # Priority Queue (Binary Heap) / 優先佇列（二元堆）
 

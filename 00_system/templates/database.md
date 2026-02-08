@@ -3,12 +3,10 @@ title: "{{title}}"
 note_type: knowledge
 domain: database
 tags: [knowledge, database]
-created: {{date}}
-updated: {{date}}
+created: 2026-02-08
+updated: 2026-02-08
 status: active
 source: knowledge
-review_interval_days: 30
-next_review: {{date}}
 ---
 # {{title}}
 

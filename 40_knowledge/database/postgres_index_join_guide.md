@@ -7,7 +7,6 @@ created: 2026-02-03
 updated: 2026-02-03
 status: active
 source: database
-canonical: database/postgres_index_join_guide.md
 ---
 # postgres index join guide
 

@@ -11,7 +11,6 @@ complexity_time: O(n^2)
 complexity_space: O(1)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: data_structure/pairwise_index_scan.md
 ---
 # Pairwise Index Scan / 陣列兩兩掃描
 

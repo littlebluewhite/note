@@ -11,7 +11,6 @@ complexity_time: O(n log n)
 complexity_space: O(n)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/piecewise_linear_sweep.md
 ---
 # Piecewise Linear Sweep / 分段線性掃描
 

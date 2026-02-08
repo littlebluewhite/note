@@ -4,22 +4,27 @@
     {
       "step": "lint_before",
       "code": 0,
-      "output": "{\n  \"md_files\": 180,\n  \"missing_frontmatter\": 0,\n  \"missing_required_fields\": 0,\n  \"broken_links\": 0,\n  \"orphan_notes\": 0,\n  \"non_snake_case\": 0,\n  \"index_coverage_percent\": 100.0\n}\njson=reports/vault_health_before.json"
+      "output": "{\n  \"md_files\": 184,\n  \"missing_frontmatter\": 0,\n  \"missing_required_fields\": 0,\n  \"broken_links\": 0,\n  \"orphan_notes\": 2,\n  \"non_snake_case\": 0,\n  \"index_coverage_percent\": 97.5\n}\njson=reports/vault_health_before.json"
     },
     {
       "step": "rebuild_indexes",
       "code": 0,
-      "output": "files=15 changed=0 legacy_deleted=0 write=False"
+      "output": "files=15 changed=3 legacy_deleted=0 write=False"
     },
     {
       "step": "briefing_extract",
       "code": 0,
-      "output": "fallback_date=2026-02-07\ncandidates=11\nout=10_inbox/briefing_candidates.md (dry-run)"
+      "output": "fallback_date=2026-02-08\ncandidates=12\nout=10_inbox/briefing_candidates.md (dry-run)"
+    },
+    {
+      "step": "review_reminder",
+      "code": 0,
+      "output": "/Users/wilson08/note/40_knowledge/leetcode/q2943.md: interval 14d -> 21d, next=2026-03-02\n  /Users/wilson08/note/40_knowledge/leetcode/q2975.md: interval 14d -> 21d, next=2026-03-02\nmode=dry-run due=2 updated=2 skipped=0"
     },
     {
       "step": "lint_after",
       "code": 0,
-      "output": "{\n  \"md_files\": 180,\n  \"missing_frontmatter\": 0,\n  \"missing_required_fields\": 0,\n  \"broken_links\": 0,\n  \"orphan_notes\": 0,\n  \"non_snake_case\": 0,\n  \"index_coverage_percent\": 100.0\n}\njson=reports/vault_health_after.json"
+      "output": "{\n  \"md_files\": 184,\n  \"missing_frontmatter\": 0,\n  \"missing_required_fields\": 0,\n  \"broken_links\": 0,\n  \"orphan_notes\": 2,\n  \"non_snake_case\": 0,\n  \"index_coverage_percent\": 97.5\n}\njson=reports/vault_health_after.json"
     }
   ]
 }

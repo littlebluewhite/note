@@ -3,8 +3,8 @@ title: "{{title}}"
 note_type: system
 domain: system
 tags: [system]
-created: 2026-02-08
-updated: 2026-02-08
+created: {{date}}
+updated: {{date}}
 status: active
 source: system
 ---

@@ -11,7 +11,6 @@ complexity_time: O(n + k log k)
 complexity_space: O(k)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/grouping_aggregation.md
 ---
 # Grouping and Aggregation / 分組與彙總
 

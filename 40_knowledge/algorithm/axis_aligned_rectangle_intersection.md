@@ -11,7 +11,6 @@ complexity_time: O(n^2)
 complexity_space: O(1)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/axis_aligned_rectangle_intersection.md
 ---
 # Axis-Aligned Rectangle Intersection / 軸對齊矩形交集
 

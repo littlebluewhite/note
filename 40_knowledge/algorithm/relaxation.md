@@ -11,7 +11,6 @@ complexity_time: O(E)
 complexity_space: O(V)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/relaxation.md
 ---
 # Relaxation / 鬆弛
 

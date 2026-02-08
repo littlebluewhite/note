@@ -11,7 +11,6 @@ complexity_time: O((rows-k+1)*(cols-k+1)*k^2)
 complexity_space: O(1)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/fixed_size_subgrid_scan.md
 ---
 # Fixed-Size Subgrid Scan / 固定尺寸子矩陣掃描
 

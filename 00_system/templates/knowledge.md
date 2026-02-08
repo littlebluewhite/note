@@ -3,14 +3,14 @@ title: "{{title}}"
 note_type: knowledge
 domain: algorithm
 tags: [knowledge, algorithm]
-created: 2026-02-08
-updated: 2026-02-08
+created: {{date}}
+updated: {{date}}
 status: active
 source: knowledge
 complexity_time: unknown
 complexity_space: unknown
 review_interval_days: 14
-next_review: 2026-02-22
+next_review: {{date}}
 ---
 # {{title}}
 

@@ -7,7 +7,6 @@ created: 2026-02-03
 updated: 2026-02-03
 status: active
 source: note
-canonical: prompt/需重解題.md
 ---
 # 需重解題
 

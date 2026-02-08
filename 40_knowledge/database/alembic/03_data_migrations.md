@@ -7,7 +7,6 @@ created: 2026-02-03
 updated: 2026-02-03
 status: active
 source: database
-canonical: database/alembic/03-data-migrations.md
 ---
 # 03-data-migrations
 

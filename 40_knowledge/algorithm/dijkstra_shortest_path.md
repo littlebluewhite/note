@@ -11,7 +11,6 @@ complexity_time: O(n + m)
 complexity_space: O(n + m)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/dijkstra_shortest_path.md
 ---
 # Dijkstra Shortest Path / Dijkstra 最短路徑
 

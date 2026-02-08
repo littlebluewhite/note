@@ -11,7 +11,6 @@ complexity_time: O(n * B)
 complexity_space: O(B)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/knapsack_dp.md
 ---
 # Knapsack DP / 背包動態規劃
 

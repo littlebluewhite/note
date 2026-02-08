@@ -11,7 +11,6 @@ complexity_time: O(n * m)
 complexity_space: O(n)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/greedy_column_scan.md
 ---
 # Greedy Column Scan for Lexicographic Order / 欄位貪心掃描
 

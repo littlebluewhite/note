@@ -11,7 +11,6 @@ complexity_time: O(m^2 * k)
 complexity_space: O(m)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/longest_chain_dp.md
 ---
 # Longest Chain DP (Column Compatibility) / 最長鏈 DP（欄位相容）
 

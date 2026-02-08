@@ -11,7 +11,6 @@ complexity_time: O(m log m + m log n)
 complexity_space: O(n)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/room_allocation_two_heaps.md
 ---
 # Room Allocation with Two Heaps / 兩堆資源排程
 

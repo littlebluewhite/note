@@ -11,7 +11,6 @@ complexity_time: O(n)
 complexity_space: O(w)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/tree_level_order_traversal.md
 ---
 # Tree Level-Order Traversal (BFS) / 樹的層序遍歷（BFS）
 

@@ -1,6 +1,14 @@
 ---
-date: 2026-02-08
+title: 2026-02-08 Programming Briefing
+note_type: briefing
+domain: programming
 tags: [briefing, programming]
+created: 2026-02-08
+updated: 2026-02-08
+status: active
+source: briefing
+date: 2026-02-08
+canonical: 30_briefings/programming/2026-02-08 Programming Briefing.md
 ---
 
 # 2026-02-08 Programming Briefing

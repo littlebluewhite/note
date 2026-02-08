@@ -11,7 +11,6 @@ complexity_time: O(mn)
 complexity_space: O(mn)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/two_sequence_dp.md
 ---
 # Two-Sequence DP / 雙序列 DP
 

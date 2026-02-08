@@ -7,6 +7,7 @@ created: 2026-02-08
 updated: 2026-02-08
 status: active
 source: system
+canonical: 40_knowledge/README.md
 ---
 
 # Knowledge

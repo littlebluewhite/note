@@ -11,7 +11,6 @@ complexity_time: O(n) build, O(1) query
 complexity_space: O(n)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: data_structure/suffix_max_array.md
 ---
 # Suffix Max Array / 後綴最大值陣列
 

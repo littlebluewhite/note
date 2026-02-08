@@ -1,22 +1,30 @@
 {
   "summary": {
-    "md_files": 180,
+    "md_files": 184,
     "missing_frontmatter": 0,
     "missing_required_fields": 0,
     "broken_links": 0,
-    "orphan_notes": 0,
+    "orphan_notes": 2,
     "non_snake_case": 0,
-    "index_coverage_percent": 100.0
+    "index_coverage_percent": 97.5
   },
   "missing_frontmatter": [],
   "missing_required_fields": [],
   "broken_links": [],
-  "orphan_notes": [],
+  "orphan_notes": [
+    "30_briefings/news/2026_02_07_global_news_briefing.md",
+    "30_briefings/programming/2026_02_08_programming_briefing.md"
+  ],
   "non_snake_case": [],
   "index_coverage": {
     "indexed": 156,
-    "total": 156,
-    "percent": 100.0,
-    "missing": []
+    "total": 160,
+    "percent": 97.5,
+    "missing": [
+      "30_briefings/news/2026_02_07_global_news_briefing.md",
+      "30_briefings/programming/2026_02_08_programming_briefing.md",
+      "40_knowledge/algorithm/tree_postorder_height_balance_check.md",
+      "40_knowledge/leetcode/q110.md"
+    ]
   }
 }

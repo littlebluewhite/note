@@ -11,7 +11,6 @@ complexity_time: O(n log n)
 complexity_space: O(n)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/scanline_union_area_segment_tree.md
 ---
 # Scanline + Segment Tree Union Area / 掃描線 + 線段樹求聯集面積
 

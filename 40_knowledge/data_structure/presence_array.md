@@ -11,7 +11,6 @@ complexity_time: O(1) per op
 complexity_space: O(R)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: data_structure/presence_array.md
 ---
 # Presence Array / 出現標記陣列
 

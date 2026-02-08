@@ -7,7 +7,6 @@ created: 2026-02-03
 updated: 2026-02-03
 status: active
 source: database
-canonical: database/postgres_lock_troubleshooting.md
 ---
 # postgres lock troubleshooting
 

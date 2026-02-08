@@ -11,7 +11,6 @@ complexity_time: O(mn)
 complexity_space: O(mn)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: data_structure/dp_2d_array.md
 ---
 # DP 2D Array / 二維 DP 陣列
 

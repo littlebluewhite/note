@@ -7,7 +7,6 @@ created: 2026-02-03
 updated: 2026-02-03
 status: active
 source: note
-canonical: rust_book/17.6. Futures, Tasks, and Threads.md
 ---
 # 17.6 Futures, Tasks, and Threads
 

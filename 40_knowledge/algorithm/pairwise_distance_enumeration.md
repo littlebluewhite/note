@@ -11,7 +11,6 @@ complexity_time: O(k^2)
 complexity_space: O(k^2)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/pairwise_distance_enumeration.md
 ---
 # Pairwise Distance Enumeration / 兩兩距離枚舉
 

@@ -30,4 +30,8 @@ source: system
 ## Weekly Review
 - Open `00_system/bases/review_queue.base`.
 - Process notes with `next_review` due date <= today.
+- Mark reviewed notes:
+  - Single: `python3 scripts/mark_reviewed.py --root . --file <path> --quality good --write`
+  - All due: `python3 scripts/mark_reviewed.py --root . --due-today --write`
+  - Quality options: `easy` (2.5x interval), `good` (1.5x), `hard` (0.5x)
 - Archive stale notes to `90_archive` when no longer active.

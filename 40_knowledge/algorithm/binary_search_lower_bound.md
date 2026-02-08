@@ -11,7 +11,6 @@ complexity_time: O(log n)
 complexity_space: O(1)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/binary_search_lower_bound.md
 ---
 # Binary Search Lower Bound / 二分搜尋下界
 

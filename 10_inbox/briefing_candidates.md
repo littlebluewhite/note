@@ -2,12 +2,11 @@
 title: briefing_candidates_2026-02-07
 note_type: inbox
 domain: briefing_extract
-tags: [inbox, briefing, candidates]
+tags: [inbox, briefing, candidates, briefing_extract]
 created: 2026-02-07
 updated: 2026-02-07
 status: active
 source: briefing_extract
-date: 2026-02-07
 ---
 
 # Briefing Candidates - 2026-02-07

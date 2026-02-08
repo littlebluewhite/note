@@ -11,7 +11,6 @@ complexity_time: O(n)
 complexity_space: O(n)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/largest_rectangle_histogram.md
 ---
 # Largest Rectangle in Histogram (Monotonic Stack) / 直方圖最大矩形（單調堆疊）
 

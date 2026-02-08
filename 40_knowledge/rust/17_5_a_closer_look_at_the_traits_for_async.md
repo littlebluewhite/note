@@ -7,7 +7,6 @@ created: 2026-02-03
 updated: 2026-02-03
 status: active
 source: note
-canonical: rust_book/17.5 A Closer Look at the Traits for Async.md
 ---
 # 17.5 A Closer Look at the Traits for Async
 

@@ -7,7 +7,6 @@ created: 2023-01-01
 updated: 2026-02-03
 status: active
 source: database
-canonical: database/transactions.md
 ---
 # transactions
 

@@ -11,7 +11,6 @@ complexity_time: O(1) per index
 complexity_space: O(1)
 review_interval_days: 14
 next_review: 2026-02-19
-canonical: algorithm/circular_array_indexing.md
 ---
 # Circular Array Indexing / 環狀陣列索引
 

@@ -11,7 +11,6 @@ complexity_time: O(n)
 complexity_space: O(h)
 review_interval_days: 14
 next_review: 2026-02-22
-canonical: algorithm/tree_postorder_height_balance_check.md
 ---
 # Tree Postorder Height Check (Sentinel Early Stop) / 後序高度檢查（哨兵值早停）
 

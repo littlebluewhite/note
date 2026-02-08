@@ -11,7 +11,6 @@ complexity_time: O(mn) build, O(1) query
 complexity_space: O(mn)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/prefix_sum_2d.md
 ---
 # 2D Prefix Sum / 二維前綴和
 

@@ -11,7 +11,6 @@ complexity_time: O(S * T)
 complexity_space: O(S)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/dp_dynamic_programming.md
 ---
 # DP / Dynamic Programming (動態規劃)
 

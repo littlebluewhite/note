@@ -11,7 +11,6 @@ complexity_time: O(1) insert/delete with node
 complexity_space: O(n)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: data_structure/doubly_linked_list.md
 ---
 # Doubly Linked List / 雙向鏈結串列
 

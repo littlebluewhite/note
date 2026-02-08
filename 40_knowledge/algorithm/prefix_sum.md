@@ -11,7 +11,6 @@ complexity_time: O(n) build, O(1) query
 complexity_space: O(n)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/prefix_sum.md
 ---
 # Prefix Sum / 前綴和
 

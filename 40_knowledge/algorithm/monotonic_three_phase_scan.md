@@ -11,7 +11,6 @@ complexity_time: O(n)
 complexity_space: O(1)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/monotonic_three_phase_scan.md
 ---
 # Monotonic Three-Phase Scan (Inc→Dec→Inc) / 三段單調掃描
 

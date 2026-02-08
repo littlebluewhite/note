@@ -11,7 +11,6 @@ complexity_time: O(n)
 complexity_space: O(1)
 review_interval_days: 14
 next_review: 2026-02-18
-canonical: algorithm/grouped_loop_scan.md
 ---
 # Grouped Loop Scan / 分組迴圈掃描
 

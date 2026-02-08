@@ -11,7 +11,6 @@ complexity_time: O(n)
 complexity_space: O(h)
 review_interval_days: 14
 next_review: 2026-02-17
-canonical: algorithm/tree_postorder_subtree_sum.md
 ---
 # Tree Postorder Subtree Sum / 後序子樹總和
 
