@@ -1,6 +1,6 @@
 {
   "summary": {
-    "md_files": 180,
+    "md_files": 295,
     "missing_frontmatter": 0,
     "missing_required_fields": 0,
     "broken_links": 0,
@@ -14,8 +14,8 @@
   "orphan_notes": [],
   "non_snake_case": [],
   "index_coverage": {
-    "indexed": 156,
-    "total": 156,
+    "indexed": 266,
+    "total": 266,
     "percent": 100.0,
     "missing": []
   }
