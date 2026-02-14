@@ -11,7 +11,7 @@ series: tailwindcss4_complete_notes
 chapter: "17"
 level: advanced
 stack: Tailwind CSS 4.1.x
-prerequisites: [16_theme_configuration]
+prerequisites: [16_theme_directive_and_design_tokens]
 ---
 
 # Custom Utilities and Variants with @utility / 使用 @utility 自訂工具類與變體
