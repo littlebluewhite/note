@@ -4,7 +4,7 @@ note_type: knowledge
 domain: frontend
 tags: [knowledge, frontend, svelte5]
 created: 2026-02-14
-updated: 2026-02-14
+updated: 2026-02-17
 status: active
 source: knowledge
 series: svelte5_complete_notes
@@ -318,6 +318,95 @@ function whoosh(node: HTMLElement, { duration = 400 }: { duration?: number } = {
 | 需要精細控制每個 frame | 簡單的進出場動畫 |
 | 需要基於元素內容的動畫（如 typewriter） | 可用 CSS `@keyframes` 解決 |
 | 需要 JavaScript 計算的動畫邏輯 | 效能敏感且可用 CSS 硬體加速替代 |
+
+### 6. `parseCss` — 編譯器 CSS AST 解析器
+
+> **Svelte 5.48.0+** 新增。`svelte/compiler` 模組匯出 `parseCss` 函式，提供輕量的 CSS AST 解析能力。
+
+`parseCss` 將 CSS 樣式表字串解析為抽象語法樹（AST），適合用於需要程式化分析或轉換 CSS 的工具鏈場景。這與 `parse` 函式解析 `.svelte` 元件的功能互補——`parse` 處理完整的 Svelte 元件，`parseCss` 則專門處理純 CSS。
+
+#### 基本用法
+
+```typescript
+import { parseCss } from 'svelte/compiler';
+
+const css = `
+  .card {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+  }
+
+  .card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+`;
+
+const ast = parseCss(css);
+// ast 的型別為 AST.CSS.StyleSheetFile
+// 包含完整的 CSS 結構資訊：選擇器、屬性、值等
+console.log(ast);
+```
+
+#### 函式簽名
+
+```typescript
+function parseCss(source: string): AST.CSS.StyleSheetFile;
+```
+
+- **`source`**：CSS 樣式表內容字串。
+- **回傳值**：`AST.CSS.StyleSheetFile`，代表解析後的 CSS 抽象語法樹。
+
+#### 搭配其他 compiler API
+
+`parseCss` 是 `svelte/compiler` 模組中的工具之一，與其他匯出配合使用：
+
+```typescript
+import {
+  VERSION,
+  compile,       // 編譯 .svelte 元件
+  compileModule,  // 編譯 .svelte.ts 模組
+  parse,         // 解析 .svelte 元件為 AST
+  parseCss,      // 解析 CSS 為 AST
+  preprocess,    // 預處理 .svelte 元件
+  walk,          // 走訪 AST 節點
+} from 'svelte/compiler';
+```
+
+#### 實際應用場景
+
+```typescript
+import { parseCss, walk } from 'svelte/compiler';
+
+// 場景：提取 CSS 中所有使用的 class 名稱
+function extractClassNames(cssSource: string): string[] {
+  const ast = parseCss(cssSource);
+  const classNames: string[] = [];
+
+  walk(ast, {
+    enter(node) {
+      // 走訪 AST 節點，尋找 class 選擇器
+      if (node.type === 'ClassSelector') {
+        classNames.push(node.name);
+      }
+    }
+  });
+
+  return classNames;
+}
+
+const classes = extractClassNames('.card { color: red; } .btn { color: blue; }');
+console.log(classes); // ['card', 'btn']
+```
+
+| 何時用 `parseCss` | 何時不用 |
+|---|---|
+| 建立 CSS 分析工具（如 unused CSS 偵測） | 只是撰寫一般的 Svelte 元件樣式 |
+| 開發 Svelte 相關的編譯器插件或 preprocessor | 使用 PostCSS、Tailwind 等已有 CSS 處理方案 |
+| 需要程式化讀取 / 轉換 CSS 結構 | 不需要操作 CSS AST 的一般開發 |
+| 建立自定義的 CSS 檢查或重構工具 | 只需要基礎的 CSS-in-JS 功能 |
+
+> **注意**：`parseCss` 是 Svelte 編譯器內部使用的 CSS 解析器的公開匯出。它專注於 CSS 解析，不包含 Svelte 特有的 scoped style 處理邏輯。如果你需要分析完整的 `.svelte` 元件（含 `<style>` 區塊），應使用 `parse` 函式。
 
 ## Step-by-step
 
@@ -868,6 +957,7 @@ export function trackMouse(node: HTMLElement) {
 - [ ] 能在 keyed `{#each}` 區塊中使用 `animate:flip`
 - [ ] 能撰寫自定義 `use:action` 並正確實作 `destroy` 清理
 - [ ] 能透過 CSS custom properties 從父元件傳入主題樣式
+- [ ] 了解 `parseCss` 的用途，能在工具鏈場景中使用 CSS AST 解析
 - [ ] `npx svelte-check` 通過
 
 ## Further Reading
@@ -879,6 +969,7 @@ export function trackMouse(node: HTMLElement) {
 - [in: and out: -- Svelte docs](https://svelte.dev/docs/svelte/in-and-out)
 - [animate: -- Svelte docs](https://svelte.dev/docs/svelte/animate)
 - [use: -- Svelte docs](https://svelte.dev/docs/svelte/use)
+- [svelte/compiler -- API reference](https://svelte.dev/docs/svelte/svelte-compiler)
 - [svelte/transition -- API reference](https://svelte.dev/docs/svelte/svelte-transition)
 - [svelte/animate -- API reference](https://svelte.dev/docs/svelte/svelte-animate)
 - [svelte/easing -- API reference](https://svelte.dev/docs/svelte/svelte-easing)

@@ -4,7 +4,7 @@ note_type: system
 domain: frontend
 tags: [system, frontend, svelte5]
 created: 2026-02-14
-updated: 2026-02-14
+updated: 2026-02-16
 status: active
 source: system
 ---
@@ -17,7 +17,7 @@ source: system
 - Baseline date: 2026-02-14.
 - Learning mode: each batch covers 3 chapters with hands-on tasks.
 
-## Batch Learning Route (7 batches)
+## Batch Learning Route (8 batches)
 
 - Batch 1: `05`, `06`, `07` (events/effects/state management)
 - Batch 2: `08`, `09`, `10` (composition/styling/SvelteKit bootstrap)
@@ -26,6 +26,7 @@ source: system
 - Batch 5: `17`, `18`, `19` (testing/deploy/upgrade governance)
 - Batch 6: `20`, `21`, `22` (migration/ecosystem/authentication)
 - Batch 7: `23`, `24`, `25` (accessibility/i18n/advanced TypeScript)
+- Batch 8: `26` (capstone product delivery)
 
 ## Estimated Time Per Chapter
 
@@ -43,7 +44,7 @@ source: system
 
 - [quality_rubric](quality_rubric.md)
 - [exercise_scoring](exercise_scoring.md)
-- [monthly_update_log_template](monthly_update_log_template.md)
+- [monthly_update_log](monthly_update_log_template.md)
 
 ## Chapters
 
@@ -73,3 +74,4 @@ source: system
 - [23_accessibility_patterns](23_accessibility_patterns.md) - 建議 - 110 min
 - [24_internationalization](24_internationalization.md) - 可跳讀 - 100 min
 - [25_advanced_typescript_patterns](25_advanced_typescript_patterns.md) - 建議 - 120 min
+- [26_capstone_product_delivery](26_capstone_product_delivery.md) - 必讀 - 180 min

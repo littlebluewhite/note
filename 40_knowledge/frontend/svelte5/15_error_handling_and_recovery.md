@@ -4,7 +4,7 @@ note_type: knowledge
 domain: frontend
 tags: [knowledge, frontend, svelte5]
 created: 2026-02-14
-updated: 2026-02-14
+updated: 2026-02-17
 status: active
 source: knowledge
 series: svelte5_complete_notes
@@ -926,6 +926,186 @@ src/routes/(app)/
 </div>
 ```
 
+## `<svelte:boundary>` — 錯誤邊界元素
+
+> Svelte 5 新增。`<svelte:boundary>` 是一個內建的特殊元素，可在元件樹的任意位置建立錯誤邊界（error boundary）。當其子元素在渲染時拋出錯誤，`<svelte:boundary>` 會攔截錯誤並顯示 fallback UI，而不會讓整個應用崩潰。
+
+### 基本語法 Basic Syntax
+
+`<svelte:boundary>` 透過 `failed` snippet 定義錯誤 fallback UI，透過 `onerror` 回呼處理錯誤紀錄：
+
+```svelte
+<svelte:boundary onerror={(error, reset) => console.error(error)}>
+  <FlakyComponent />
+
+  {#snippet failed(error, reset)}
+    <div class="error-fallback">
+      <p>Something went wrong: {error.message}</p>
+      <button onclick={reset}>Try again</button>
+    </div>
+  {/snippet}
+</svelte:boundary>
+```
+
+- **子元素**：正常的元件內容。若渲染過程中拋出錯誤，會被 boundary 攔截。
+- **`{#snippet failed(error, reset)}`**：定義錯誤 fallback UI。`error` 是捕獲的錯誤物件，`reset` 是一個函式，呼叫後會嘗試重新渲染子元素。
+- **`onerror`**：可選的事件處理器，在錯誤發生時被呼叫。可用於紀錄錯誤（如送到 Sentry）。接收 `error` 和 `reset` 兩個參數。
+
+### `failed` snippet — 錯誤 fallback UI
+
+`failed` snippet 是 `<svelte:boundary>` 最核心的功能。它接收兩個參數：
+
+```svelte
+<svelte:boundary>
+  <UserProfile userId={data.userId} />
+
+  {#snippet failed(error, reset)}
+    <div class="error-card">
+      <h3>Failed to load profile</h3>
+      <p>{error.message}</p>
+      <div class="actions">
+        <button onclick={reset}>Retry</button>
+        <a href="/users">Back to list</a>
+      </div>
+    </div>
+  {/snippet}
+</svelte:boundary>
+```
+
+**`reset` 函式的行為**：呼叫 `reset()` 會清除錯誤狀態，並嘗試重新渲染 boundary 內的子元素。如果造成錯誤的條件仍然存在（例如 props 沒變），錯誤會再次發生並再次顯示 fallback。
+
+### `pending` snippet — 非同步 loading fallback（搭配 Async SSR）
+
+> 需要啟用 `compilerOptions.experimental.async`。
+
+搭配 Async SSR（Ch13），`<svelte:boundary>` 支援 `pending` snippet，在子元素中的 `await` 表達式尚未完成時顯示 loading UI：
+
+```svelte
+<svelte:boundary>
+  <!-- 這些 await 表達式會在 server 端被解析 -->
+  <h1>{await getUser(userId)}</h1>
+  <p>{await getUserBio(userId)}</p>
+
+  {#snippet pending()}
+    <div class="skeleton">
+      <div class="skeleton-title"></div>
+      <div class="skeleton-text"></div>
+    </div>
+  {/snippet}
+
+  {#snippet failed(error, reset)}
+    <p>Error: {error.message}</p>
+    <button onclick={reset}>Retry</button>
+  {/snippet}
+</svelte:boundary>
+```
+
+- **Server 端行為**：server 渲染時，若子元素中有 `await` 表達式尚未完成，server 會先送出 `pending` snippet 的 HTML，待 `await` 完成後再串流完整結果。
+- **Client 端行為**：`pending` snippet 在 client 端導航時也會作為 loading fallback。
+- 同一個 `<svelte:boundary>` 可以同時有 `pending` 和 `failed` snippet，分別處理 loading 和 error 狀態。
+
+### 巢狀 boundary Nested Boundaries
+
+`<svelte:boundary>` 可以巢狀使用，內層 boundary 攔截不到的錯誤會向上冒泡到外層 boundary：
+
+```svelte
+<!-- 外層 boundary：攔截整個 dashboard 的錯誤 -->
+<svelte:boundary>
+  <div class="dashboard">
+    <h1>Dashboard</h1>
+
+    <!-- 內層 boundary：只攔截 chart 的錯誤 -->
+    <svelte:boundary>
+      <Chart data={chartData} />
+
+      {#snippet failed(error, reset)}
+        <div class="chart-error">
+          <p>Chart failed to render</p>
+          <button onclick={reset}>Retry chart</button>
+        </div>
+      {/snippet}
+    </svelte:boundary>
+
+    <!-- 此區塊的錯誤由外層 boundary 處理 -->
+    <StatsPanel />
+  </div>
+
+  {#snippet failed(error, reset)}
+    <p>Dashboard error: {error.message}</p>
+    <button onclick={reset}>Reload dashboard</button>
+  {/snippet}
+</svelte:boundary>
+```
+
+### `<svelte:boundary>` vs SvelteKit `+error.svelte` 比較
+
+| 特性 | `<svelte:boundary>` | `+error.svelte` |
+|------|---------------------|-----------------|
+| 層級 | 元件層級（任意位置） | 路由層級（`src/routes/` 下） |
+| 攔截範圍 | 子元件渲染時的 runtime error | `load` function 錯誤 + 頁面渲染錯誤 |
+| 粒度 | 可包裝任意元件子樹 | 以路由為單位 |
+| reset 支援 | 內建 `reset` 函式 | 需要手動 `invalidateAll()` |
+| pending 支援 | 內建 `pending` snippet（async SSR） | 不支援 |
+| HTTP status | 無（元件層級概念） | 有（設定 HTTP status code） |
+| 適用 | 元件級的局部錯誤隔離 | 頁面級的錯誤頁面 |
+
+### 與 React Error Boundary 的比較
+
+| 特性 | Svelte `<svelte:boundary>` | React `ErrorBoundary` |
+|------|---------------------------|----------------------|
+| 語法 | 內建特殊元素，宣告式 | 需要 class component 或第三方 library（react-error-boundary） |
+| 設定 | `{#snippet failed(error, reset)}` | `getDerivedStateFromError` + `componentDidCatch` |
+| reset 機制 | 內建 `reset` 函式參數 | 需要手動管理 state（`resetKeys` 等） |
+| async loading | 內建 `pending` snippet | 需要 `<Suspense>` 配合 |
+| 事件處理 | `onerror` 屬性 | `componentDidCatch` 生命週期方法 |
+| 函式元件支援 | N/A（Svelte 沒有 class/function 元件之分） | class component only（或用 react-error-boundary） |
+| 複雜度 | 極低——幾行宣告式語法 | 中等——需要理解 class component 或引入第三方套件 |
+
+```svelte
+<!-- Svelte：簡潔的宣告式語法 -->
+<svelte:boundary>
+  <MyComponent />
+
+  {#snippet failed(error, reset)}
+    <p>{error.message}</p>
+    <button onclick={reset}>Retry</button>
+  {/snippet}
+</svelte:boundary>
+```
+
+```tsx
+// React：需要 class component 或 react-error-boundary
+import { ErrorBoundary } from 'react-error-boundary';
+
+function Fallback({ error, resetErrorBoundary }) {
+  return (
+    <div>
+      <p>{error.message}</p>
+      <button onClick={resetErrorBoundary}>Retry</button>
+    </div>
+  );
+}
+
+<ErrorBoundary FallbackComponent={Fallback}>
+  <MyComponent />
+</ErrorBoundary>
+```
+
+| 何時用 `<svelte:boundary>` | 何時用 `+error.svelte` |
+|---|---|
+| 頁面中某個區塊（widget、chart）可能出錯，但不希望整頁崩潰 | 整個頁面的 `load` 失敗（404、500）需要顯示錯誤頁面 |
+| 需要在出錯區域原地顯示 fallback UI 和 retry 按鈕 | 需要設定 HTTP status code（如 404 回應） |
+| 使用 Async SSR，需要 `pending` fallback 處理 loading 狀態 | 需要與 SvelteKit 路由系統整合的錯誤處理 |
+| 第三方元件可能拋出未知的 runtime error | 需要統一的錯誤頁面風格（共用 layout） |
+
+### `<svelte:boundary>` 常見陷阱
+
+1. **沒有提供 `failed` snippet**：若 boundary 內發生錯誤但沒有 `failed` snippet，錯誤會向上冒泡到父層。確保至少有一個 boundary 提供 fallback UI。
+2. **`reset` 不會修復根本原因**：`reset()` 只是重新渲染子元素。如果錯誤的根本原因沒有解決（如 props 仍然有問題），錯誤會再次發生。可考慮在 `reset` 前先修改 state。
+3. **不會攔截 `load` function 的錯誤**：`<svelte:boundary>` 只攔截**渲染時**的 runtime error。`load` function 中使用 `error()` 拋出的錯誤仍由 SvelteKit 的 `+error.svelte` 處理。
+4. **不會攔截事件處理器中的錯誤**：`onclick`、`onsubmit` 等事件處理器中的錯誤不會被 boundary 攔截（因為不是在渲染過程中發生的）。需要在事件處理器中自行 `try/catch`。
+5. **巢狀 boundary 的效能考量**：過度巢狀的 boundary 會增加元件樹的複雜度。只在確實需要錯誤隔離的區域使用。
+
 ## Checklist
 
 - [ ] Root `+error.svelte` 存在，並顯示 `page.status` 和 `page.error?.message`
@@ -935,6 +1115,9 @@ src/routes/(app)/
 - [ ] `src/error.html` 存在，作為 SvelteKit 無法載入時的最後防線
 - [ ] `App.Error` 型別已在 `app.d.ts` 中擴充以包含 `errorId`
 - [ ] 未預期錯誤不會暴露 stack trace 或內部訊息給使用者
+- [ ] 能使用 `<svelte:boundary>` 搭配 `failed` snippet 建立元件級錯誤邊界
+- [ ] 能使用 `<svelte:boundary>` 的 `pending` snippet 搭配 Async SSR 提供 loading fallback（⚠️ Experimental）
+- [ ] 能區分 `<svelte:boundary>`（元件級）與 `+error.svelte`（路由級）的適用場景
 - [ ] `npx svelte-check` 通過，無型別錯誤
 
 ## Further Reading
@@ -945,3 +1128,4 @@ src/routes/(app)/
 - [$app/state — SvelteKit Official Docs](https://svelte.dev/docs/kit/$app-state)
 - [$app/navigation — SvelteKit Official Docs](https://svelte.dev/docs/kit/$app-navigation)
 - [Project Structure (error.html) — SvelteKit Official Docs](https://svelte.dev/docs/kit/project-structure)
+- [`<svelte:boundary>` — Svelte Official Docs](https://svelte.dev/docs/svelte/svelte-boundary)

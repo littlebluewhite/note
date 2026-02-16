@@ -1,77 +1,37 @@
 ---
-title: Zustand 5 Monthly Update Log Template
+title: Zustand 5 Monthly Update Log
 note_type: system
 domain: frontend
 tags: [system, frontend, zustand5]
 created: 2026-02-14
-updated: 2026-02-14
+updated: 2026-02-16
 status: active
 source: system
 ---
-# Zustand 5 Monthly Update Log Template
+# Zustand 5 Monthly Update Log
 
-## Purpose
-
-固定每月檢查 Zustand / React / Next 版本與安全資訊，避免「知道要更新但沒落地」。
-
-## Baseline Snapshot
-
-- Snapshot date: `2026-02-14`
-- Zustand latest stable (reference): `5.0.11` (2026-02-01)
-- React main line: `19.2`
-- Next.js baseline: `16.x App Router`
-- Track sources:
-  - https://github.com/pmndrs/zustand/releases
-  - https://zustand.docs.pmnd.rs/migrations/migrating-to-v5
-  - https://react.dev/
-  - https://nextjs.org/docs/app/building-your-application/upgrading
-
-## Monthly Checklist
-
-- [ ] 查 Zustand 最新 release 與 migration note。
-- [ ] 查 React/Next 最新 release 與 advisories。
-- [ ] 比對目前專案版本與目標版本。
-- [ ] 檢查 v5 API 正確性（`useShallow` / `createWithEqualityFn`）。
-- [ ] 檢查 persist rapid updates 一致性（storage vs in-memory）。
-- [ ] 跑 lint/test/build + smoke。
-- [ ] 記錄決策：立即升級 / 延後升級。
-
-## Log Entry Template
-
-```md
-## YYYY-MM (owner: <name>)
+## 2026-02 (owner: wilson08)
 
 ### Version status
-- Current: zustand __ / react __ / next __
-- Latest: zustand __ (release date: __) / react __ (release date: __) / next __ (release date: __)
-- Delta: __
+- Baseline: Zustand 5.0.11 + React 19.2.x + Next.js 16
+- Audit focus: capstone addition and chapter contract alignment
+- Delta: 新增 Ch20 capstone，評分模板改為章節實績
 
-### Risk status
-- Breaking change risk: low / medium / high
-- Security advisories: none / <link>
-- API compatibility: clean / legacy pattern found
-- Persist consistency: pass / fail
+### Security and quality status
+- SSR/hydration topics coverage: completed
+- persist/middleware strategy review: completed
+- Risk level: medium（缺真實跨模組壓力測試資料）
 
 ### Decision
-- Action: patch now / minor now / defer
-- Reason:
-- Deadline:
+- Action: keep baseline and schedule state-platform stress drill
+- Deadline: 2026-03-20
 
 ### Validation
 - Commands:
-  - npm run lint
-  - npm run test
-  - npm run build
-- Smoke routes:
-  - /
-  - /dashboard
-  - /settings
-- Persist checks:
-  - rapid updates consistency: pass / fail
-- Result:
+  - `/opt/homebrew/bin/rg -n "capstone|Evidence" 40_knowledge/frontend/zustand5`
+  - custom markdown link audit script
+- Result: 導覽、契約、capstone 鏈路完整
 
 ### Follow-ups
-- Docs update needed:
-- Team training note needed:
-- Owner:
-```
+- 補多分頁同步與 persist corruption 演練
+- 補 selector render counter 自動報表

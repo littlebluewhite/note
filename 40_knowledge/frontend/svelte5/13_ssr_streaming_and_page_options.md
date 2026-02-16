@@ -4,7 +4,7 @@ note_type: knowledge
 domain: frontend
 tags: [knowledge, frontend, svelte5]
 created: 2026-02-14
-updated: 2026-02-14
+updated: 2026-02-17
 status: active
 source: knowledge
 series: svelte5_complete_notes
@@ -548,6 +548,180 @@ export const load: PageServerLoad = async ({ params }) => {
 - **用 `browser` 判斷來執行應在 `onMount` 中執行的操作**：`browser` 適合 module-scope 或 import-time 的環境檢查（如 `if (browser) { ... }`）。但如果操作涉及 DOM 元素（如初始化圖表、綁定事件），應使用 `onMount`，因為 `browser` 為 `true` 時不保證 DOM 已掛載完成。
 - **設定 `csr = false` 後加入需要互動的元素**：`csr = false` 表示不載入 client-side JavaScript，因此所有 `onclick` 事件處理器、`bind:value`、`$state` 等互動機制都不會生效。若頁面需要任何使用者互動，就不應設定 `csr = false`。
 
+## Async SSR — 非同步伺服器端渲染（⚠️ Experimental）
+
+> **實驗性功能**：Async SSR 自 Svelte 5.39.3 / SvelteKit 2.43.0 起可用，API 可能在未來版本變動。
+
+### 概念 Concept
+
+傳統的 Svelte SSR 是**同步**的——元件在 server 端渲染時不能等待非同步操作完成。這導致開發者必須透過 `load` function 預先取得資料，或使用 streaming（deferred promises）搭配 `{#await}` 在 client 端處理 loading 狀態。
+
+Async SSR 允許 Svelte 元件在 server 端渲染時**直接 `await` 非同步操作**。server 會等待所有 `await` 表達式完成後，才將完整的 HTML 送到 client。這意味著：
+
+- 元件可以直接在模板中使用 `await` 表達式。
+- 不需要 `{#await}` 區塊來處理 loading 狀態（server 端已解析完成）。
+- 搭配 `<svelte:boundary>` 的 `pending` snippet 可提供 loading fallback。
+
+### 啟用設定 Configuration
+
+在 `svelte.config.js` 中啟用 async 編譯選項：
+
+```ts
+/// file: svelte.config.js
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  compilerOptions: {
+    experimental: {
+      async: true  // 啟用元件內 await 語法
+    }
+  }
+};
+
+export default config;
+```
+
+> **注意**：若同時使用 Remote Functions，你可能已經在 `kit.experimental.remoteFunctions` 中啟用了相關設定。兩者可以同時啟用。
+
+### 元件內 await 語法 Component-level Await
+
+啟用 async SSR 後，可以直接在元件的模板表達式中使用 `await`：
+
+```svelte
+<!-- src/routes/weather/+page.svelte -->
+<script lang="ts">
+  import { getWeather } from '$lib/server/api';
+
+  let { data } = $props();
+</script>
+
+<!-- 直接在模板中 await：server 端會等待結果完成後才送出 HTML -->
+<h1>Weather in {data.city}</h1>
+<p>Temperature: {await getWeather(data.cityId)}°C</p>
+```
+
+更完整的範例，搭配 `<svelte:boundary>` 提供 loading 與 error 狀態：
+
+```svelte
+<script lang="ts">
+  import { getUser, getPosts } from '$lib/server/api';
+
+  let { data } = $props();
+</script>
+
+<svelte:boundary>
+  <h1>{(await getUser(data.userId)).name}'s Posts</h1>
+
+  {#each await getPosts(data.userId) as post}
+    <article>
+      <h2>{post.title}</h2>
+      <p>{post.excerpt}</p>
+    </article>
+  {/each}
+
+  {#snippet pending()}
+    <p>Loading user data...</p>
+  {/snippet}
+</svelte:boundary>
+```
+
+### 與傳統 Streaming 的比較 Comparison with Traditional Streaming
+
+| 特性 | 傳統 Streaming（deferred promises） | Async SSR |
+|------|-------------------------------------|-----------|
+| 資料取得位置 | `load` function | 元件內直接呼叫 |
+| loading 狀態 | `{#await}` 區塊（client 端渲染） | `<svelte:boundary pending>` snippet（server 端 fallback） |
+| HTML 送出時機 | 部分先送，deferred 部分稍後串流 | 等待所有 `await` 完成後才送出完整 HTML |
+| SEO 影響 | deferred 部分不在初始 HTML 中 | 所有內容在初始 HTML 中（SEO 友善） |
+| 首次內容繪製（FCP） | 較快（先送出已解析的部分） | 較慢（等待所有 async 完成） |
+| 複雜度 | 需要在 `load` 中管理 deferred promise | 元件內直接 `await`，較直覺 |
+| 錯誤處理 | `{:catch}` 區塊 | `<svelte:boundary>` 的 `failed` snippet |
+| 實驗性 | 穩定功能 | ⚠️ 實驗性功能 |
+
+| 何時用 Async SSR | 何時用傳統 Streaming |
+|---|---|
+| 所有內容需要出現在初始 HTML 中（SEO 關鍵頁面） | 次要資料可以延遲載入，主要內容需要先顯示 |
+| 元件需要自行取得資料（搭配 Remote Functions） | 資料統一由 `load` function 管理 |
+| 偏好更簡潔的元件程式碼（直接 `await`） | 需要精細控制哪些資料先送、哪些後送 |
+| 可接受較慢的 FCP 以換取完整的 SSR HTML | 需要最快的 FCP（先送出骨架） |
+
+### Async SSR 常見陷阱
+
+1. **忘記 `<svelte:boundary>` 包裝**：若元件中有 `await` 但沒有 `<svelte:boundary>` 提供 `pending` fallback，server 端會靜默等待，使用者在等待期間看不到任何回饋。
+2. **過多 `await` 造成 TTFB 延遲**：每個 `await` 都會延遲 HTML 的送出。若有多個慢速查詢，考慮將非關鍵資料改用傳統 streaming。
+3. **與 `{#await}` 混用的混淆**：Async SSR 的 `await` 是在 server 端解析的，`{#await}` 區塊則是 client 端的 loading UI。兩者目的不同，不要混淆。
+
+## CSP hydratable — Content Security Policy 支援
+
+> 自 Svelte 5.46.0 起可用。
+
+### 概念 Concept
+
+SvelteKit 在啟用 hydration 時，會在 SSR 輸出的 `<head>` 中加入一段 inline `<script>` 標籤（用於 hydration 初始化）。如果你的應用使用了 **Content Security Policy (CSP)** 限制 inline script，這段 script 會被瀏覽器阻擋，導致 hydration 失敗。
+
+`render()` 函式的 `csp` 參數提供兩種方式來解決此問題：
+
+### Nonce-based CSP
+
+在動態 SSR 場景中（server 每次請求都渲染 HTML），可以為每個請求產生一個唯一的 `nonce`，並將其加到 inline script 和 CSP header 中：
+
+```ts
+/// file: server.ts（自訂 server 或 middleware）
+import { render } from 'svelte/server';
+import App from './App.svelte';
+
+const nonce = crypto.randomUUID();
+
+const { head, body } = await render(App, {
+  csp: { nonce }
+});
+
+// 在 HTTP response header 中加入 CSP
+// Content-Security-Policy: script-src 'nonce-<nonce>'
+```
+
+SvelteKit 會自動將 `nonce` 加到它產生的 inline script 標籤上：
+
+```html
+<script nonce="a1b2c3d4-...">/* hydration code */</script>
+```
+
+### Hash-based CSP
+
+在靜態 HTML 場景中（prerender、SSG），無法使用 nonce（因為 HTML 是預先產生的，不是每次請求動態生成）。此時可以使用 hash-based CSP：
+
+```ts
+/// file: server.ts
+import { render } from 'svelte/server';
+import App from './App.svelte';
+
+const { head, body, hashes } = await render(App, {
+  csp: { hash: true }
+});
+
+// hashes 是一個 string[]，包含所有 inline script 的 SHA-256 hash
+// 將它們加入 CSP header：
+// Content-Security-Policy: script-src 'sha256-xxx' 'sha256-yyy'
+```
+
+### `render()` 函式的 CSP 參數型別
+
+```ts
+interface Csp {
+  /** 為 inline script 加入 nonce 屬性 */
+  nonce?: string;
+  /** 啟用 hash 模式，render 結果會包含 hashes 陣列 */
+  hash?: boolean;
+}
+```
+
+| 何時用 nonce-based CSP | 何時用 hash-based CSP |
+|---|---|
+| 動態 SSR（每次請求渲染 HTML） | 靜態生成（prerender / SSG） |
+| server 可以為每個請求產生唯一 nonce | HTML 是預先生成的，無法動態插入 nonce |
+| 需要更嚴格的 CSP 政策 | 部署到靜態主機，無法設定動態 header |
+
+> **SvelteKit 整合**：若你使用 SvelteKit 的內建 SSR（非自訂 server），CSP nonce 可透過 `resolve` 函式的 `transformPageChunk` 或 hooks 中的 `event.locals` 傳遞。詳細整合方式請參考 SvelteKit 文件。
+
 ## Checklist
 
 - [ ] 能在 `+page.ts` 或 `+layout.ts` 中設定 `ssr`、`csr`、`prerender` 控制頁面渲染策略。
@@ -555,6 +729,9 @@ export const load: PageServerLoad = async ({ params }) => {
 - [ ] 能使用 `{#await data.xxx}` 搭配 `{:then}`、`{:catch}` 為 streaming 資料提供 loading 與 error 狀態。
 - [ ] 能使用 `$app/environment` 的 `browser`、`building`、`dev` 根據環境條件性執行程式碼。
 - [ ] 能說明何時使用 SSR + CSR、SSR only、CSR only、Prerender 四種渲染策略。
+- [ ] 能啟用 Async SSR 實驗性選項並在元件中使用 `await` 表達式（⚠️ Experimental）
+- [ ] 能說明 Async SSR 與傳統 Streaming 的差異與適用場景（⚠️ Experimental）
+- [ ] 能使用 `render()` 函式的 `csp` 參數設定 nonce 或 hash-based CSP
 - [ ] `npx svelte-check` 通過，無型別錯誤。
 
 ## Further Reading
@@ -566,3 +743,6 @@ export const load: PageServerLoad = async ({ params }) => {
 - [SvelteKit Docs — Adapters](https://svelte.dev/docs/kit/adapters)
 - [Svelte Docs — {#await ...}](https://svelte.dev/docs/svelte/await)
 - [SvelteKit Tutorial — Page options](https://svelte.dev/tutorial/kit/page-options)
+- [Svelte Docs — Await expressions (Experimental)](https://svelte.dev/docs/svelte/await-expressions)
+- [Svelte Docs — hydratable / CSP](https://svelte.dev/docs/svelte/hydratable)
+- [Svelte Docs — svelte/server: render()](https://svelte.dev/docs/svelte/svelte-server)

@@ -4,7 +4,7 @@ note_type: knowledge
 domain: frontend
 tags: [knowledge, frontend, svelte5]
 created: 2026-02-14
-updated: 2026-02-14
+updated: 2026-02-17
 status: active
 source: knowledge
 series: svelte5_complete_notes
@@ -80,7 +80,53 @@ prerequisites: [01_web_js_fundamentals_for_svelte]
 | 資料流向單一、清晰 | 全域狀態（主題色、使用者驗證、語系） |
 | 元件介面需要明確型別約束 | 多個不相關元件需讀寫同一份狀態 |
 
-### 3. `{@render children()}` — 內容投影
+### 3. `$props.id()` — SSR 安全的唯一 ID 產生器
+
+> **Svelte 5.20.0+** 新增。`$props.id()` 會為每個元件實例產生一個唯一 ID，在 SSR 與 client hydration 之間保持一致，不會發生 ID mismatch。
+
+表單中 `<label>` 的 `for` 屬性需要對應 `<input>` 的 `id`，在 SSR 環境下若使用 `Math.random()` 或 `crypto.randomUUID()` 產生 ID，server 與 client 會得到不同值，導致 hydration 錯誤。`$props.id()` 專門解決此問題：
+
+```svelte
+<script lang="ts">
+  const uid = $props.id();
+</script>
+
+<form>
+  <label for="{uid}-email">Email：</label>
+  <input id="{uid}-email" type="email" />
+
+  <label for="{uid}-password">密碼：</label>
+  <input id="{uid}-password" type="password" />
+</form>
+```
+
+也可用於 `aria-labelledby`、`aria-describedby` 等 accessibility 屬性：
+
+```svelte
+<script lang="ts">
+  const uid = $props.id();
+</script>
+
+<div>
+  <span id="{uid}-label">搜尋關鍵字</span>
+  <span id="{uid}-desc">輸入至少 2 個字元開始搜尋</span>
+  <input
+    type="search"
+    aria-labelledby="{uid}-label"
+    aria-describedby="{uid}-desc"
+  />
+</div>
+```
+
+| 何時用 `$props.id()` | 何時不用 |
+|---|---|
+| 表單 `<label>` / `<input>` 配對，需要唯一 `id` 與 `for` | 不需要 HTML `id` 屬性的場景 |
+| SSR 環境中產生元素 ID | 純 client-side 應用可用其他方式（但仍推薦使用） |
+| `aria-labelledby` / `aria-describedby` 等 a11y 屬性 | 元素間不需要 ID 關聯 |
+
+> **注意**：`$props.id()` 只能在元件的頂層 `<script>` 中呼叫（與其他 runes 相同），不可在事件處理器或 `$effect` 中呼叫。每次呼叫產生同一個 ID（每個元件實例一個），多個欄位透過加後綴（如 `{uid}-email`、`{uid}-password`）區分。
+
+### 4. `{@render children()}` — 內容投影
 
 > **重要**：Svelte 5 使用 `{@render children()}` 做內容投影，**不再使用** Svelte 4 的 `<slot>`。
 
@@ -117,7 +163,7 @@ prerequisites: [01_web_js_fundamentals_for_svelte]
 | 簡單的容器、卡片、佈局 | 投影內容需要從子元件接收資料（render props 模式） |
 | 直覺的「包裹」語義 | 需要條件式渲染不同區塊 |
 
-### 4. Component 匯入與命名慣例
+### 5. Component 匯入與命名慣例
 
 - **檔名使用 PascalCase**：`UserCard.svelte`、`NavBar.svelte`。
 - 匯入時名稱必須以大寫開頭，Svelte 才能區分自訂元件與 HTML 標籤：
@@ -626,6 +672,7 @@ Svelte 需要 PascalCase 檔名來區分自訂元件與 HTML 原生標籤。若�
 
 - [ ] 能建立含 `<script lang="ts">` / markup / `<style>` 三區塊的 `.svelte` 檔案
 - [ ] 能用 `$props()` 搭配 TypeScript `interface` 定義並接收 props
+- [ ] 能用 `$props.id()` 產生 SSR-safe 唯一 ID，正確配對 `<label>` 與 `<input>`
 - [ ] 能用 `{@render children()}` 做內容投影
 - [ ] 能匯入並組合多個元件到頁面中
 - [ ] 能透過解構語法設定 prop 預設值
@@ -635,6 +682,7 @@ Svelte 需要 PascalCase 檔名來區分自訂元件與 HTML 原生標籤。若�
 
 - [Svelte 5 Overview](https://svelte.dev/docs/svelte/overview)
 - [$props — Svelte 5 Runes](https://svelte.dev/docs/svelte/$props)
+- [$props.id() — SSR-safe unique ID](https://svelte.dev/docs/svelte/$props#$props.id)
 - [{@render} — Svelte 5 Template Syntax](https://svelte.dev/docs/svelte/{@render})
 - [Snippet — Svelte 5 Template Syntax](https://svelte.dev/docs/svelte/snippet)
 - [<style> — Scoped Styles](https://svelte.dev/docs/svelte/styling)

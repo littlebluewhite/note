@@ -19,7 +19,7 @@ prerequisites: [07_flexbox_layout]
 
 在上一章 [07_flexbox_layout](07_flexbox_layout.md) 中，我們掌握了 Flexbox 這個一維佈局工具。現在要學習 CSS 的另一個強大佈局系統：**Grid**。Grid 是一個二維佈局模型，它能同時控制行和列，非常適合 Dashboard 面板、產品網格、圖片畫廊、複雜表單等需要精確行列控制的場景。Tailwind 提供了完整的 Grid utilities，包括 `grid-cols-*`、`grid-rows-*`、`col-span-*`、`row-span-*` 等。v4 的一大亮點是 **Grid 欄數值可以動態使用**——例如 `grid-cols-15` 直接可用，不需要在設定檔中定義。
 
-掌握 Grid 佈局後，你將擁有完整的 CSS 佈局能力（Flex + Grid），可以建構任何複雜度的頁面佈局。下一章 [09_positioning_and_z_index](09_positioning_and_z_index.md) 將探討定位與 z-index，處理疊加層級和絕對定位的場景。
+掌握 Grid 佈局後，你將擁有完整的 CSS 佈局能力（Flex + Grid），可以建構任何複雜度的頁面佈局。下一章 [09_positioning_and_z_index](09_positioning_z_index_and_overflow.md) 將探討定位與 z-index，處理疊加層級和絕對定位的場景。
 
 ## Prerequisites
 

@@ -4,7 +4,7 @@ note_type: knowledge
 domain: frontend
 tags: [knowledge, frontend, svelte5]
 created: 2026-02-14
-updated: 2026-02-14
+updated: 2026-02-17
 status: active
 source: knowledge
 series: svelte5_complete_notes
@@ -808,6 +808,273 @@ export const load: PageServerLoad = async () => {
 };
 ```
 
+## Remote Functions — 遠端函式（⚠️ Experimental）
+
+> **實驗性功能**：Remote Functions 目前為 SvelteKit 實驗性功能，API 可能在未來版本變動。啟用前請確認已閱讀官方文件並了解風險。
+
+### 概念 Concept
+
+Remote Functions 是 SvelteKit 提供的一種新模式，允許你在 server-only 的模組中定義函式，然後**直接從 browser 端呼叫**。SvelteKit 會自動將 browser 端的呼叫轉換為 `fetch` 請求，在 server 端執行函式後回傳結果。這消除了手動建立 API endpoint 的需要。
+
+Remote Functions 分為兩種：
+
+- **`query`**：用於**讀取**資料（類似 GET 請求）。結果可被快取與去重。
+- **`command`**：用於**寫入/變更**資料（類似 POST 請求）。每次呼叫都會實際執行。
+
+```
+Browser 端呼叫 getUser(id)
+        │
+        ▼  SvelteKit 自動產生 fetch POST
+        │
+Server 端執行 getUser(id)
+        │
+        ▼  回傳序列化結果
+        │
+Browser 端取得結果
+```
+
+### 啟用設定 Configuration
+
+需要在 `svelte.config.js` 中同時啟用兩個實驗性選項：
+
+```ts
+/// file: svelte.config.js
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+  kit: {
+    experimental: {
+      remoteFunctions: true  // 啟用 remote functions
+    }
+  },
+  compilerOptions: {
+    experimental: {
+      async: true  // 啟用元件內 await 語法（搭配 async SSR）
+    }
+  }
+};
+
+export default config;
+```
+
+> **注意**：`compilerOptions.experimental.async` 是可選的，僅在需要於元件內直接使用 `await` 表達式時才需要。若只用 `query` / `command` 搭配 `{#await}`，則不需要此選項。
+
+### `query` — 遠端查詢
+
+`query` 用於從 browser 端呼叫 server 函式來**讀取**資料。函式必須定義在 server-only 的模組中（檔案路徑包含 `.server`，或位於 `$lib/server/` 下）。
+
+```ts
+// src/lib/server/api.ts — 此檔案只在 server 端執行
+import { query } from '$app/server';
+import * as v from 'valibot';
+import { db } from '$lib/server/database';
+
+// 基本用法：'unchecked' 表示不驗證輸入（適合內部使用、簡單場景）
+export const getUser = query('unchecked', async (id: string) => {
+  const user = await db.findUser(id);
+  return user;
+});
+
+// 使用 Standard Schema 驗證輸入（推薦用於接收使用者輸入的場景）
+export const searchPosts = query(
+  v.object({
+    keyword: v.pipe(v.string(), v.minLength(1)),
+    page: v.optional(v.pipe(v.number(), v.minValue(1)), 1)
+  }),
+  async ({ keyword, page }) => {
+    return db.searchPosts(keyword, page);
+  }
+);
+```
+
+在 Svelte 元件中使用：
+
+```svelte
+<!-- src/routes/user/[id]/+page.svelte -->
+<script lang="ts">
+  import { getUser } from '$lib/server/api';
+
+  let { data } = $props();
+
+  // 方法 1：搭配 {#await}（不需要 async 編譯選項）
+  const userPromise = getUser(data.userId);
+</script>
+
+{#await userPromise}
+  <p>Loading user...</p>
+{:then user}
+  <h1>{user.name}</h1>
+  <p>{user.email}</p>
+{:catch error}
+  <p>Failed to load user: {error.message}</p>
+{/await}
+```
+
+### `query.batch` — 批次查詢解決 N+1 問題
+
+當頁面上有多個元件各自呼叫同一個 `query`（例如列表中每一行都需要查詢天氣資料），SvelteKit 會自動將這些呼叫**批次合併為單一 fetch 請求**，在 server 端一次處理。
+
+```ts
+// src/lib/server/api.ts
+import { query } from '$app/server';
+import * as v from 'valibot';
+import * as db from '$lib/server/database';
+
+// query.batch：接收陣列，回傳 lookup 函式
+export const getWeather = query.batch(
+  v.string(),  // 驗證每個輸入為 string
+  async (cityIds: string[]) => {
+    // 一次查詢所有城市（而非 N 次個別查詢）
+    const weather = await db.sql`
+      SELECT * FROM weather WHERE city_id = ANY(${cityIds})
+    `;
+    const lookup = new Map(weather.map((w) => [w.city_id, w]));
+
+    // 回傳 lookup 函式，SvelteKit 會用它解析每個個別呼叫
+    return (cityId: string) => lookup.get(cityId);
+  }
+);
+```
+
+```svelte
+<!-- src/routes/cities/+page.svelte -->
+<script lang="ts">
+  import { getWeather } from '$lib/server/api';
+
+  let { data } = $props();
+</script>
+
+<!-- 每個 city 都呼叫 getWeather(city.id)，
+     但 SvelteKit 會將它們合併為一次 batch 請求 -->
+{#each data.cities as city (city.id)}
+  {#await getWeather(city.id)}
+    <p>{city.name}: loading...</p>
+  {:then weather}
+    <p>{city.name}: {weather?.temperature}°C</p>
+  {/await}
+{/each}
+```
+
+**batch 的執行流程**：
+
+1. Browser 端多個元件呼叫 `getWeather('taipei')`、`getWeather('tokyo')`、`getWeather('seoul')`。
+2. SvelteKit 收集同一批次的呼叫，合併為單一 HTTP 請求送到 server。
+3. Server 端 callback 收到 `['taipei', 'tokyo', 'seoul']` 陣列，一次查詢。
+4. 回傳的 lookup 函式被用來解析每個個別呼叫的結果。
+
+### `command` — 遠端命令（寫入操作）
+
+`command` 用於**寫入或變更**資料，每次呼叫都會實際執行（不會被快取或去重）：
+
+```ts
+// src/lib/server/api.ts
+import { command } from '$app/server';
+import * as v from 'valibot';
+import { db } from '$lib/server/database';
+
+// 無參數的 command
+export const clearCache = command(async () => {
+  await db.clearCache();
+  return { success: true };
+});
+
+// 帶驗證的 command
+export const createPost = command(
+  v.object({
+    title: v.pipe(v.string(), v.minLength(1), v.maxLength(200)),
+    content: v.string(),
+    published: v.optional(v.boolean(), false)
+  }),
+  async ({ title, content, published }) => {
+    const post = await db.createPost({ title, content, published });
+    return post;
+  }
+);
+```
+
+```svelte
+<!-- src/routes/posts/new/+page.svelte -->
+<script lang="ts">
+  import { createPost } from '$lib/server/api';
+  import { goto } from '$app/navigation';
+
+  let title = $state('');
+  let content = $state('');
+  let submitting = $state(false);
+
+  async function handleSubmit() {
+    submitting = true;
+    try {
+      const post = await createPost({ title, content, published: true });
+      await goto(`/posts/${post.slug}`);
+    } catch (err) {
+      console.error('Failed to create post:', err);
+    } finally {
+      submitting = false;
+    }
+  }
+</script>
+
+<form onsubmit|preventDefault={handleSubmit}>
+  <input bind:value={title} placeholder="Title" />
+  <textarea bind:value={content} placeholder="Content"></textarea>
+  <button type="submit" disabled={submitting}>
+    {submitting ? 'Creating...' : 'Create Post'}
+  </button>
+</form>
+```
+
+### 表單 Remote Functions — Form Remote Functions
+
+Remote Functions 也可以搭配 `<form>` 的 progressive enhancement。使用 `command` 時，可作為 form action 的替代方案，同時保留在 JavaScript 停用時也能運作的能力（fallback 到傳統 form submit）。
+
+### Lazy Discovery — 延遲探索
+
+Remote Functions 使用 **lazy discovery** 機制。SvelteKit 不會在 build 時預先產生所有 remote function 的 endpoint。當 browser 端首次呼叫某個 remote function 時，SvelteKit 才會建立對應的 HTTP endpoint。這意味著：
+
+- 未被使用的 remote function 不會佔用任何 server 資源。
+- 新增 remote function 不需要重新 build。
+- endpoint URL 是自動產生的，不需手動管理路由。
+
+### 安全注意事項 Security Notes
+
+1. **永遠驗證輸入**：雖然 `'unchecked'` 方便快速開發，正式環境應使用 Standard Schema（如 Valibot、Zod）驗證所有輸入：
+   ```ts
+   // 不建議在正式環境使用
+   export const dangerousQuery = query('unchecked', async (input: any) => { ... });
+
+   // 推薦：使用 schema 驗證
+   export const safeQuery = query(v.string(), async (id) => { ... });
+   ```
+2. **server-only 模組**：Remote function 必須定義在 server-only 模組中（`.server.ts` 檔案或 `$lib/server/` 目錄）。若放在可被 client 存取的模組中，build 時會報錯。
+3. **授權檢查**：Remote function 不會自動檢查使用者權限。你必須在函式內部自行驗證（例如從 cookies 中取得 session）。
+4. **回傳值必須可序列化**：與 `load` 函式相同，回傳值需通過網路傳輸，必須是可序列化的（支援 JSON 基本型別 + `Date`、`Map`、`Set` 等 devalue 支援的型別）。
+
+### `query` vs `command` vs `load` function 比較
+
+| 特性 | `query` | `command` | `load` function |
+|------|---------|-----------|-----------------|
+| 用途 | 讀取資料 | 寫入/變更資料 | 頁面載入時取得資料 |
+| 呼叫方式 | 元件內直接呼叫 | 元件內直接呼叫 | SvelteKit 路由系統自動呼叫 |
+| 快取/去重 | 可快取、可去重 | 每次實際執行 | 由 SvelteKit 管理 |
+| batch 支援 | `query.batch` | 不支援 | 不適用 |
+| 輸入驗證 | Standard Schema / `'unchecked'` | Standard Schema / `'unchecked'` | 由路由參數定義 |
+| 適合場景 | 元件級資料取得、互動式查詢 | 表單提交、狀態變更 | 頁面級初始資料載入 |
+
+| 何時用 Remote Functions | 何時用傳統 `load` / form actions |
+|---|---|
+| 元件需要自行取得資料，不適合在 page load 中集中載入 | 頁面初始載入的主要資料 |
+| 需要 batch 解決 N+1 問題 | 資料在 SSR 時就需要完成載入（SEO 考量） |
+| 互動式查詢（搜尋、篩選、無限捲動） | 需要與 SvelteKit 的 `invalidate` 機制整合 |
+| 想減少 API endpoint 的手動管理 | 不想啟用實驗性功能 |
+
+### Remote Functions 常見陷阱
+
+1. **忘記啟用實驗性選項**：需要同時在 `kit.experimental.remoteFunctions` 和（可選）`compilerOptions.experimental.async` 中啟用。
+2. **將 remote function 放在非 server-only 模組中**：會導致 server 程式碼被打包到 client bundle，build 時報錯。
+3. **在 `query` 中執行副作用**：`query` 可能被快取或去重，副作用可能不會每次都執行。寫入操作應使用 `command`。
+4. **未處理錯誤**：Remote function 的錯誤會以 Promise rejection 的形式傳到 browser 端，務必使用 `try/catch` 或 `{:catch}` 處理。
+5. **過度使用 `'unchecked'`**：在正式環境中，未驗證的輸入是安全隱患。建議統一使用 Standard Schema 驗證。
+
 ## Checklist
 
 - [ ] 能建立 `+page.server.ts` 的 server load function 並使用 `PageServerLoad` 型別
@@ -817,6 +1084,8 @@ export const load: PageServerLoad = async () => {
 - [ ] 能解釋 server load 與 universal load 的執行環境差異及選用時機
 - [ ] 能識別並避免 `await parent()` 造成的 data loading waterfall
 - [ ] 能使用 `error()` helper 拋出 HTTP 錯誤並渲染 `+error.svelte`
+- [ ] 能啟用 Remote Functions 實驗性選項並建立 `query` / `command`（⚠️ Experimental）
+- [ ] 能使用 `query.batch` 解決元件級 N+1 資料查詢問題（⚠️ Experimental）
 - [ ] `npx svelte-check` 通過，無型別錯誤
 
 ## Further Reading
@@ -828,3 +1097,5 @@ export const load: PageServerLoad = async () => {
 - [$app/navigation: invalidateAll — SvelteKit](https://svelte.dev/docs/kit/$app-navigation#invalidateAll)
 - [Error handling — SvelteKit](https://svelte.dev/docs/kit/errors)
 - [$types — SvelteKit](https://svelte.dev/docs/kit/$types)
+- [Remote Functions (Experimental) — SvelteKit](https://svelte.dev/docs/kit/remote-functions)
+- [$app/server: query / command — SvelteKit](https://svelte.dev/docs/kit/$app-server)

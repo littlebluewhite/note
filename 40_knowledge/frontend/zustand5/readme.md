@@ -4,7 +4,7 @@ note_type: system
 domain: frontend
 tags: [system, frontend, zustand5]
 created: 2026-02-14
-updated: 2026-02-14
+updated: 2026-02-16
 status: active
 source: system
 ---
@@ -17,13 +17,14 @@ source: system
 - Baseline date: 2026-02-14.
 - Learning mode: each batch covers 4 chapters with hands-on tasks.
 
-## Batch Learning Route (5 batches)
+## Batch Learning Route (6 batches)
 
 - Batch 1: `00`, `01`, `02`, `03` (overview/core APIs/actions-selectors)
 - Batch 2: `04`, `05`, `06`, `07` (slices/async/persist/devtools-redux)
 - Batch 3: `08`, `09`, `10`, `11` (subscription/immer/Next boundary/SSR-hydration)
 - Batch 4: `12`, `13`, `14`, `15` (server actions/suspense/optimistic/error recovery)
 - Batch 5: `16`, `17`, `18`, `19` (performance/testing/deploy/governance)
+- Batch 6: `20` (capstone state platform delivery)
 
 ## Estimated Time Per Chapter
 
@@ -40,7 +41,7 @@ source: system
 
 - [quality_rubric](quality_rubric.md)
 - [exercise_scoring](exercise_scoring.md)
-- [monthly_update_log_template](monthly_update_log_template.md)
+- [monthly_update_log](monthly_update_log_template.md)
 
 ## Chapters
 
@@ -64,3 +65,4 @@ source: system
 - [17_testing_store_and_ui_with_vitest_rtl](17_testing_store_and_ui_with_vitest_rtl.md) - 必讀 - 120 min
 - [18_deployment_observability_and_runtime_debug_workflow](18_deployment_observability_and_runtime_debug_workflow.md) - 可跳讀 - 80 min
 - [19_upgrade_security_and_monthly_update_playbook](19_upgrade_security_and_monthly_update_playbook.md) - 必讀 - 90 min
+- [20_capstone_state_platform_delivery](20_capstone_state_platform_delivery.md) - 必讀 - 180 min

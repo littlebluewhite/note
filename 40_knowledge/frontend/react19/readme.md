@@ -4,7 +4,7 @@ note_type: system
 domain: frontend
 tags: [system, frontend, react19]
 created: 2026-02-14
-updated: 2026-02-14
+updated: 2026-02-16
 status: active
 source: system
 ---
@@ -17,13 +17,14 @@ source: system
 - Baseline date: 2026-02-14.
 - Learning mode: each batch covers 3 chapters with hands-on tasks.
 
-## Batch Learning Route (5 batches)
+## Batch Learning Route (6 batches)
 
 - Batch 1: `05`, `06`, `07` (forms/effects/data fetching)
 - Batch 2: `08`, `09`, `10` (state architecture/hooks/Next bootstrap)
 - Batch 3: `11`, `12`, `13` (RSC boundary/actions/suspense)
 - Batch 4: `14`, `15`, `16` (UX transitions/errors/performance)
 - Batch 5: `17`, `18`, `19` (testing/deploy/upgrade governance)
+- Batch 6: `20` (capstone product delivery)
 
 ## Estimated Time Per Chapter
 
@@ -40,7 +41,7 @@ source: system
 
 - [quality_rubric](quality_rubric.md)
 - [exercise_scoring](exercise_scoring.md)
-- [monthly_update_log_template](monthly_update_log_template.md)
+- [monthly_update_log](monthly_update_log_template.md)
 
 ## Chapters
 
@@ -64,3 +65,4 @@ source: system
 - [17_testing_with_vitest_and_rtl](17_testing_with_vitest_and_rtl.md) - 必讀 - 120 min
 - [18_deployment_observability_and_debug_workflow](18_deployment_observability_and_debug_workflow.md) - 可跳讀 - 75 min
 - [19_upgrade_security_and_monthly_update_playbook](19_upgrade_security_and_monthly_update_playbook.md) - 必讀 - 90 min
+- [20_capstone_product_delivery](20_capstone_product_delivery.md) - 必讀 - 180 min

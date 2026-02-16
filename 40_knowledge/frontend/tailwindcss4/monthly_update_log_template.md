@@ -1,73 +1,37 @@
 ---
-title: Tailwind CSS 4 Monthly Update Log Template
+title: Tailwind CSS 4 Monthly Update Log
 note_type: system
 domain: frontend
 tags: [system, frontend, tailwindcss4]
 created: 2026-02-14
-updated: 2026-02-14
+updated: 2026-02-16
 status: active
 source: system
 ---
-# Tailwind CSS 4 Monthly Update Log Template
+# Tailwind CSS 4 Monthly Update Log
 
-## Purpose
-
-固定每月檢查 Tailwind CSS 版本與安全資訊，避免「知道要更新但沒紀錄」。
-
-## Baseline Snapshot
-
-- Snapshot date: `2026-02-14`
-- Tailwind CSS docs main line: `v4.1`
-- Tailwind CSS latest patch: `4.1.x`
-- Track sources:
-  - https://tailwindcss.com/docs
-  - https://github.com/tailwindlabs/tailwindcss/releases
-  - https://github.com/tailwindlabs/tailwindcss/blob/main/CHANGELOG.md
-
-## Monthly Checklist
-
-- [ ] 查 Tailwind CSS 最新 release 與 changelog。
-- [ ] 查 @tailwindcss/vite、@tailwindcss/postcss、@tailwindcss/cli 版本是否同步。
-- [ ] 查 @tailwindcss/typography、@tailwindcss/forms 等官方插件版本。
-- [ ] 比對目前專案版本與目標版本。
-- [ ] 確認 @theme token 是否有 breaking change。
-- [ ] 建立升級分支並執行測試。
-- [ ] 記錄決策：立即升級 / 延後升級。
-
-## Log Entry Template
-
-```md
-## YYYY-MM (owner: <name>)
+## 2026-02 (owner: wilson08)
 
 ### Version status
-- Current: tailwindcss __ / @tailwindcss/vite __ / @tailwindcss/postcss __
-- Latest: tailwindcss __ (release date: __) / @tailwindcss/vite __ (release date: __) / @tailwindcss/postcss __ (release date: __)
-- Delta: __
+- Baseline: Tailwind CSS 4.1.x
+- Audit focus: naming and chapter link consistency
+- Delta: 修正 readme/rubric 舊檔名參照，新增 Ch25 capstone
 
-### Plugin status
-- @tailwindcss/typography: current __ / latest __
-- @tailwindcss/forms: current __ / latest __
-- @tailwindcss/container-queries: current __ / latest __
-
-### Security status
-- Tailwind CSS advisories: none / <link>
-- Dependency advisories: none / <link>
-- Risk level: low / medium / high
+### Security and quality status
+- v4-specific pitfall coverage: completed
+- design token governance review: completed
+- Risk level: low（主要風險為視覺回歸證據不足）
 
 ### Decision
-- Action: patch now / minor now / defer
-- Reason:
-- Deadline:
+- Action: keep baseline and enforce visual regression artifacts
+- Deadline: 2026-03-10
 
 ### Validation
 - Commands:
-  - npm run lint
-  - npx vite build
-  - visual regression: check key pages at sm / md / lg / xl
-- Result:
+  - `/opt/homebrew/bin/rg -n "positioning_and_z_index|responsive_design\.md|state_variants\.md" 40_knowledge/frontend/tailwindcss4`
+  - custom markdown link audit script
+- Result: 舊檔名殘留清理完成，系列連結一致
 
 ### Follow-ups
-- Docs update needed:
-- Training note needed:
-- Owner:
-```
+- 補 Ch25 的跨框架視覺回歸報告
+- 加入 token 版本化 SOP 範例

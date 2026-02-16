@@ -4,7 +4,7 @@ note_type: system
 domain: frontend
 tags: [system, frontend, svelte5]
 created: 2026-02-14
-updated: 2026-02-14
+updated: 2026-02-16
 status: active
 source: system
 ---
@@ -33,15 +33,17 @@ source: system
 - `17_testing_with_vitest_and_svelte_testing_library.md`
 - `18_deployment_adapters_and_observability.md`
 - `19_upgrade_governance_security_and_maintenance.md`
+- `26_capstone_product_delivery.md`
 
 ## Chapter-level Minimums
 
-- 章節合約：必須含 9 個固定標題。
+- 章節合約：必須含 9 個固定標題，並額外加入 `Evidence` 區塊。
 - `Goal`：至少 2 段，含「銜接上一章」與「下一章預告」。
 - `Core Concepts`：至少 3 組「何時用 / 何時不用」對照。
 - `Step-by-step`：6-10 個可照做步驟，每步可驗證。
 - `Hands-on Lab`：需包含三段：Foundation/Advanced/Challenge，且每段有驗收條件。
 - `Reference Solution`：至少 1 段完整可貼用範例，需含必要 TypeScript type。
+- `Evidence`：至少 2 種可追溯證據（命令輸出、路由、測試報告、截圖路徑）。
 - `Common Pitfalls`：至少 4 條，且至少 1 條為 Svelte 5 或 SvelteKit 邊界陷阱。
 - `Checklist`：至少 5 條可量測項目（包含命令、檔案、畫面或測試結果）。
 - `Further Reading`：官方來源優先。允許域名：`svelte.dev`、`kit.svelte.dev`、`github.com/sveltejs/svelte`、`github.com/sveltejs/kit`。`17` 章可額外使用 `vitest.dev` 與 `testing-library.com`。
@@ -62,5 +64,6 @@ source: system
 - [ ] 步驟數量符合 6-10。
 - [ ] 三段式練習與驗收條件完整。
 - [ ] 參考解答可直接貼進 SvelteKit 專案。
+- [ ] Evidence 區塊可追溯且至少 2 種證據。
 - [ ] 陷阱條目 >= 4 且含邊界陷阱。
 - [ ] 延伸閱讀域名符合規範。

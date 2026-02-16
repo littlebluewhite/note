@@ -4,7 +4,7 @@ note_type: knowledge
 domain: frontend
 tags: [knowledge, frontend, svelte5]
 created: 2026-02-14
-updated: 2026-02-14
+updated: 2026-02-17
 status: active
 source: knowledge
 series: svelte5_complete_notes
@@ -303,6 +303,19 @@ export function createPersistedState<T>(key: string, initial: T) {
 
 好的開發工具可以大幅提升除錯效率和開發體驗。
 
+#### Svelte Language Tools 效能改進
+
+Svelte Language Tools（VS Code 擴充功能 + LSP）在 2025–2026 年間經歷多次重大效能提升：
+
+- **2025 年中**：支援 snippets 泛型型別推導（`language-tools@109.8.0`）、新增「儲存時自動加入缺少的 import」功能（`language-tools@109.6.0`）。
+- **2025 Q4 – 2026 Q1**：大量效能最佳化，包含更快的型別檢查、減少記憶體用量、改善大型專案的回應速度。
+
+> **建議**：定期更新 VS Code 的 Svelte 擴充功能，以確保獲得最新的效能改善。可在 VS Code 中搜尋 "Svelte for VS Code" 確認版本。
+
+#### SvelteDoc VS Code 擴充功能
+
+SvelteDoc 是社群開發的 VS Code 擴充功能，可在 hover 時顯示 Svelte 元件的 props 資訊，方便快速查看元件介面而不需要打開原始碼。
+
 #### Svelte DevTools 瀏覽器擴充功能
 
 Svelte DevTools 是 Chrome/Firefox 擴充功能，提供元件樹檢視、狀態檢查等功能。
@@ -336,6 +349,19 @@ npx svelte-check --tsconfig ./tsconfig.json
 }
 ```
 
+#### `svelte-fast-check` — 高速型別檢查替代方案
+
+`svelte-fast-check` 宣稱比內建的 `svelte-check` 快達 24 倍，適合大型專案在 CI/CD 中縮短檢查時間：
+
+```bash
+npm install -D svelte-fast-check
+
+# 執行快速檢查
+npx svelte-fast-check
+```
+
+> **注意**：`svelte-fast-check` 是社群套件，功能覆蓋範圍可能與官方 `svelte-check` 有差異。建議在 CI 中兩者並行使用，確保完整性。
+
 #### Vite Inspector Plugin
 
 `vite-plugin-svelte-inspector` 讓你在瀏覽器中按住 Meta 鍵點擊任何元素，直接跳轉到對應的 Svelte 元件原始碼。
@@ -357,9 +383,64 @@ export default defineConfig({
 在 SvelteKit 專案中，Inspector 已內建於 `@sveltejs/vite-plugin-svelte`。開發模式下使用快捷鍵（macOS: `Cmd + Shift` 點擊元素）即可啟用。
 
 - **何時用開發工具**：所有 Svelte 專案都應該配置 `svelte-check`，DevTools 和 Inspector 在開發除錯階段很有幫助。
-- **何時不用**：CI/CD 環境只需 `svelte-check`，其餘工具僅用於本地開發。
+- **何時不用**：CI/CD 環境只需 `svelte-check`（或 `svelte-fast-check`），其餘工具僅用於本地開發。
 
-### 5. 圖表與視覺化
+### 5. Svelte MCP — AI 輔助開發工具
+
+Svelte MCP（Model Context Protocol）是 Svelte 官方提供的 AI 輔助開發伺服器（`@sveltejs/mcp-server`，v0.1.16+），讓 LLM 和 AI agent 能撰寫更好的 Svelte 程式碼。它同時支援 JavaScript API 和 CLI 兩種使用方式。
+
+#### 核心工具
+
+| 工具名稱 | 用途 |
+|----------|------|
+| `list-sections` | 列出所有可用的 Svelte 5 / SvelteKit 文件章節，含標題、使用場景和路徑 |
+| `get-documentation` | 取得特定章節的完整文件內容，支援一次取多個章節 |
+| `svelte-autofixer` | 靜態分析 Svelte 程式碼，回傳問題清單與修正建議（基於 AST 解析 + ESLint） |
+| `playground-link` | 將程式碼生成 Svelte Playground 連結，方便分享 |
+
+#### 使用方式
+
+```bash
+# 安裝
+npm install @sveltejs/mcp-server
+
+# CLI 方式啟動
+npx @sveltejs/mcp-server
+```
+
+在支援 MCP 的 AI 工具（如 Claude、Cursor 等）中設定 Svelte MCP server 後，AI 可以：
+
+1. 查詢最新的 Svelte 5 / SvelteKit 文件。
+2. 在產生程式碼後自動呼叫 `svelte-autofixer` 檢查問題。
+3. 偵測 Svelte 4 → 5 遷移問題（如 runes 語法錯誤、不正確的 state mutation）。
+4. 產生可直接在 Svelte Playground 上測試的連結。
+
+#### `svelte-autofixer` 的檢查項目
+
+```typescript
+// autofixer 接收 Svelte 元件程式碼並分析
+// 回傳結構：
+interface AutofixerResult {
+  issues: string[];       // 發現的問題
+  suggestions: string[];  // 修正建議
+  require_another_tool_call_after_fixing: boolean;
+}
+```
+
+常見的自動偵測項目包括：
+- 將 runes 當作宣告而非函式呼叫使用。
+- 在 `$effect` 中進行不正確的 state mutation。
+- 缺少響應式宣告（reactivity declarations）。
+- Svelte 4 舊語法殘留（如 `export let`、`<slot>`）。
+
+| 何時用 Svelte MCP | 何時不用 |
+|---|---|
+| 使用 AI 輔助工具開發 Svelte 專案 | 不使用 AI 輔助開發的團隊 |
+| 需要即時查詢最新 Svelte 文件 | 團隊已熟悉所有 API 且不需要文件參考 |
+| 程式碼品質把關、自動化程式碼審查 | 已有完整的 ESLint / CI 檢查流程 |
+| Svelte 4 → 5 遷移過程中的輔助檢查 | 純 Svelte 5 新專案且團隊經驗充足 |
+
+### 6. 圖表與視覺化
 
 Svelte 的 reactivity 系統非常適合資料視覺化——狀態變更時圖表自動更新。
 
@@ -459,6 +540,59 @@ npm install layerchart
 
 - **何時用 LayerChart**：需要常見圖表類型（bar、line、pie、area）且希望快速開發。
 - **何時用 D3 + Svelte**：需要高度客製化的視覺化、互動式圖表、或 LayerChart 不支援的圖表類型。
+
+### 7. 社群套件精選
+
+Svelte 生態系持續壯大，以下是 2025–2026 年間值得關注的社群新專案：
+
+#### 終端機與 CLI 相關
+
+| 套件 | 說明 |
+|------|------|
+| **SvelTTY** | 終端機渲染 runtime，讓你在終端機中渲染和操作 Svelte 應用 |
+| **svelte-bash** | 輕量、可自訂的終端模擬器元件，內建虛擬檔案系統、自訂命令、主題和自動播放模式 |
+
+#### 基礎建設與安全
+
+| 套件 | 說明 |
+|------|------|
+| **@svelte-safe-html/core** | 靜態分析器，偵測不安全的 `{@html}` 使用 |
+| **sveltekit-discriminated-fields** | 為 Remote Functions 提供 type-safe 的 discriminated unions |
+| **pocket-mocker** | 頁面內 HTTP 控制器，可攔截和模擬 API 回應，方便前端開發與測試 |
+| **SvelteKit Auto OpenAPI** | 型別安全的 OpenAPI 文件自動產生與 runtime 驗證 |
+
+#### UI 元件與動畫
+
+| 套件 | 說明 |
+|------|------|
+| **mapcn-svelte** | 基於 MapLibre GL 的 Svelte 地圖元件，支援 Tailwind 樣式，相容 shadcn-svelte |
+| **Motion Core** | 以 GSAP 和 Three.js 驅動的動畫元件集合 |
+| **Tilt Svelte** | 3D 傾斜效果元件，靈感來自 vanilla-tilt.js |
+| **trioxide** | 專注於非典型 UI 片段的可自訂元件集 |
+| **svelte-asciiart** | Svelte 5 ASCII art 渲染元件，可產生可縮放 SVG |
+
+#### 狀態管理
+
+| 套件 | 說明 |
+|------|------|
+| **Reddo.js** | 跨框架（JS / React / Vue / Svelte）的 undo/redo 工具 |
+| **svstate** | 深層響應式 proxy，支援驗證、snapshot/undo 和 side effects |
+| **rune-sync** | 將 runes 響應式狀態同步到各種 storage backend |
+
+#### 部署與執行環境
+
+| 套件 | 說明 |
+|------|------|
+| **fastify-svelte-view** | Fastify 插件，支援 SSR、CSR 和 hydration 渲染 |
+| **kit-on-lambda** | SvelteKit 的 AWS Lambda adapter，支援 Node.js 和 Bun runtime |
+
+#### 應用程式展示
+
+| 專案 | 說明 |
+|------|------|
+| **Frame** | 基於 Tauri v2 的高效能媒體轉換工具，提供 FFmpeg 操作的原生介面 |
+| **LogTide** | 開源的日誌管理平台，替代 Datadog / Splunk / ELK，強調 GDPR 合規與資料自主 |
+| **Pelican** | 從文字提示產生 SVG 向量圖和 ASCII art，支援 AI 多步精煉 |
 
 ## Step-by-step
 
@@ -983,6 +1117,8 @@ npm run check
 - [ ] 能使用 `.svelte.ts` + runes 實作跨元件共享狀態
 - [ ] 能配置 svelte-check 並在開發與 CI/CD 中使用
 - [ ] 能選擇適當的圖表方案（LayerChart 或 D3 + Svelte）並實作基礎圖表
+- [ ] 了解 Svelte MCP 的用途，能在支援 MCP 的 AI 工具中配置使用
+- [ ] 能根據專案需求評估和選擇適合的社群套件
 
 ## Further Reading
 
@@ -995,3 +1131,8 @@ npm run check
 - [LayerChart Documentation](https://www.layerchart.com/)
 - [Svelte DevTools](https://github.com/sveltejs/svelte-devtools)
 - [svelte-check](https://www.npmjs.com/package/svelte-check)
+- [Svelte MCP Server](https://github.com/sveltejs/mcp)
+- [Svelte MCP Documentation](https://mcp.svelte.dev/)
+- [Svelte Packages Directory](https://svelte.dev/packages)
+- [Svelte Society Packages](https://sveltesociety.dev/packages)
+- [What's new in Svelte — Blog](https://svelte.dev/blog)

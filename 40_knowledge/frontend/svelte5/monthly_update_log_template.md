@@ -1,68 +1,37 @@
 ---
-title: Svelte 5 Monthly Update Log Template
+title: Svelte 5 Monthly Update Log
 note_type: system
 domain: frontend
 tags: [system, frontend, svelte5]
 created: 2026-02-14
-updated: 2026-02-14
+updated: 2026-02-16
 status: active
 source: system
 ---
-# Svelte 5 Monthly Update Log Template
+# Svelte 5 Monthly Update Log
 
-## Purpose
-
-固定每月檢查 Svelte/SvelteKit 版本與安全資訊，避免「知道要更新但沒紀錄」。
-
-## Baseline Snapshot
-
-- Snapshot date: `2026-02-14`
-- Svelte docs main line: `v5.50`
-- SvelteKit docs main line: `v2.51`
-- Track sources:
-  - https://svelte.dev/
-  - https://github.com/sveltejs/svelte/releases
-  - https://github.com/sveltejs/kit/releases
-
-## Monthly Checklist
-
-- [ ] 查 Svelte 最新 release 與 security note。
-- [ ] 查 SvelteKit 最新 upgrade note。
-- [ ] 查 Vite 最新 release。
-- [ ] 比對目前專案版本與目標版本。
-- [ ] 建立升級分支並執行測試。
-- [ ] 記錄決策：立即升級 / 延後升級。
-
-## Log Entry Template
-
-```md
-## YYYY-MM (owner: <name>)
+## 2026-02 (owner: wilson08)
 
 ### Version status
-- Current: svelte __ / @sveltejs/kit __ / vite __
-- Latest: svelte __ / @sveltejs/kit __ / vite __
-- Delta: __
+- Baseline: Svelte 5.50.x + SvelteKit 2.51.x
+- Audit focus: capstone coverage, evidence section requirement, scoring records
+- Delta: 新增 Ch26 capstone，評分模板轉為實績
 
-### Security status
-- Svelte advisories: none / <link>
-- SvelteKit advisories: none / <link>
-- Risk level: low / medium / high
+### Security and quality status
+- Auth chapter cross-check: completed
+- Error handling and observability review: completed
+- Risk level: medium（需增加 production-like failure drill）
 
 ### Decision
-- Action: patch now / minor now / defer
-- Reason:
-- Deadline:
+- Action: keep baseline, add failure injection practice next month
+- Deadline: 2026-03-15
 
 ### Validation
 - Commands:
-  - npm run lint
-  - npm run check
-  - npm run test
-  - npm run build
-- Result:
+  - `/opt/homebrew/bin/rg -n "## Evidence" 40_knowledge/frontend/svelte5`
+  - custom markdown link audit script
+- Result: 章節契約與導覽一致，capstone 可作為實戰閉環入口
 
 ### Follow-ups
-- Docs update needed:
-- Training note needed:
-- Owner:
-```
+- 補 hydration mismatch 真實案例
+- 補 observability dashboard 範例
