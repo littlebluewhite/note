@@ -17,7 +17,7 @@ source: system
 - Baseline date: 2026-02-17.
 - Learning mode: each batch covers 2-3 topics with dual-language implementation.
 
-## Batch Learning Route (15 batches)
+## Batch Learning Route (23 batches)
 
 - Batch 1: `01`, `02`, `03` (可擴展性基礎三柱 — Scalability, Availability, Consistency)
 - Batch 2: `04`, `05`, `06` (API 設計 — REST, gRPC/GraphQL, Versioning)
@@ -34,6 +34,14 @@ source: system
 - Batch 13: `34`, `35`, `36` (進階測試 + 並行 — Contract Testing, Load Testing, Concurrency)
 - Batch 14: `37`, `38`, `39` (效能 + 錯誤處理 — Profiling, Connection Pool, Retry)
 - Batch 15: `40` (CI/CD — Deployment Strategies)
+- Batch 16: `41`, `42` (容器與服務網格 — K8s Core, Service Mesh)
+- Batch 17: `43`, `44` (資料庫水平擴展 — Sharding, Replication)
+- Batch 18: `45` (NoSQL 選型)
+- Batch 19: `46`, `47` (可靠性工程 — Chaos Engineering, Incident/DR)
+- Batch 20: `48`, `49` (分散式深入 — Consensus, Leader Election)
+- Batch 21: `50`, `51` (基礎設施自動化 — IaC, GitOps)
+- Batch 22: `52`, `53` (資料管道 — Stream Processing, Batch Processing)
+- Batch 23: `54`, `55`, `56` (架構補充 — Patterns, Schema Migration, Feature Flags)
 
 ## Estimated Time Per Topic
 
@@ -44,9 +52,9 @@ source: system
 
 ## Reading Priority
 
-- Must-read (`必讀`): `01`, `02`, `03`, `04`, `07`, `08`, `11`, `12`, `13`, `15`, `16`, `17`, `19`, `20`, `21`, `24`, `25`, `26`, `33`, `39`
-- Important (`重要`): `05`, `06`, `09`, `10`, `14`, `18`, `22`, `23`, `27`, `30`, `32`, `34`, `36`, `37`, `38`, `40`
-- Skippable (`可跳讀`): `29`, `31`, `35`
+- Must-read (`必讀`): `01`, `02`, `03`, `04`, `07`, `08`, `11`, `12`, `13`, `15`, `16`, `17`, `19`, `20`, `21`, `24`, `25`, `26`, `33`, `39`, `41`, `43`, `44`, `46`, `48`
+- Important (`重要`): `05`, `06`, `09`, `10`, `14`, `18`, `22`, `23`, `27`, `30`, `32`, `34`, `36`, `37`, `38`, `40`, `42`, `45`, `47`, `49`, `52`, `55`, `56`
+- Skippable (`可跳讀`): `29`, `31`, `35`, `50`, `51`, `53`, `54`
 
 ## Support Documents
 
@@ -68,6 +76,8 @@ source: system
 - [09_cqrs_event_sourcing](system_design/09_cqrs_event_sourcing.md) - 重要 - 90 min
 - [10_ddd_basics](system_design/10_ddd_basics.md) - 重要 - 90 min
 - [11_system_design_interview](system_design/11_system_design_interview.md) - 必讀 - 75 min
+- [45_nosql_selection_guide](system_design/45_nosql_selection_guide.md) - 重要 - 75 min
+- [54_architecture_supplement_patterns](system_design/54_architecture_supplement_patterns.md) - 可跳讀 - 75 min
 
 ### Distributed Systems
 
@@ -80,6 +90,12 @@ source: system
 - [18_kafka_operations](distributed_systems/18_kafka_operations.md) - 重要 - 60 min
 - [19_idempotency_design](distributed_systems/19_idempotency_design.md) - 必讀 - 75 min
 - [20_rate_limiting](distributed_systems/20_rate_limiting.md) - 必讀 - 75 min
+- [43_sharding_partitioning](distributed_systems/43_sharding_partitioning.md) - 必讀 - 90 min
+- [44_database_replication](distributed_systems/44_database_replication.md) - 必讀 - 90 min
+- [48_consensus_algorithms](distributed_systems/48_consensus_algorithms.md) - 必讀 - 90 min
+- [49_leader_election_distributed_scheduling](distributed_systems/49_leader_election_distributed_scheduling.md) - 重要 - 75 min
+- [52_stream_processing](distributed_systems/52_stream_processing.md) - 重要 - 90 min
+- [53_batch_processing](distributed_systems/53_batch_processing.md) - 可跳讀 - 75 min
 
 ### Infrastructure
 
@@ -95,6 +111,10 @@ source: system
 - [30_http2_http3_grpc_transport](infrastructure/30_http2_http3_grpc_transport.md) - 重要 - 75 min
 - [31_websocket_tls_mtls](infrastructure/31_websocket_tls_mtls.md) - 可跳讀 - 45 min
 - [32_load_balancing_service_discovery](infrastructure/32_load_balancing_service_discovery.md) - 重要 - 75 min
+- [41_kubernetes_core_concepts](infrastructure/41_kubernetes_core_concepts.md) - 必讀 - 90 min
+- [42_service_mesh](infrastructure/42_service_mesh.md) - 重要 - 75 min
+- [50_infrastructure_as_code](infrastructure/50_infrastructure_as_code.md) - 可跳讀 - 60 min
+- [51_gitops](infrastructure/51_gitops.md) - 可跳讀 - 60 min
 
 ### Engineering
 
@@ -106,3 +126,7 @@ source: system
 - [38_connection_pooling](engineering/38_connection_pooling.md) - 重要 - 45 min
 - [39_error_handling_retry](engineering/39_error_handling_retry.md) - 必讀 - 75 min
 - [40_cicd_deployment](engineering/40_cicd_deployment.md) - 重要 - 75 min
+- [46_chaos_engineering](engineering/46_chaos_engineering.md) - 必讀 - 75 min
+- [47_incident_management_disaster_recovery](engineering/47_incident_management_disaster_recovery.md) - 重要 - 75 min
+- [55_zero_downtime_schema_migration](engineering/55_zero_downtime_schema_migration.md) - 重要 - 60 min
+- [56_feature_flags](engineering/56_feature_flags.md) - 重要 - 60 min

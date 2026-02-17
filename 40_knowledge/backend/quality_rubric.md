@@ -58,6 +58,22 @@ source: system
 - `engineering/38_connection_pooling.md`
 - `engineering/39_error_handling_retry.md`
 - `engineering/40_cicd_deployment.md`
+- `infrastructure/41_kubernetes_core_concepts.md`
+- `infrastructure/42_service_mesh.md`
+- `distributed_systems/43_sharding_partitioning.md`
+- `distributed_systems/44_database_replication.md`
+- `system_design/45_nosql_selection_guide.md`
+- `engineering/46_chaos_engineering.md`
+- `engineering/47_incident_management_disaster_recovery.md`
+- `distributed_systems/48_consensus_algorithms.md`
+- `distributed_systems/49_leader_election_distributed_scheduling.md`
+- `infrastructure/50_infrastructure_as_code.md`
+- `infrastructure/51_gitops.md`
+- `distributed_systems/52_stream_processing.md`
+- `distributed_systems/53_batch_processing.md`
+- `system_design/54_architecture_supplement_patterns.md`
+- `engineering/55_zero_downtime_schema_migration.md`
+- `engineering/56_feature_flags.md`
 
 ## Frontmatter Requirements
 
