@@ -537,5 +537,5 @@ let kind = if status.is_server_error() { ErrorKind::Transient }
 
 ## Cross-references / 交叉引用
 
-- [[30_circuit_breaker|Circuit Breaker / 斷路器模式]](../../design_pattern/modern/30_circuit_breaker.md) — 斷路器與重試互補。重試處理「少數暫時性失敗」，斷路器處理「持續性大量失敗」。架構上重試包在斷路器內層——重試失敗才觸發斷路器計數，錯誤率超閾值後斷路器開啟、所有請求直接走 fallback。
+- [[30_circuit_breaker|Circuit Breaker / 斷路器模式]](../design_pattern/modern/30_circuit_breaker.md) — 斷路器與重試互補。重試處理「少數暫時性失敗」，斷路器處理「持續性大量失敗」。架構上重試包在斷路器內層——重試失敗才觸發斷路器計數，錯誤率超閾值後斷路器開啟、所有請求直接走 fallback。
 - [[19_idempotency_design|Idempotency Design / 冪等設計]](../distributed_systems/19_idempotency_design.md) — 冪等性是安全重試的前提。本筆記的重試機制假設操作冪等——若不冪等，重試產生重複副作用。對 POST 等非天然冪等操作，必須先實作冪等鍵機制才能啟用自動重試。

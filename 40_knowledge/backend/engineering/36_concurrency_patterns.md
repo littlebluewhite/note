@@ -505,4 +505,4 @@ tokio::spawn({
 ## Cross-references / 交叉引用
 
 - [Rust Futures, Tasks, and Threads](../../rust/17_6_futures_tasks_and_threads.md) — Rust 的 future/task/thread 三層並行模型與選擇決策框架。本筆記的 tokio 實作建立在該筆記的基礎概念之上。
-- [Worker Pool Pattern](../../design_pattern/modern/29_worker_pool.md) — Worker pool 是 fan-out/fan-in 的特化實作。該筆記深入探討固定 worker 數量與 job/result channel 設計，與本筆記的 semaphore-based fan-out 形成互補。
+- [Worker Pool Pattern](../design_pattern/modern/29_worker_pool.md) — Worker pool 是 fan-out/fan-in 的特化實作。該筆記深入探討固定 worker 數量與 job/result channel 設計，與本筆記的 semaphore-based fan-out 形成互補。

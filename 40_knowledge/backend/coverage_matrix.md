@@ -70,6 +70,39 @@ source: system
 | System Design | Architecture Supplement Patterns | `system_design/54_architecture_supplement_patterns.md` | Done |
 | Engineering | Zero-Downtime Schema Migration | `engineering/55_zero_downtime_schema_migration.md` | Done |
 | Engineering | Feature Flags | `engineering/56_feature_flags.md` | Done |
+| Infrastructure | Docker & Containers | `infrastructure/57_docker_container_fundamentals.md` | Done |
+| System Design | API Gateway & BFF | `system_design/58_api_gateway_bff.md` | Done |
+| Distributed Systems | Transactional Outbox | `distributed_systems/59_transactional_outbox.md` | Done |
+| Infrastructure | Search Infrastructure | `infrastructure/60_search_infrastructure.md` | Done |
+| Infrastructure | Object Storage & CDN | `infrastructure/61_object_storage_cdn.md` | Done |
+| System Design | Multi-Tenancy Patterns | `system_design/62_multi_tenancy_patterns.md` | Done |
+| Engineering | Graceful Shutdown & Health Check | `engineering/63_graceful_shutdown_health_check.md` | Done |
+| System Design | Database Design Patterns | `system_design/64_database_design_patterns.md` | Done |
+| Distributed Systems | Data Serialization & Schema Evolution | `distributed_systems/65_data_serialization_schema_evolution.md` | Done |
+| Engineering | Background Job & Task Queue | `engineering/66_background_job_task_queue.md` | Done |
+| Infrastructure | Observability Strategy | `infrastructure/67_observability_strategy.md` | Done |
+| Infrastructure | DNS & Network Fundamentals | `infrastructure/68_dns_network_fundamentals.md` | Done |
+| Engineering | Configuration Management & 12-Factor | `engineering/69_configuration_management_12_factor.md` | Done |
+| System Design | Webhook Design Patterns | `system_design/70_webhook_design_patterns.md` | Done |
+| System Design | Real-time Patterns | `system_design/71_realtime_patterns.md` | Done |
+| System Design | Payment & Financial Transactions | `system_design/72_payment_financial_transactions.md` | Done |
+| System Design | Graph Database Patterns | `system_design/73_graph_database_patterns.md` | Done |
+| System Design | Time-Series Database | `system_design/74_time_series_database.md` | Done |
+| Engineering | Dependency Injection | `engineering/75_dependency_injection.md` | Done |
+| Distributed Systems | Data Pipeline & ETL | `distributed_systems/76_data_pipeline_etl.md` | Done |
+| Database | Indexing Theory | `database/indexing.md` | Done |
+| Database | Transactions & ACID | `database/transactions.md` | Done |
+| Database | Isolation Levels | `database/isolation_levels.md` | Done |
+| Database | PostgreSQL Gotchas | `database/postgres_gotchas.md` | Done |
+| Database | EXPLAIN / Query Plans | `database/postgres_explain_guide.md`, `database/postgres_explain_examples.md` | Done |
+| Database | Index & Join Strategy | `database/postgres_index_join_guide.md` | Done |
+| Database | Lock Troubleshooting | `database/postgres_lock_troubleshooting.md` | Done |
+| Database | Slow Query Triage | `database/postgres_slow_query_triage.md` | Done |
+| Database | Alembic Migrations | `database/alembic/` (6 files) | Done |
+| Design Pattern | Creational (Ch.01-05) | `design_pattern/creational/` (5 files) | Done |
+| Design Pattern | Structural (Ch.06-12) | `design_pattern/structural/` (7 files) | Done |
+| Design Pattern | Behavioral (Ch.13-23) | `design_pattern/behavioral/` (11 files) | Done |
+| Design Pattern | Modern Go/Rust (Ch.24-31) | `design_pattern/modern/` (8 files) | Done |
 
 ## Cross-references with Existing Content
 
@@ -83,8 +116,12 @@ source: system
 - `database/indexing.md` <-> `distributed_systems/43_sharding_partitioning.md`
 - `database/transactions.md` <-> `distributed_systems/44_database_replication.md`
 - `database/postgres_lock_troubleshooting.md` <-> `engineering/55_zero_downtime_schema_migration.md`
+- `database/indexing.md` <-> `infrastructure/60_search_infrastructure.md`
+- `design_pattern/modern/24_functional_options.md` <-> `engineering/75_dependency_injection.md`
+- `design_pattern/modern/28_middleware.md` <-> `system_design/58_api_gateway_bff.md`
+- `infrastructure/23_structured_logging.md` + `infrastructure/24_distributed_tracing.md` + `infrastructure/25_metrics_sli_slo_sla.md` <-> `infrastructure/67_observability_strategy.md`
 
 ## Remaining Gaps
 
-- 全部 56 篇已建立完成（2026-02-18）。
+- 全部 76 篇已建立完成（2026-02-18）。
 - 建議後續補充：至少 1 組 Rust Axum + 1 組 Go 的實際 production 專案程式碼連結。

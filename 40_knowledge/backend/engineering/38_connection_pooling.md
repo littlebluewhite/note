@@ -248,4 +248,4 @@ server_idle_timeout = 600      ; 伺服器端閒置逾時（秒）
 
 ## Cross-references / 交叉引用
 
-- [[../../database/postgres_slow_query_triage.md|PostgreSQL 慢查詢分診]] — 連線池飽和時常伴隨慢查詢，需交叉診斷是池不夠還是查詢太慢
+- [[../database/postgres_slow_query_triage.md|PostgreSQL 慢查詢分診]] — 連線池飽和時常伴隨慢查詢，需交叉診斷是池不夠還是查詢太慢

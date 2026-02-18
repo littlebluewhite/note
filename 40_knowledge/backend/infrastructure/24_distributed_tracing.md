@@ -996,7 +996,7 @@ Grafana Labs 開發的高效能追蹤後端，專為大規模場景設計。與 
 
 - [[23_structured_logging|Structured Logging / 結構化日誌]] — 結構化日誌和分散式追蹤是可觀測性的兩大支柱，兩者高度互補。日誌提供細粒度的事件資訊（錯誤訊息、業務邏輯的分支決策），追蹤提供跨服務的因果關係和延遲分析。最佳實踐是將 trace ID 注入到每一行結構化日誌中（Rust 的 `tracing` crate 天然支援此功能、Go 需要手動從 `context` 提取 trace ID 寫入 `slog` 欄位），實現從追蹤跳轉到對應日誌、從日誌跳轉到對應追蹤的雙向關聯。Grafana 的 Loki（日誌）到 Tempo（追蹤）的 exemplar 功能正是基於此模式。
 
-- [[../../design_pattern/modern/28_middleware|Middleware Pattern / 中介層模式]] — 分散式追蹤的 auto-instrumentation 大量依賴 middleware pattern。在 HTTP server 端，tracing middleware 攔截每個請求、提取 trace context、建立 server span、記錄延遲和狀態碼；在 HTTP client 端，transport middleware 在外發請求中注入 trace context。無論是 Go 的 `func(http.Handler) http.Handler` 還是 Rust Axum 的 `middleware::from_fn()`，middleware 模式使得追蹤邏輯與業務邏輯完全解耦——開發者無需修改任何 handler 程式碼就能獲得基礎的請求追蹤。理解 middleware pattern 是正確實作分散式追蹤的前提。
+- [[../design_pattern/modern/28_middleware|Middleware Pattern / 中介層模式]] — 分散式追蹤的 auto-instrumentation 大量依賴 middleware pattern。在 HTTP server 端，tracing middleware 攔截每個請求、提取 trace context、建立 server span、記錄延遲和狀態碼；在 HTTP client 端，transport middleware 在外發請求中注入 trace context。無論是 Go 的 `func(http.Handler) http.Handler` 還是 Rust Axum 的 `middleware::from_fn()`，middleware 模式使得追蹤邏輯與業務邏輯完全解耦——開發者無需修改任何 handler 程式碼就能獲得基礎的請求追蹤。理解 middleware pattern 是正確實作分散式追蹤的前提。
 
 ---
 

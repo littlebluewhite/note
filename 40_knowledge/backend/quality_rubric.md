@@ -74,6 +74,26 @@ source: system
 - `system_design/54_architecture_supplement_patterns.md`
 - `engineering/55_zero_downtime_schema_migration.md`
 - `engineering/56_feature_flags.md`
+- `infrastructure/57_docker_container_fundamentals.md`
+- `system_design/58_api_gateway_bff.md`
+- `distributed_systems/59_transactional_outbox.md`
+- `infrastructure/60_search_infrastructure.md`
+- `infrastructure/61_object_storage_cdn.md`
+- `system_design/62_multi_tenancy_patterns.md`
+- `engineering/63_graceful_shutdown_health_check.md`
+- `system_design/64_database_design_patterns.md`
+- `distributed_systems/65_data_serialization_schema_evolution.md`
+- `engineering/66_background_job_task_queue.md`
+- `infrastructure/67_observability_strategy.md`
+- `infrastructure/68_dns_network_fundamentals.md`
+- `engineering/69_configuration_management_12_factor.md`
+- `system_design/70_webhook_design_patterns.md`
+- `system_design/71_realtime_patterns.md`
+- `system_design/72_payment_financial_transactions.md`
+- `system_design/73_graph_database_patterns.md`
+- `system_design/74_time_series_database.md`
+- `engineering/75_dependency_injection.md`
+- `distributed_systems/76_data_pipeline_etl.md`
 
 ## Frontmatter Requirements
 

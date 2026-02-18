@@ -1908,7 +1908,7 @@ PostgreSQL 的 hot standby 允許在 standby 上執行 SELECT 查詢。但當 st
 - [[12_cap_consistency_models|CAP & Consistency Models / CAP 定理與一致性模型]] — Replication lag 直接對應 eventual consistency 的概念。非同步複製的 read replica 本質上是一個 AP 系統（可用但可能不一致），同步複製是 CP 傾向（一致但同步 standby 故障會影響可用性）。12 篇的 quorum 概念在 leaderless replication 中是核心機制（W + R > N）。
 - [[15_distributed_locking|Distributed Locking / 分散式鎖]] — Failover 中的 leader election 依賴分散式鎖機制。Patroni 使用 etcd 的 lease-based lock 確保同一時間只有一個節點是 leader，防止 split-brain。15 篇討論的 fencing token 概念也適用於 failover 場景——新 leader 的 timeline ID 就是一種 fencing token，阻止舊 leader 的 WAL 被 standby 接受。
 - [[43_sharding_partitioning|Sharding & Partitioning / 分片與分區]] — Sharding 和 replication 通常搭配使用——每個 shard 本身是一個 replication cluster（1 primary + N replicas）。43 篇的 shard router 在路由到正確的 shard 後，仍需本篇的 connection router 決定是讀 primary 還是 replica。兩者組合構成完整的資料層擴展方案：sharding 擴展寫入和儲存，replication 擴展讀取和可用性。
-- [[../../database/transactions|Database Transactions / 資料庫交易]] — 複製對交易語意有深遠影響。在同步複製中，transaction commit 的定義從「WAL 寫入本地磁碟」擴展為「WAL 寫入至少一個 replica 的磁碟」。在 read replica 上的讀取可能看到不同的 transaction snapshot（取決於 replica 的 replay 進度），這影響了 repeatable read 和 serializable isolation 的行為。
+- [[../database/transactions|Database Transactions / 資料庫交易]] — 複製對交易語意有深遠影響。在同步複製中，transaction commit 的定義從「WAL 寫入本地磁碟」擴展為「WAL 寫入至少一個 replica 的磁碟」。在 read replica 上的讀取可能看到不同的 transaction snapshot（取決於 replica 的 replay 進度），這影響了 repeatable read 和 serializable isolation 的行為。
 
 ---
 

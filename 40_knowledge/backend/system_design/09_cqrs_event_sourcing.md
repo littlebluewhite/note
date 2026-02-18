@@ -446,4 +446,4 @@ Event Store 儲存事實（facts），不是傳遞訊息。直接讓消費者 po
 ## Cross-references / 交叉引用
 
 - [[08_event_driven_architecture|Event-Driven Architecture]] — CQRS + ES 的事件流天然與 EDA 整合，Projector 本身就是事件消費者
-- [[../../database/transactions|Transactions]] — Event Store 寫入需要交易保證（aggregate_id + version 唯一性約束），快照更新也涉及交易一致性
+- [[../database/transactions|Transactions]] — Event Store 寫入需要交易保證（aggregate_id + version 唯一性約束），快照更新也涉及交易一致性

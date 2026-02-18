@@ -497,4 +497,4 @@ Repository 應回傳完整 Aggregate Root，隱藏持久化細節。若提供 `f
 ## Cross-references / 交叉引用
 
 - [[09_cqrs_event_sourcing|CQRS & Event Sourcing]] — DDD Aggregate 天然適合作為 CQRS 寫入端的一致性邊界；Domain Events 是 Event Sourcing 的事件來源
-- [[../../design_pattern/modern/27_repository|Repository Pattern]] — Repository 是 DDD 中 Aggregate 的持久化抽象，負責載入與儲存完整的聚合根
+- [[../design_pattern/modern/27_repository|Repository Pattern]] — Repository 是 DDD 中 Aggregate 的持久化抽象，負責載入與儲存完整的聚合根

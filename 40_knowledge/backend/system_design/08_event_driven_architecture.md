@@ -880,8 +880,8 @@ Kafka 的 Exactly-Once Semantics（EOS）可在生產者端避免重複，但增
 - [[./01_scalability_fundamentals|Scalability Fundamentals / 可擴展性基礎]] — EDA 的消費者可水平擴展，搭配自動擴縮實現彈性吞吐。
 - [[./03_consistency_trade_offs|Consistency Trade-offs / 一致性權衡]] — EDA 天然接受最終一致性，理解一致性模型有助於設計正確的消費者行為。
 - [[./04_api_design_rest|API Design: REST]] — 事件驅動架構中的 HTTP 入口端點仍需遵循 REST 設計原則。
-- [[../../database/transactions|Transactions / 交易]] — Transactional Outbox 的核心是利用資料庫交易的原子性保證。
-- [[../../database/isolation_levels|Isolation Levels / 隔離等級]] — `FOR UPDATE SKIP LOCKED` 的行為受資料庫隔離等級影響。
+- [[../database/transactions|Transactions / 交易]] — Transactional Outbox 的核心是利用資料庫交易的原子性保證。
+- [[../database/isolation_levels|Isolation Levels / 隔離等級]] — `FOR UPDATE SKIP LOCKED` 的行為受資料庫隔離等級影響。
 
 ---
 

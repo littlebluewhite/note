@@ -3,8 +3,8 @@ title: Briefings README
 note_type: system
 domain: briefings
 tags: [system, briefings]
-created: 2026-02-14
-updated: 2026-02-14
+created: 2026-02-18
+updated: 2026-02-18
 status: active
 source: system
 ---
@@ -13,6 +13,10 @@ source: system
 
 ## news
 - [2026_02_07_global_news_briefing](news/2026_02_07_global_news_briefing.md)
+- [2026-02-17_global_news_briefing](news/2026-02-17_global_news_briefing.md)
+- [2026-02-16_global_news_briefing](news/2026-02-16_global_news_briefing.md)
+- [2026-02-15_global_news_briefing](news/2026-02-15_global_news_briefing.md)
+- [2026-02-14_global_news_briefing](news/2026-02-14_global_news_briefing.md)
 - [2026-02-13_global_news_briefing](news/2026-02-13_global_news_briefing.md)
 - [2026-02-12_global_news_briefing](news/2026-02-12_global_news_briefing.md)
 - [2026-02-11_global_news_briefing](news/2026-02-11_global_news_briefing.md)
@@ -24,6 +28,10 @@ source: system
 
 ## programming
 - [2026_02_08_programming_briefing](programming/2026_02_08_programming_briefing.md)
+- [2026-02-18_programming_briefing](programming/2026-02-18_programming_briefing.md)
+- [2026-02-17_programming_briefing](programming/2026-02-17_programming_briefing.md)
+- [2026-02-16_programming_briefing](programming/2026-02-16_programming_briefing.md)
+- [2026-02-15_programming_briefing](programming/2026-02-15_programming_briefing.md)
 - [2026-02-14_programming_briefing](programming/2026-02-14_programming_briefing.md)
 - [2026-02-13_programming_briefing](programming/2026-02-13_programming_briefing.md)
 - [2026-02-12_programming_briefing](programming/2026-02-12_programming_briefing.md)

@@ -949,7 +949,7 @@ func processOrder(ctx context.Context) {}
 
 ## Cross-references / 交叉引用
 
-- [[../../database/postgres_lock_troubleshooting|PostgreSQL Lock Troubleshooting / PostgreSQL 鎖問題排查]] — 分散式鎖解決的是跨程序、跨節點的互斥問題，而 PostgreSQL 的 advisory lock 和 row-level lock 解決的是單一資料庫內的併發控制。兩者互補：當多個服務實例共用同一個 PostgreSQL 時，可以考慮用 `pg_advisory_lock` 替代 Redis 分散式鎖——減少外部依賴。排查 PostgreSQL 的鎖等待和死鎖問題時，理解分散式鎖的 TTL 和 fencing token 概念有助於設計更健壯的重試邏輯。
+- [[../database/postgres_lock_troubleshooting|PostgreSQL Lock Troubleshooting / PostgreSQL 鎖問題排查]] — 分散式鎖解決的是跨程序、跨節點的互斥問題，而 PostgreSQL 的 advisory lock 和 row-level lock 解決的是單一資料庫內的併發控制。兩者互補：當多個服務實例共用同一個 PostgreSQL 時，可以考慮用 `pg_advisory_lock` 替代 Redis 分散式鎖——減少外部依賴。排查 PostgreSQL 的鎖等待和死鎖問題時，理解分散式鎖的 TTL 和 fencing token 概念有助於設計更健壯的重試邏輯。
 - [[12_cap_consistency_models|CAP Theorem & Consistency Models / CAP 定理與一致性模型]] — 分散式鎖的選型本質上是 CAP 取捨：Redis 單節點鎖在效率端（AP 傾向），etcd/ZooKeeper 在正確性端（CP 傾向）。理解 CAP 定理能幫助判斷何時需要 Redlock 以上的保證、何時單節點 Redis 就足夠。
 
 ---

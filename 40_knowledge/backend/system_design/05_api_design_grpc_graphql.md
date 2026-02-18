@@ -767,5 +767,5 @@ gRPC 預設最大接收訊息為 4 MB。若回傳大型商品列表或批次查�
 - 可擴展性基礎（水平擴展與負載均衡）: [01_scalability_fundamentals.md](01_scalability_fundamentals.md)
 - 可用性與容錯設計: [02_availability_and_fault_tolerance.md](02_availability_and_fault_tolerance.md)
 - 一致性取捨（CAP theorem）: [03_consistency_trade_offs.md](03_consistency_trade_offs.md)
-- 資料庫索引設計: [../../database/indexing.md](../../database/indexing.md)
+- 資料庫索引設計: [../database/indexing.md](../database/indexing.md)
 - 分散式系統設計: [../distributed_systems/](../distributed_systems/)

@@ -708,8 +708,8 @@ func safeMiddleware(next http.Handler) http.Handler {
 
 ## Cross-references / 交叉引用
 
-- 索引設計與資料庫查詢優化: [../../database/indexing.md](../../database/indexing.md)
-- 交易隔離等級與一致性保證: [../../database/isolation_levels.md](../../database/isolation_levels.md)
-- 資料庫交易基礎: [../../database/transactions.md](../../database/transactions.md)
+- 索引設計與資料庫查詢優化: [../database/indexing.md](../database/indexing.md)
+- 交易隔離等級與一致性保證: [../database/isolation_levels.md](../database/isolation_levels.md)
+- 資料庫交易基礎: [../database/transactions.md](../database/transactions.md)
 - 分散式系統設計（系列後續篇章）: [../distributed_systems/](../distributed_systems/)
 - 基礎建設與部署: [../infrastructure/](../infrastructure/)

@@ -17,7 +17,7 @@ source: system
 - Baseline date: 2026-02-17.
 - Learning mode: each batch covers 2-3 topics with dual-language implementation.
 
-## Batch Learning Route (23 batches)
+## Batch Learning Route (30 batches)
 
 - Batch 1: `01`, `02`, `03` (可擴展性基礎三柱 — Scalability, Availability, Consistency)
 - Batch 2: `04`, `05`, `06` (API 設計 — REST, gRPC/GraphQL, Versioning)
@@ -42,6 +42,13 @@ source: system
 - Batch 21: `50`, `51` (基礎設施自動化 — IaC, GitOps)
 - Batch 22: `52`, `53` (資料管道 — Stream Processing, Batch Processing)
 - Batch 23: `54`, `55`, `56` (架構補充 — Patterns, Schema Migration, Feature Flags)
+- Batch 24: `57`, `68`, `61` (基礎設施補強 — Docker, DNS/Network, Object Storage & CDN)
+- Batch 25: `58`, `70`, `71` (API 層進階 — API Gateway/BFF, Webhook, Realtime Patterns)
+- Batch 26: `59`, `65`, `76` (分散式資料流 — Transactional Outbox, Serialization, Data Pipeline/ETL)
+- Batch 27: `60`, `62`, `64` (資料庫進階 — Search Infrastructure, Multi-Tenancy, Database Design Patterns)
+- Batch 28: `63`, `66`, `69` (工程實踐 — Graceful Shutdown, Background Job, Configuration/12-Factor)
+- Batch 29: `67`, `73`, `74`, `75` (可觀測性 + 特化資料庫 + DI — Observability, Graph DB, Time-Series DB, Dependency Injection)
+- Batch 30: `72` (金融交易 — Payment/Financial Transaction Patterns)
 
 ## Estimated Time Per Topic
 
@@ -52,9 +59,9 @@ source: system
 
 ## Reading Priority
 
-- Must-read (`必讀`): `01`, `02`, `03`, `04`, `07`, `08`, `11`, `12`, `13`, `15`, `16`, `17`, `19`, `20`, `21`, `24`, `25`, `26`, `33`, `39`, `41`, `43`, `44`, `46`, `48`
-- Important (`重要`): `05`, `06`, `09`, `10`, `14`, `18`, `22`, `23`, `27`, `30`, `32`, `34`, `36`, `37`, `38`, `40`, `42`, `45`, `47`, `49`, `52`, `55`, `56`
-- Skippable (`可跳讀`): `29`, `31`, `35`, `50`, `51`, `53`, `54`
+- Must-read (`必讀`): `01`, `02`, `03`, `04`, `07`, `08`, `11`, `12`, `13`, `15`, `16`, `17`, `19`, `20`, `21`, `24`, `25`, `26`, `33`, `39`, `41`, `43`, `44`, `46`, `48`, `57`, `58`, `59`, `63`, `64`, `67`, `72`
+- Important (`重要`): `05`, `06`, `09`, `10`, `14`, `18`, `22`, `23`, `27`, `30`, `32`, `34`, `36`, `37`, `38`, `40`, `42`, `45`, `47`, `49`, `52`, `55`, `56`, `60`, `62`, `65`, `66`, `69`, `71`, `75`, `76`
+- Skippable (`可跳讀`): `29`, `31`, `35`, `50`, `51`, `53`, `54`, `61`, `68`, `70`, `73`, `74`
 
 ## Support Documents
 
@@ -78,6 +85,14 @@ source: system
 - [11_system_design_interview](system_design/11_system_design_interview.md) - 必讀 - 75 min
 - [45_nosql_selection_guide](system_design/45_nosql_selection_guide.md) - 重要 - 75 min
 - [54_architecture_supplement_patterns](system_design/54_architecture_supplement_patterns.md) - 可跳讀 - 75 min
+- [58_api_gateway_bff](system_design/58_api_gateway_bff.md) - 必讀 - 75 min
+- [62_multi_tenancy_patterns](system_design/62_multi_tenancy_patterns.md) - 重要 - 90 min
+- [64_database_design_patterns](system_design/64_database_design_patterns.md) - 必讀 - 90 min
+- [70_webhook_design_patterns](system_design/70_webhook_design_patterns.md) - 可跳讀 - 75 min
+- [71_realtime_patterns](system_design/71_realtime_patterns.md) - 重要 - 90 min
+- [72_payment_financial_transactions](system_design/72_payment_financial_transactions.md) - 必讀 - 90 min
+- [73_graph_database_patterns](system_design/73_graph_database_patterns.md) - 可跳讀 - 75 min
+- [74_time_series_database](system_design/74_time_series_database.md) - 可跳讀 - 75 min
 
 ### Distributed Systems
 
@@ -96,6 +111,9 @@ source: system
 - [49_leader_election_distributed_scheduling](distributed_systems/49_leader_election_distributed_scheduling.md) - 重要 - 75 min
 - [52_stream_processing](distributed_systems/52_stream_processing.md) - 重要 - 90 min
 - [53_batch_processing](distributed_systems/53_batch_processing.md) - 可跳讀 - 75 min
+- [59_transactional_outbox](distributed_systems/59_transactional_outbox.md) - 必讀 - 75 min
+- [65_data_serialization_schema_evolution](distributed_systems/65_data_serialization_schema_evolution.md) - 重要 - 75 min
+- [76_data_pipeline_etl](distributed_systems/76_data_pipeline_etl.md) - 重要 - 90 min
 
 ### Infrastructure
 
@@ -115,6 +133,11 @@ source: system
 - [42_service_mesh](infrastructure/42_service_mesh.md) - 重要 - 75 min
 - [50_infrastructure_as_code](infrastructure/50_infrastructure_as_code.md) - 可跳讀 - 60 min
 - [51_gitops](infrastructure/51_gitops.md) - 可跳讀 - 60 min
+- [57_docker_container_fundamentals](infrastructure/57_docker_container_fundamentals.md) - 必讀 - 75 min
+- [60_search_infrastructure](infrastructure/60_search_infrastructure.md) - 重要 - 90 min
+- [61_object_storage_cdn](infrastructure/61_object_storage_cdn.md) - 可跳讀 - 75 min
+- [67_observability_strategy](infrastructure/67_observability_strategy.md) - 必讀 - 90 min
+- [68_dns_network_fundamentals](infrastructure/68_dns_network_fundamentals.md) - 可跳讀 - 75 min
 
 ### Engineering
 
@@ -130,3 +153,58 @@ source: system
 - [47_incident_management_disaster_recovery](engineering/47_incident_management_disaster_recovery.md) - 重要 - 75 min
 - [55_zero_downtime_schema_migration](engineering/55_zero_downtime_schema_migration.md) - 重要 - 60 min
 - [56_feature_flags](engineering/56_feature_flags.md) - 重要 - 60 min
+- [63_graceful_shutdown_health_check](engineering/63_graceful_shutdown_health_check.md) - 必讀 - 75 min
+- [66_background_job_task_queue](engineering/66_background_job_task_queue.md) - 重要 - 90 min
+- [69_configuration_management_12_factor](engineering/69_configuration_management_12_factor.md) - 重要 - 60 min
+- [75_dependency_injection](engineering/75_dependency_injection.md) - 重要 - 75 min
+
+### Database
+
+- [indexing](database/indexing.md) - 必讀 - 30 min
+- [transactions](database/transactions.md) - 必讀 - 30 min
+- [isolation_levels](database/isolation_levels.md) - 必讀 - 30 min
+- [postgres_gotchas](database/postgres_gotchas.md) - 重要 - 30 min
+- [postgres_explain_guide](database/postgres_explain_guide.md) - 重要 - 45 min
+- [postgres_explain_examples](database/postgres_explain_examples.md) - 重要 - 30 min
+- [postgres_index_join_guide](database/postgres_index_join_guide.md) - 重要 - 30 min
+- [postgres_lock_troubleshooting](database/postgres_lock_troubleshooting.md) - 重要 - 45 min
+- [postgres_slow_query_triage](database/postgres_slow_query_triage.md) - 重要 - 45 min
+- [alembic/01_baseline](database/alembic/01_baseline.md) - 可跳讀 - 30 min
+- [alembic/02_autogenerate](database/alembic/02_autogenerate.md) - 可跳讀 - 30 min
+- [alembic/03_data_migrations](database/alembic/03_data_migrations.md) - 可跳讀 - 30 min
+- [alembic/04_commands](database/alembic/04_commands.md) - 可跳讀 - 30 min
+- [alembic/05_troubleshooting](database/alembic/05_troubleshooting.md) - 可跳讀 - 30 min
+
+### Design Pattern
+
+- [01_singleton](design_pattern/creational/01_singleton.md) - 必讀 - 60 min
+- [02_factory_method](design_pattern/creational/02_factory_method.md) - 必讀 - 60 min
+- [03_abstract_factory](design_pattern/creational/03_abstract_factory.md) - 可跳讀 - 60 min
+- [04_builder](design_pattern/creational/04_builder.md) - 必讀 - 75 min
+- [05_prototype](design_pattern/creational/05_prototype.md) - 可跳讀 - 60 min
+- [06_adapter](design_pattern/structural/06_adapter.md) - 必讀 - 60 min
+- [07_bridge](design_pattern/structural/07_bridge.md) - 可跳讀 - 60 min
+- [08_composite](design_pattern/structural/08_composite.md) - 必讀 - 75 min
+- [09_decorator](design_pattern/structural/09_decorator.md) - 必讀 - 75 min
+- [10_facade](design_pattern/structural/10_facade.md) - 必讀 - 60 min
+- [11_flyweight](design_pattern/structural/11_flyweight.md) - 可跳讀 - 60 min
+- [12_proxy](design_pattern/structural/12_proxy.md) - 可跳讀 - 60 min
+- [13_chain_of_responsibility](design_pattern/behavioral/13_chain_of_responsibility.md) - 可跳讀 - 60 min
+- [14_command](design_pattern/behavioral/14_command.md) - 可跳讀 - 60 min
+- [15_iterator](design_pattern/behavioral/15_iterator.md) - 可跳讀 - 60 min
+- [16_mediator](design_pattern/behavioral/16_mediator.md) - 可跳讀 - 60 min
+- [17_memento](design_pattern/behavioral/17_memento.md) - 可跳讀 - 60 min
+- [18_observer](design_pattern/behavioral/18_observer.md) - 必讀 - 75 min
+- [19_state](design_pattern/behavioral/19_state.md) - 必讀 - 75 min
+- [20_strategy](design_pattern/behavioral/20_strategy.md) - 必讀 - 60 min
+- [21_template_method](design_pattern/behavioral/21_template_method.md) - 必讀 - 60 min
+- [22_visitor](design_pattern/behavioral/22_visitor.md) - 可跳讀 - 75 min
+- [23_interpreter](design_pattern/behavioral/23_interpreter.md) - 可跳讀 - 60 min
+- [24_functional_options](design_pattern/modern/24_functional_options.md) - 必讀 - 75 min
+- [25_newtype](design_pattern/modern/25_newtype.md) - 必讀 - 60 min
+- [26_typestate](design_pattern/modern/26_typestate.md) - 可跳讀 - 75 min
+- [27_repository](design_pattern/modern/27_repository.md) - 可跳讀 - 60 min
+- [28_middleware](design_pattern/modern/28_middleware.md) - 可跳讀 - 60 min
+- [29_worker_pool](design_pattern/modern/29_worker_pool.md) - 必讀 - 90 min
+- [30_circuit_breaker](design_pattern/modern/30_circuit_breaker.md) - 可跳讀 - 75 min
+- [31_raii_drop_guard](design_pattern/modern/31_raii_drop_guard.md) - 可跳讀 - 60 min

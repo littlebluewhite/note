@@ -1008,7 +1008,7 @@ Saga step 失敗時，SEC 盲目地開始反向補償。但失敗原因可能只
 
 ## Cross-references / 交叉引用
 
-- [[../../database/transactions|Transactions / 交易]] — Saga 的每個 step 依賴本地資料庫交易的原子性保證。理解 ACID 屬性（尤其是 Atomicity 和 Isolation）有助於理解 Saga 犧牲了什麼、保留了什麼。
+- [[../database/transactions|Transactions / 交易]] — Saga 的每個 step 依賴本地資料庫交易的原子性保證。理解 ACID 屬性（尤其是 Atomicity 和 Isolation）有助於理解 Saga 犧牲了什麼、保留了什麼。
 - [[../system_design/08_event_driven_architecture|Event-Driven Architecture / 事件驅動架構]] — Choreography Saga 本質上就是 EDA 的應用。Transactional Outbox Pattern 確保 Saga 步驟完成後的事件可靠發佈，是 choreography 模式的基礎設施保障。
 - [[../system_design/09_cqrs_event_sourcing|CQRS & Event Sourcing]] — Saga 的 SEC 狀態持久化可使用 Event Sourcing 模式，將每個步驟的結果記錄為不可變事件序列，支援完整的稽核與重播。
 - [[./12_cap_consistency_models|CAP Theorem & Consistency Models / CAP 定理與一致性模型]] — Saga 選擇了最終一致性而非強一致性，是 AP 取向的分散式交易策略。理解 CAP 有助於理解 Saga 在一致性光譜上的位置。

@@ -224,7 +224,7 @@ groups:
 ## Cross-references / 交叉引用
 
 - [[13_saga_pattern|Saga Pattern / Saga 模式]] -- Saga 是 2PC 在微服務場景下的主要替代方案。2PC 保證原子性但犧牲可用性（阻塞協議）；Saga 保證最終一致性但需要補償操作。跨服務用 Saga，同一叢集內可用 2PC。
-- [[../../database/transactions|Database Transactions / 資料庫交易]] -- 單節點 ACID 交易是 2PC 的基礎構件。每個 participant 的 PREPARE 依賴底層 redo/undo log 保證本地持久性與可回滾性。
+- [[../database/transactions|Database Transactions / 資料庫交易]] -- 單節點 ACID 交易是 2PC 的基礎構件。每個 participant 的 PREPARE 依賴底層 redo/undo log 保證本地持久性與可回滾性。
 
 ---
 

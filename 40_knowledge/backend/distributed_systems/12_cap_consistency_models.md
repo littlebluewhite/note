@@ -991,7 +991,7 @@ Raft 中 log entry 被 committed（多數節點已複製）不代表已經 appli
 ## Cross-references / 交叉引用
 
 - [[../system_design/03_consistency_trade_offs|Consistency Trade-offs / 一致性權衡]] — 本篇專注 CAP 定理層面的取捨，而 03 篇深入探討不同一致性模型（Read-Your-Writes、Monotonic Reads）的實作模式。兩篇互補：先理解 CAP 的理論框架，再學習具體的一致性保證實作。
-- [[../../database/isolation_levels|Isolation Levels / 隔離等級]] — 資料庫的隔離等級（Read Committed、Repeatable Read、Serializable）與分散式一致性模型密切相關。Serializable isolation 在單節點上接近 linearizability 的保證，而跨節點的 serializable 則需要分散式共識協議。
+- [[../database/isolation_levels|Isolation Levels / 隔離等級]] — 資料庫的隔離等級（Read Committed、Repeatable Read、Serializable）與分散式一致性模型密切相關。Serializable isolation 在單節點上接近 linearizability 的保證，而跨節點的 serializable 則需要分散式共識協議。
 
 ---
 

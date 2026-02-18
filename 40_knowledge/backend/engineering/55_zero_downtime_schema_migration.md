@@ -1698,8 +1698,8 @@ CREATE INDEX CONCURRENTLY idx_orders_status ON orders (status);
 
 ## Cross-references / 交叉引用
 
-- [[../../database/transactions|Database Transactions]](../../database/transactions.md) — Schema 遷移必須尊重 transaction 邊界。DDL 在 PostgreSQL 中是 transactional 的（可以 ROLLBACK），但在 MySQL 中 DDL 會隱式 COMMIT 當前 transaction。了解 transaction 的行為是設計安全 migration 的前提。
-- [[../../database/postgres_lock_troubleshooting|PostgreSQL Lock Troubleshooting]](../../database/postgres_lock_troubleshooting.md) — DDL 操作需要取得各種等級的鎖（AccessExclusiveLock、ShareLock 等）。不當的 DDL 會造成 lock contention，所有等待該鎖的查詢排隊，觸發連鎖的 timeout 和雪崩。理解 PostgreSQL 的鎖機制是執行安全 DDL 的關鍵。
+- [[../database/transactions|Database Transactions]](../database/transactions.md) — Schema 遷移必須尊重 transaction 邊界。DDL 在 PostgreSQL 中是 transactional 的（可以 ROLLBACK），但在 MySQL 中 DDL 會隱式 COMMIT 當前 transaction。了解 transaction 的行為是設計安全 migration 的前提。
+- [[../database/postgres_lock_troubleshooting|PostgreSQL Lock Troubleshooting]](../database/postgres_lock_troubleshooting.md) — DDL 操作需要取得各種等級的鎖（AccessExclusiveLock、ShareLock 等）。不當的 DDL 會造成 lock contention，所有等待該鎖的查詢排隊，觸發連鎖的 timeout 和雪崩。理解 PostgreSQL 的鎖機制是執行安全 DDL 的關鍵。
 - [[40_cicd_deployment|CI/CD & Deployment]](40_cicd_deployment.md) — Schema migration 必須整合到 CI/CD pipeline 中。最佳實踐是「先遷移、後部署」——CI pipeline 先執行 Expand 階段的 migration，驗證成功後再部署新版程式碼。Contract 階段的 migration 則在下一個 release cycle 中執行。
 
 ---

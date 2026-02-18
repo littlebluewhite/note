@@ -609,8 +609,8 @@ go func() { _ = tracker["alice"] }() // fatal error!
 
 ## Cross-references / 交叉引用
 
-- [[../../database/isolation_levels|Isolation Levels / 隔離等級]] — 一致性模型與資料庫隔離等級密切相關。Serializable isolation 提供的保證接近 strong consistency，而 Read Committed 則類似 eventual consistency 在單節點上的對應。
-- [[../../database/transactions|Transactions / 交易]] — 分散式交易（2PC, 3PC）是實現強一致性的機制之一，但代價是可用性降低。理解交易的 ACID 屬性有助於區分不同層次的一致性保證。
+- [[../database/isolation_levels|Isolation Levels / 隔離等級]] — 一致性模型與資料庫隔離等級密切相關。Serializable isolation 提供的保證接近 strong consistency，而 Read Committed 則類似 eventual consistency 在單節點上的對應。
+- [[../database/transactions|Transactions / 交易]] — 分散式交易（2PC, 3PC）是實現強一致性的機制之一，但代價是可用性降低。理解交易的 ACID 屬性有助於區分不同層次的一致性保證。
 
 ---
 

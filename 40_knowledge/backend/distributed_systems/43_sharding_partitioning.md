@@ -1183,7 +1183,7 @@ func (r *ConsistentHashRing) SafeGetShard(key string) *Shard {
 - [[../system_design/01_scalability_fundamentals|Scalability Fundamentals / 可擴展性基礎]] — 分片是水平擴展（horizontal scaling）在資料層的具體實踐。01 篇建立了水平擴展的概念框架，本篇深入資料層的分片策略。當應用層已無狀態化、已有 load balancer，但資料庫仍是瓶頸時，分片是下一步。
 - [[../system_design/03_consistency_trade_offs|Consistency Trade-offs / 一致性權衡]] — 跨 shard 交易無法享有單一資料庫的 ACID 保證，必須在一致性與可用性之間取捨。03 篇討論的 eventual consistency、read-your-writes 等模型在分片系統中尤為重要——跨 shard 查詢可能讀到不同 shard 上不同時間點的資料快照。
 - [[12_cap_consistency_models|CAP & Consistency Models / CAP 定理與一致性模型]] — 分片天然引入了 CAP 取捨。每個 shard 內部可以是 CP（如使用 Raft-based replication），但跨 shard 操作通常只能提供 eventual consistency（AP 傾向）。理解 CAP 有助於判斷何時需要分散式交易、何時可以接受最終一致性。
-- [[../../database/indexing|Database Indexing / 資料庫索引]] — 分片環境中的索引設計需要特別考慮 shard key。全域唯一索引（global secondary index）在分片系統中非常昂貴（需要跨所有 shard 查詢），通常只能建立包含 shard key 的本地索引（local index）。Citus 的 distributed index 和 Vitess 的 vindexes 是解決此問題的方案。
+- [[../database/indexing|Database Indexing / 資料庫索引]] — 分片環境中的索引設計需要特別考慮 shard key。全域唯一索引（global secondary index）在分片系統中非常昂貴（需要跨所有 shard 查詢），通常只能建立包含 shard key 的本地索引（local index）。Citus 的 distributed index 和 Vitess 的 vindexes 是解決此問題的方案。
 
 ---
 
