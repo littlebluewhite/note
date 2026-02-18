@@ -4,13 +4,13 @@ note_type: knowledge
 domain: data_structure
 tags: [data_structure, knowledge]
 created: 2026-02-17
-updated: 2026-02-17
+updated: 2026-02-18
 status: active
 source: data_structure
 complexity_time: O(1) per bit op
 complexity_space: O(1)
 review_interval_days: 14
-next_review: 2026-03-03
+next_review: 2026-03-04
 ---
 # Fixed-Width Bitmask Integer / 固定寬度位元遮罩整數
 
@@ -71,6 +71,22 @@ fn leds_on(hour: u32, minute: u32) -> u32 {
 }
 ```
 
+Alternating-bits check (q693):
+交替位元判斷（q693）：
+
+- `n = 5` (`101`), `n >> 1 = 10`
+- `x = n ^ (n >> 1) = 111` (all ones)
+- `x & (x + 1) = 0` -> alternating bits.
+
+Rust snippet:
+
+```rust
+fn has_alternating_bits(n: u32) -> bool {
+    let x = n ^ (n >> 1);
+    (x & (x + 1)) == 0
+}
+```
+
 ## Variations / 變化型
 
 - `u8/u16/u32/u64`: choose by required bit width.
@@ -107,5 +123,6 @@ fn leds_on(hour: u32, minute: u32) -> u32 {
 
 - [q401](../leetcode/q401.md)
 - [q190](../leetcode/q190.md)
+- [q693](../leetcode/q693.md)
 - [191. Number of 1 Bits](https://leetcode.com/problems/number-of-1-bits/)
 - [338. Counting Bits](https://leetcode.com/problems/counting-bits/)
