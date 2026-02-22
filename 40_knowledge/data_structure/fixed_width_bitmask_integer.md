@@ -4,13 +4,13 @@ note_type: knowledge
 domain: data_structure
 tags: [data_structure, knowledge]
 created: 2026-02-17
-updated: 2026-02-18
+updated: 2026-02-22
 status: active
 source: data_structure
 complexity_time: O(1) per bit op
 complexity_space: O(1)
 review_interval_days: 14
-next_review: 2026-03-04
+next_review: 2026-03-08
 ---
 # Fixed-Width Bitmask Integer / 固定寬度位元遮罩整數
 
@@ -87,6 +87,35 @@ fn has_alternating_bits(n: u32) -> bool {
 }
 ```
 
+Binary gap scan (q868):
+二進位間距掃描（q868）：
+
+- Keep integer as bit container and scan from LSB to MSB.
+  / 將整數當作位元容器，從最低位掃到最高位。
+- Track `last_one` index and update max distance on every new `1`.
+  / 記錄上一個 `1` 的索引 `last_one`，每遇到新的 `1` 就更新最大距離。
+
+Rust snippet:
+
+```rust
+fn binary_gap(mut x: u32) -> i32 {
+    let mut pos = 0i32;
+    let mut last_one: Option<i32> = None;
+    let mut ans = 0i32;
+    while x > 0 {
+        if (x & 1) == 1 {
+            if let Some(prev) = last_one {
+                ans = ans.max(pos - prev);
+            }
+            last_one = Some(pos);
+        }
+        x >>= 1;
+        pos += 1;
+    }
+    ans
+}
+```
+
 ## Variations / 變化型
 
 - `u8/u16/u32/u64`: choose by required bit width.
@@ -123,6 +152,7 @@ fn has_alternating_bits(n: u32) -> bool {
 
 - [q401](../leetcode/q401.md)
 - [q190](../leetcode/q190.md)
+- [q868](../leetcode/q868.md)
 - [q693](../leetcode/q693.md)
 - [191. Number of 1 Bits](https://leetcode.com/problems/number-of-1-bits/)
 - [338. Counting Bits](https://leetcode.com/problems/counting-bits/)
